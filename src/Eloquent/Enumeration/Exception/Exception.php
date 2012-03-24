@@ -9,12 +9,6 @@
  * file that was distributed with this source code.
  */
 
-namespace Eloquent\Enumeration;
+namespace Eloquent\Enumeration\Exception;
 
-class DummyTest extends \Eloquent\Enumeration\Test\TestCase
-{
-  public function testDummy()
-  {
-    $this->assertTrue(true);
-  }
-}
+interface Exception {}
