@@ -41,40 +41,14 @@ abstract class Enumeration
    */
   public static final function byValue($value)
   {
-    return static::byName(static::nameByValue($value));
-  }
-
-  /**
-   * @param string $name
-   *
-   * @return scalar
-   */
-  public static final function valueByName($name)
-  {
-    $values = static::values();
-    if (!array_key_exists($name, $values))
-    {
-      throw new Exception\UndefinedEnumerationException(get_called_class(), $name);
-    }
-
-    return $values[$name];
-  }
-
-  /**
-   * @param scalar $value
-   *
-   * @return string
-   */
-  public static final function nameByValue($value)
-  {
     foreach (static::values() as $name => $thisValue)
     {
       if ($thisValue === $value)
       {
-        return $name;
+        return static::byName($name);
       }
     }
-    
+
     throw new Exception\UndefinedEnumerationValueException(get_called_class(), $value);
   }
 
@@ -121,8 +95,14 @@ abstract class Enumeration
    */
   protected function __construct($name)
   {
+    $values = static::values();
+    if (!array_key_exists($name, $values))
+    {
+      throw new Exception\UndefinedEnumerationException(get_called_class(), $name);
+    }
+
     $this->name = $name;
-    $this->value = static::valueByName($name);
+    $this->value = $values[$name];
   }
 
   /**

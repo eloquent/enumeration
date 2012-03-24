@@ -97,46 +97,6 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
    * @covers Eloquent\Enumeration\Enumeration
    * @group core
    */
-  public function testValueByName()
-  {
-    $this->assertSame('oof', TestEnumeration::valueByName('FOO'));
-    $this->assertSame('rab', TestEnumeration::valueByName('BAR'));
-  }
-
-  /**
-   * @covers Eloquent\Enumeration\Enumeration
-   * @group core
-   */
-  public function testValueByNameFailure()
-  {
-    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationException');
-    TestEnumeration::valueByName('QUX');
-  }
-
-  /**
-   * @covers Eloquent\Enumeration\Enumeration
-   * @group core
-   */
-  public function testNameByValue()
-  {
-    $this->assertSame('FOO', TestEnumeration::nameByValue('oof'));
-    $this->assertSame('BAR', TestEnumeration::nameByValue('rab'));
-  }
-
-  /**
-   * @covers Eloquent\Enumeration\Enumeration
-   * @group core
-   */
-  public function testNameByValueFailure()
-  {
-    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationValueException');
-    TestEnumeration::nameByValue('xuq');
-  }
-
-  /**
-   * @covers Eloquent\Enumeration\Enumeration
-   * @group core
-   */
   public function testValues()
   {
     $this->assertSame(array(), Enumeration::values());
