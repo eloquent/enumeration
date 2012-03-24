@@ -35,14 +35,47 @@ abstract class Enumeration
   }
 
   /**
-   * @param string $name
-   * @param array $arguments
+   * @param scalar $value
    *
    * @return Enumeration
    */
-  public static final function __callStatic($name, array $arguments)
+  public static final function byValue($value)
   {
-    return static::byName($name);
+    return static::byName(static::nameByValue($value));
+  }
+
+  /**
+   * @param string $name
+   *
+   * @return scalar
+   */
+  public static final function valueByName($name)
+  {
+    $values = static::values();
+    if (!array_key_exists($name, $values))
+    {
+      throw new Exception\UndefinedEnumerationException(get_called_class(), $name);
+    }
+
+    return $values[$name];
+  }
+
+  /**
+   * @param scalar $value
+   *
+   * @return string
+   */
+  public static final function nameByValue($value)
+  {
+    foreach (static::values() as $name => $thisValue)
+    {
+      if ($thisValue === $value)
+      {
+        return $name;
+      }
+    }
+    
+    throw new Exception\UndefinedEnumerationValueException(get_called_class(), $value);
   }
 
   /**
@@ -62,18 +95,13 @@ abstract class Enumeration
 
   /**
    * @param string $name
+   * @param array $arguments
    *
-   * @return scalar
+   * @return Enumeration
    */
-  public static final function valueByName($name)
+  public static final function __callStatic($name, array $arguments)
   {
-    $values = static::values();
-    if (!array_key_exists($name, $values))
-    {
-      throw new Exception\UndefinedEnumerationException(get_called_class(), $name);
-    }
-
-    return $values[$name];
+    return static::byName($name);
   }
 
   protected static function initialize() {}
@@ -100,7 +128,7 @@ abstract class Enumeration
   /**
    * @return string
    */
-  public function name()
+  public final function name()
   {
     return $this->name;
   }
@@ -108,7 +136,7 @@ abstract class Enumeration
   /**
    * @return scalar
    */
-  public function value()
+  public final function value()
   {
     return $this->value;
   }

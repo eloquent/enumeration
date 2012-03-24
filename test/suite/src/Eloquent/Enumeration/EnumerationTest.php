@@ -21,21 +21,31 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
     parent::setUp();
 
     TestEnumeration::resetCalls();
+
+    $reflector = new \ReflectionClass(__NAMESPACE__.'\Enumeration');
+
+    $enumerationsProperty = $reflector->getProperty('enumerations');
+    $enumerationsProperty->setAccessible(true);
+    $enumerationsProperty->setValue(null, array());
+
+    $valuesProperty = $reflector->getProperty('values');
+    $valuesProperty->setAccessible(true);
+    $valuesProperty->setValue(null, array());
   }
 
   /**
    * @covers Eloquent\Enumeration\Enumeration
    * @group core
    */
-  public function testCallStatic()
+  public function testByName()
   {
-    $foo = TestEnumeration::FOO();
-    $bar = TestEnumeration::BAR();
+    $foo = TestEnumeration::byName('FOO');
+    $bar = TestEnumeration::byName('BAR');
 
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $foo);
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $bar);
-    $this->assertSame($foo, TestEnumeration::FOO());
-    $this->assertSame($bar, TestEnumeration::BAR());
+    $this->assertSame($foo, TestEnumeration::byName('FOO'));
+    $this->assertSame($bar, TestEnumeration::byName('BAR'));
     $this->assertNotEquals($foo, $bar);
 
     $this->assertSame(array(
@@ -51,10 +61,76 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
    * @covers Eloquent\Enumeration\Enumeration
    * @group core
    */
-  public function testCallStaticFailure()
+  public function testByNameFailure()
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationException');
-    TestEnumeration::QUX();
+    TestEnumeration::byName('QUX');
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testByValue()
+  {
+    $foo = TestEnumeration::byValue('oof');
+    $bar = TestEnumeration::byValue('rab');
+
+    $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $foo);
+    $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $bar);
+    $this->assertSame($foo, TestEnumeration::byValue('oof'));
+    $this->assertSame($bar, TestEnumeration::byValue('rab'));
+    $this->assertNotEquals($foo, $bar);
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testByValueFailure()
+  {
+    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationValueException');
+    TestEnumeration::byValue('xuq');
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testValueByName()
+  {
+    $this->assertSame('oof', TestEnumeration::valueByName('FOO'));
+    $this->assertSame('rab', TestEnumeration::valueByName('BAR'));
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testValueByNameFailure()
+  {
+    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationException');
+    TestEnumeration::valueByName('QUX');
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testNameByValue()
+  {
+    $this->assertSame('FOO', TestEnumeration::nameByValue('oof'));
+    $this->assertSame('BAR', TestEnumeration::nameByValue('rab'));
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testNameByValueFailure()
+  {
+    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationValueException');
+    TestEnumeration::nameByValue('xuq');
   }
 
   /**
@@ -75,6 +151,32 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
       'FOO' => 'oof',
       'BAR' => 'rab',
     ), ExtendedTestEnumeration::values());
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testCallStatic()
+  {
+    $foo = TestEnumeration::FOO();
+    $bar = TestEnumeration::BAR();
+
+    $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $foo);
+    $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\TestEnumeration', $bar);
+    $this->assertSame($foo, TestEnumeration::FOO());
+    $this->assertSame($bar, TestEnumeration::BAR());
+    $this->assertNotEquals($foo, $bar);
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testCallStaticFailure()
+  {
+    $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationException');
+    TestEnumeration::QUX();
   }
 
   /**
