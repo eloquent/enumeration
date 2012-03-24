@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of the Enumeration package.
+ *
+ * Copyright © 2011 Erin Millard
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+// path constants
+require dirname(__DIR__).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'paths.php';
+
+// clean reports
+foreach(glob(LQNT_TEST_REPORT_DIR.DIRECTORY_SEPARATOR.'*') as $report)
+{
+  lqnt_test_delete_recursive($report);
+}
+
+$configFile = 'config-reports.xml';
+
+require __DIR__.DIRECTORY_SEPARATOR.'phpunit.php';
+
+function lqnt_test_delete_recursive($path)
+{
+  if (is_dir($path))
+  {
+    array_map('lqnt_test_delete_recursive', glob($path.DIRECTORY_SEPARATOR.'*'));
+    rmdir($path);
+  }
+  elseif (is_file($path))
+  {
+    unlink($path);
+  }
+}

@@ -1,0 +1,9 @@
+language: php
+before_script:
+  - pyrus channel-discover pear.digitalsandwich.com
+  - pyrus install digitalsandwich/Phake
+  - phpenv rehash
+script: test/bin/ci-run
+php:
+  - 5.3
+  - 5.4
