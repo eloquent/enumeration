@@ -11,6 +11,7 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Test\Fixture\ExtendedTestEnumeration;
 use Eloquent\Enumeration\Test\Fixture\TestEnumeration;
 
 class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
@@ -54,6 +55,26 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedEnumerationException');
     TestEnumeration::QUX();
+  }
+
+  /**
+   * @covers Eloquent\Enumeration\Enumeration
+   * @group core
+   */
+  public function testValues()
+  {
+    $this->assertSame(array(), Enumeration::values());
+
+    $this->assertSame(array(
+      'FOO' => 'oof',
+      'BAR' => 'rab',
+    ), TestEnumeration::values());
+
+    $this->assertSame(array(
+      'BAZ' => 'zab',
+      'FOO' => 'oof',
+      'BAR' => 'rab',
+    ), ExtendedTestEnumeration::values());
   }
 
   /**

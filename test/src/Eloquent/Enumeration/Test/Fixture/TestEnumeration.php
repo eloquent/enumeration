@@ -13,11 +13,10 @@ namespace Eloquent\Enumeration\Test\Fixture;
 
 use Eloquent\Enumeration\Enumeration;
 
-final class TestEnumeration extends Enumeration
+class TestEnumeration extends Enumeration
 {
   const FOO = 'oof';
   const BAR = 'rab';
-  const BAZ = 'zab';
 
   public static function resetCalls()
   {

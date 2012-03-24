@@ -15,68 +15,12 @@ abstract class Enumeration
 {
   /**
    * @param string $name
-   * @param array $arguments
    *
    * @return Enumeration
    */
-  public static final function __callStatic($name, array $arguments)
+  public static final function byName($name)
   {
-    return self::byName(get_called_class(), $name);
-  }
-
-  protected static function initialize() {}
-
-  /**
-   * @param string $name
-   *
-   * @return Enumeration
-   */
-  protected static function create($name)
-  {
-    return new static($name);
-  }
-
-  /**
-   * @param string $class
-   *
-   * @return array
-   */
-  private static function valuesByClass($class)
-  {
-    if (!array_key_exists($class, self::$values))
-    {
-      $reflector = new \ReflectionClass($class);
-      self::$values[$class] = $reflector->getConstants();
-    }
-
-    return self::$values[$class];
-  }
-
-  /**
-   * @param string $class
-   * @param string $name
-   *
-   * @return scalar
-   */
-  private static function valueByName($class, $name)
-  {
-    $values = self::valuesByClass($class);
-    if (!array_key_exists($name, $values))
-    {
-      throw new Exception\UndefinedEnumerationException($class, $name);
-    }
-
-    return $values[$name];
-  }
-
-  /**
-   * @param string $class
-   * @param string $name
-   *
-   * @return Enumeration
-   */
-  private static function byName($class, $name)
-  {
+    $class = get_called_class();
     if (!array_key_exists($class, self::$enumerations))
     {
       static::initialize();
@@ -92,11 +36,65 @@ abstract class Enumeration
 
   /**
    * @param string $name
+   * @param array $arguments
+   *
+   * @return Enumeration
+   */
+  public static final function __callStatic($name, array $arguments)
+  {
+    return static::byName($name);
+  }
+
+  /**
+   * @return array
+   */
+  public static final function values()
+  {
+    $class = get_called_class();
+    if (!array_key_exists($class, self::$values))
+    {
+      $reflector = new \ReflectionClass($class);
+      self::$values[$class] = $reflector->getConstants();
+    }
+
+    return self::$values[$class];
+  }
+
+  /**
+   * @param string $name
+   *
+   * @return scalar
+   */
+  public static final function valueByName($name)
+  {
+    $values = static::values();
+    if (!array_key_exists($name, $values))
+    {
+      throw new Exception\UndefinedEnumerationException(get_called_class(), $name);
+    }
+
+    return $values[$name];
+  }
+
+  protected static function initialize() {}
+
+  /**
+   * @param string $name
+   *
+   * @return Enumeration
+   */
+  protected static function create($name)
+  {
+    return new static($name);
+  }
+
+  /**
+   * @param string $name
    */
   protected function __construct($name)
   {
     $this->name = $name;
-    $this->value = self::valueByName(get_called_class(), $name);
+    $this->value = static::valueByName($name);
   }
 
   /**
