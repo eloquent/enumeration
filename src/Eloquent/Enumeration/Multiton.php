@@ -41,7 +41,7 @@ abstract class Multiton
       return $instances[$key];
     }
 
-    throw new Exception\UndefinedInstanceException(get_called_class());
+    throw new Exception\UndefinedInstanceException(get_called_class(), 'key', $key);
   }
 
   /**

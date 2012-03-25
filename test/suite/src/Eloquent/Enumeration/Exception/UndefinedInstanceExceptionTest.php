@@ -23,8 +23,10 @@ class UndefinedInstanceExceptionTest extends \Eloquent\Enumeration\Test\TestCase
   public function testException()
   {
     $class = 'foo';
-    $exception = new UndefinedInstanceException($class);
-    $expectedMessage = "No matching instance defined in class 'foo'.";
+    $property = 'bar';
+    $value = 'baz';
+    $exception = new UndefinedInstanceException($class, $property, $value);
+    $expectedMessage = "No instance with bar equal to 'baz' defined in class 'foo'.";
 
     $this->assertSame($expectedMessage, $exception->getMessage());
   }

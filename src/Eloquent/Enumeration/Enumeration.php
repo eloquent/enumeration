@@ -28,7 +28,7 @@ abstract class Enumeration extends Multiton
       }
     }
 
-    throw new Exception\UndefinedInstanceException(get_called_class());
+    throw new Exception\UndefinedInstanceException(get_called_class(), 'value', $value);
   }
 
   /**
