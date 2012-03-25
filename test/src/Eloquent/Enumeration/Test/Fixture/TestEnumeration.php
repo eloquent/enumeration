@@ -11,17 +11,10 @@
 
 namespace Eloquent\Enumeration\Test\Fixture;
 
-class InvalidMultiton extends ValidMultiton
+use Eloquent\Enumeration\Enumeration;
+
+abstract class TestEnumeration extends Enumeration
 {
-  protected static function initialize()
-  {
-    parent::initialize();
-
-    new static('QUX', 'xuq');
-  }
-
-  /**
-   * @var array
-   */
-  protected static $calls = array();
+  const FOO = 'oof';
+  const BAR = 'rab';
 }

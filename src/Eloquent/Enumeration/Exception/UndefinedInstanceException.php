@@ -15,11 +15,10 @@ final class UndefinedInstanceException extends LogicException
 {
   /**
    * @param string $class
-   * @param string $key
    * @param \Exception $previous
    */
-  public function __construct($class, $key, \Exception $previous = null)
+  public function __construct($class, \Exception $previous = null)
   {
-    parent::__construct("No instance '".$key."' defined in class '".$class."'.", $previous);
+    parent::__construct("No matching instance defined in class '".$class."'.", $previous);
   }
 }
