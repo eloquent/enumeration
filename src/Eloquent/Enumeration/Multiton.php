@@ -63,6 +63,14 @@ abstract class Multiton
     return $this->_key;
   }
 
+  /**
+   * @return string
+   */
+  public function __toString()
+  {
+    return $this->_key();
+  }
+
   protected static function _initialize() {}
 
   /**

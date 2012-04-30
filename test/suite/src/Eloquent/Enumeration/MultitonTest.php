@@ -108,4 +108,13 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
     $this->setExpectedException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
     InvalidMultiton::BAZ();
   }
+
+  public function testToString()
+  {
+    $foo = ValidMultiton::FOO();
+    $bar = ValidMultiton::BAR();
+
+    $this->assertSame($foo->_key(), (string)$foo);
+    $this->assertSame($bar->_key(), (string)$bar);
+  }
 }
