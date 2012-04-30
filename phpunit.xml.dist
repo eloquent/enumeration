@@ -10,7 +10,7 @@
 -->
 
 <phpunit
-  bootstrap="../src/bootstrap.php"
+  bootstrap="test/src/bootstrap.php"
   strict="true"
   forceCoversAnnotation="true"
   convertErrorsToExceptions="true"
@@ -20,7 +20,7 @@
 >
   <testsuites>
     <testsuite>
-      <directory>../suite</directory>
+      <directory>test/suite</directory>
     </testsuite>
   </testsuites>
 </phpunit>

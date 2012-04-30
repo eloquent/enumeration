@@ -14,9 +14,9 @@ require dirname(__DIR__).DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'paths.ph
 
 if (!isset($configFile))
 {
-  $configFile = 'config.xml';
+  $configFile = 'phpunit.xml.dist';
 }
-$configPath = LQNT_TEST_CONFIG_DIR.DIRECTORY_SEPARATOR.$configFile;
+$configPath = LQNT_ROOT_DIR.DIRECTORY_SEPARATOR.$configFile;
 
 $command = 'phpunit --verbose --configuration '.escapeshellarg($configPath);
 

@@ -19,7 +19,7 @@ foreach(glob(LQNT_TEST_REPORT_DIR.DIRECTORY_SEPARATOR.'*') as $report)
   lqnt_test_delete_recursive($report);
 }
 
-$configFile = 'config-reports.xml';
+$configFile = 'phpunit.xml.reports';
 
 require __DIR__.DIRECTORY_SEPARATOR.'phpunit.php';
 
