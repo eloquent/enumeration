@@ -65,8 +65,12 @@ function handle_http_request(HTTPRequestMethod $method, $url, $body = NULL)
 
 Members are accessed by static method calls, like so:
 
-    handle_http_request(HTTPRequestMethod::GET(), 'http://example.org/');
-    handle_http_request(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
+```php
+<?php
+
+handle_http_request(HTTPRequestMethod::GET(), 'http://example.org/');
+handle_http_request(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
+```
 
 Each member is actually a singleton instance of the enumeration class itself
 (that is, an instance of *HTTPRequestMethod* in the above example). This means
