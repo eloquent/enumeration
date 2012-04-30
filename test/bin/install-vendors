@@ -20,5 +20,6 @@ file_put_contents($composerPath, file_get_contents('http://getcomposer.org/compo
 // install vendors
 $oldWorkingPath = getcwd();
 chdir(LQNT_ROOT_DIR);
-passthru('php '.escapeshellarg($composerPath).' install');
+passthru('php '.escapeshellarg($composerPath).' install', $code);
 chdir($oldWorkingPath);
+exit($code);
