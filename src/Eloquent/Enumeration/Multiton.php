@@ -16,16 +16,16 @@ abstract class Multiton
   /**
    * @return array
    */
-  public static final function instances()
+  public static final function _instances()
   {
     $class = get_called_class();
-    if (!array_key_exists($class, self::$instances))
+    if (!array_key_exists($class, self::$_instances))
     {
-      self::$instances[$class] = array();
-      static::initialize();
+      self::$_instances[$class] = array();
+      static::_initialize();
     }
 
-    return self::$instances[$class];
+    return self::$_instances[$class];
   }
 
   /**
@@ -33,9 +33,9 @@ abstract class Multiton
    *
    * @return Multiton
    */
-  public static final function get($key)
+  public static final function _get($key)
   {
-    $instances = static::instances();
+    $instances = static::_instances();
     if (array_key_exists($key, $instances))
     {
       return $instances[$key];
@@ -52,30 +52,30 @@ abstract class Multiton
    */
   public static final function __callStatic($key, array $arguments)
   {
-    return static::get($key);
+    return static::_get($key);
   }
 
   /**
    * @return string
    */
-  public final function key()
+  public final function _key()
   {
-    return $this->key;
+    return $this->_key;
   }
 
-  protected static function initialize() {}
+  protected static function _initialize() {}
 
   /**
    * @param string $key
    */
   protected function __construct($key)
   {
-    $this->key = $key;
+    $this->_key = $key;
 
-    self::register($this);
+    self::_register($this);
   }
 
-  private static function register(self $instance)
+  private static function _register(self $instance)
   {
     $reflector = new \ReflectionObject($instance);
     $parentClass = $reflector->getParentClass();
@@ -87,16 +87,16 @@ abstract class Multiton
       );
     }
 
-    self::$instances[get_called_class()][$instance->key()] = $instance;
+    self::$_instances[get_called_class()][$instance->_key()] = $instance;
   }
 
   /**
    * @var array
    */
-  private static $instances = array();
+  private static $_instances = array();
 
   /**
    * @var string
    */
-  private $key;
+  private $_key;
 }

@@ -15,14 +15,14 @@ abstract class Enumeration extends Multiton
 {
   /**
    * @param scalar $value
-   * 
+   *
    * @return Enumeration
    */
-  public static final function byValue($value)
+  public static final function _byValue($value)
   {
-    foreach (static::instances() as $instance)
+    foreach (static::_instances() as $instance)
     {
-      if ($instance->value() === $value)
+      if ($instance->_value() === $value)
       {
         return $instance;
       }
@@ -34,12 +34,12 @@ abstract class Enumeration extends Multiton
   /**
    * @return scalar
    */
-  public final function value()
+  public final function _value()
   {
-    return $this->value;
+    return $this->_value;
   }
 
-  protected static final function initialize()
+  protected static final function _initialize()
   {
     $reflector = new \ReflectionClass(get_called_class());
     foreach ($reflector->getConstants() as $key => $value)
@@ -56,11 +56,11 @@ abstract class Enumeration extends Multiton
   {
     parent::__construct($key);
 
-    $this->value = $value;
+    $this->_value = $value;
   }
 
   /**
    * @var scalar
    */
-  private $value;
+  private $_value;
 }

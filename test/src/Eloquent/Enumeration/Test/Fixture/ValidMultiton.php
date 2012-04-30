@@ -16,14 +16,14 @@ class ValidMultiton extends TestMultiton
   /**
    * @return string
    */
-  public function value()
+  public function _value()
   {
-    return $this->value;
+    return $this->_value;
   }
 
-  protected static function initialize()
+  protected static function _initialize()
   {
-    parent::initialize();
+    parent::_initialize();
 
     new static('BAZ', 'zab');
   }
@@ -36,16 +36,16 @@ class ValidMultiton extends TestMultiton
   {
     parent::__construct($key);
 
-    $this->value = $value;
+    $this->_value = $value;
   }
 
   /**
    * @var array
    */
-  protected static $calls = array();
+  protected static $_calls = array();
 
   /**
    * @var string
    */
-  protected $value;
+  protected $_value;
 }

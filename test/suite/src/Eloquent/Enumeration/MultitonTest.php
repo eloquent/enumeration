@@ -23,10 +23,10 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
   {
     parent::setUp();
 
-    ValidMultiton::resetCalls();
+    ValidMultiton::_resetCalls();
 
     $reflector = new \ReflectionClass(__NAMESPACE__.'\Multiton');
-    $instancesProperty = $reflector->getProperty('instances');
+    $instancesProperty = $reflector->getProperty('_instances');
     $instancesProperty->setAccessible(true);
     $instancesProperty->setValue(null, array());
   }
@@ -37,34 +37,34 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
       'FOO' => ValidMultiton::FOO(),
       'BAR' => ValidMultiton::BAR(),
       'BAZ' => ValidMultiton::BAZ(),
-    ), ValidMultiton::instances());
+    ), ValidMultiton::_instances());
   }
 
   public function testGet()
   {
-    $this->assertSame(array(), ValidMultiton::calls());
+    $this->assertSame(array(), ValidMultiton::_calls());
 
-    $foo = ValidMultiton::get('FOO');
-    $bar = ValidMultiton::get('BAR');
+    $foo = ValidMultiton::_get('FOO');
+    $bar = ValidMultiton::_get('BAR');
 
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $foo);
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $bar);
     $this->assertNotEquals($foo, $bar);
-    $this->assertSame($foo, ValidMultiton::get('FOO'));
-    $this->assertSame($bar, ValidMultiton::get('BAR'));
+    $this->assertSame($foo, ValidMultiton::_get('FOO'));
+    $this->assertSame($bar, ValidMultiton::_get('BAR'));
 
     $this->assertSame(array(
       array(
-        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initialize',
+        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::_initialize',
         array(),
       ),
-    ), ValidMultiton::calls());
+    ), ValidMultiton::_calls());
   }
 
   public function testGetFailureUndefined()
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-    ValidMultiton::get('DOOM');
+    ValidMultiton::_get('DOOM');
   }
 
   public function testCallStatic()
@@ -80,10 +80,10 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
 
     $this->assertSame(array(
       array(
-        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initialize',
+        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::_initialize',
         array(),
       ),
-    ), ValidMultiton::calls());
+    ), ValidMultiton::_calls());
   }
 
   public function testCallStaticFailureUndefined()
@@ -97,10 +97,10 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
     $foo = ValidMultiton::FOO();
     $bar = ValidMultiton::BAR();
 
-    $this->assertSame('FOO', $foo->key());
-    $this->assertSame('BAR', $bar->key());
-    $this->assertSame('oof', $foo->value());
-    $this->assertSame('rab', $bar->value());
+    $this->assertSame('FOO', $foo->_key());
+    $this->assertSame('BAR', $bar->_key());
+    $this->assertSame('oof', $foo->_value());
+    $this->assertSame('rab', $bar->_value());
   }
 
   public function testInheritanceProtection()
