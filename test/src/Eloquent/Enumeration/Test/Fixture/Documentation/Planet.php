@@ -40,6 +40,8 @@ final class Planet extends Multiton
 
   protected static function _initialize()
   {
+    parent::_initialize();
+
     new static('MERCURY', 3.303e+23, 2.4397e6);
     new static('VENUS',   4.869e+24, 6.0518e6);
     new static('EARTH',   5.976e+24, 6.37814e6);
