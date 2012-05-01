@@ -11,13 +11,18 @@
 
 namespace Eloquent\Enumeration\Exception;
 
+/**
+ * The requested member instance was not found.
+ */
 final class UndefinedInstanceException extends LogicException
 {
   /**
-   * @param string $class
-   * @param string $property
-   * @param string $value
-   * @param \Exception $previous
+   * Construct a new UndefinedInstanceException instance.
+   *
+   * @param string $class The class from which the member was requested.
+   * @param string $property The name of the property used to search for the member.
+   * @param string $value The value of the property used to search for the member.
+   * @param \Exception $previous The previous exception, if any.
    */
   public function __construct($class, $property, $value, \Exception $previous = null)
   {

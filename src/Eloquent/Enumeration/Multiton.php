@@ -11,10 +11,15 @@
 
 namespace Eloquent\Enumeration;
 
+/**
+ * Base class for Java style enumerations.
+ */
 abstract class Multiton
 {
   /**
-   * @return array
+   * Returns an array of all member instancess in this multiton.
+   *
+   * @return array<string,Multiton> All member instancess in this multiton.
    */
   public static final function _instances()
   {
@@ -29,9 +34,12 @@ abstract class Multiton
   }
 
   /**
-   * @param string $key
+   * Returns a single member instance by string key.
    *
-   * @return Multiton
+   * @param string $key The string key associated with the member instance.
+   *
+   * @return Multiton The member instance associated with the given string key.
+   * @throws UndefinedInstanceException If no associated instance is found.
    */
   public static final function _get($key)
   {
@@ -45,10 +53,13 @@ abstract class Multiton
   }
 
   /**
-   * @param string $key
-   * @param array $arguments
+   * Maps static method calls to member instances.
    *
-   * @return Multiton
+   * @param string $key The string key associated with the member instance.
+   * @param array $arguments Ignored.
+   *
+   * @return Multiton The member instance associated with the given string key.
+   * @throws UndefinedInstanceException If no associated instance is found.
    */
   public static final function __callStatic($key, array $arguments)
   {
@@ -56,7 +67,9 @@ abstract class Multiton
   }
 
   /**
-   * @return string
+   * Returns the string key of this member instance.
+   *
+   * @return string The associated string key of this member instance.
    */
   public final function _key()
   {
@@ -64,6 +77,10 @@ abstract class Multiton
   }
 
   /**
+   * Returns a string representation of this member instance.
+   *
+   * Unless overridden, this is simply the string key.
+   *
    * @return string
    */
   public function __toString()
@@ -71,10 +88,27 @@ abstract class Multiton
     return $this->_key();
   }
 
+  /**
+   * Override this method in child classes to implement one-time initialization
+   * for a multiton class.
+   *
+   * This method is called the first time the members of a multiton are
+   * accessed. It is called via late static binding, and hence can be
+   * overridden in child classes.
+   */
   protected static function _initialize() {}
 
   /**
-   * @param string $key
+   * Construct and register a new multiton member instance.
+   *
+   * If you override the constructor in a child class, you MUST call the parent
+   * constructor. Calling this constructor is the only way to set the string
+   * key for this member instance, and to ensure that the instance is correctly
+   * registered.
+   *
+   * @param string $key The string key to associate with this member instance.
+   *
+   * @throws ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
    */
   protected function __construct($key)
   {
@@ -83,6 +117,16 @@ abstract class Multiton
     self::_register($this);
   }
 
+  /**
+   * Registers the supplied member instance.
+   *
+   * Do not attempt to call this method directly. Instead, ensure that
+   * Multiton::__construct() is called from any child classes, as this will
+   * also handle registration of the instance.
+   *
+   * @param Multiton $instance The instance to register.
+   * @throws ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
+   */
   private static function _register(self $instance)
   {
     $reflector = new \ReflectionObject($instance);
@@ -99,11 +143,17 @@ abstract class Multiton
   }
 
   /**
-   * @var array
+   * Array of all member instances of all multiton and enumeration classes.
+   *
+   * Instances are keyed by class name and member key string.
+   *
+   * @var array<string,array<string,Multiton>>
    */
   private static $_instances = array();
 
   /**
+   * String key associated with this member instance.
+   *
    * @var string
    */
   private $_key;

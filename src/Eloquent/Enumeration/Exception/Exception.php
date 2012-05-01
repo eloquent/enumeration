@@ -11,4 +11,7 @@
 
 namespace Eloquent\Enumeration\Exception;
 
+/**
+ * Interface used to mark all enumeration-related exceptions.
+ */
 interface Exception {}

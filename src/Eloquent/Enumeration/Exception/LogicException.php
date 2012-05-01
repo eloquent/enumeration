@@ -11,11 +11,16 @@
 
 namespace Eloquent\Enumeration\Exception;
 
+/**
+ * Base class for exceptions that arise from logic errors in code.
+ */
 abstract class LogicException extends \LogicException implements Exception
 {
   /**
-   * @param string $message
-   * @param \Exception $previous
+   * Construct a new LogicError instance.
+   *
+   * @param string $message The exception message.
+   * @param \Exception $previous The previous exception, if any.
    */
   public function __construct($message, \Exception $previous = null)
   {
