@@ -1,5 +1,10 @@
 {
     "hash": "d753f53b86bf64dbe95fa399f66e4b95",
-    "packages": [],
-    "aliases": []
+    "packages": [
+
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ]
 }
