@@ -72,10 +72,10 @@ handle_http_request(HTTPRequestMethod::GET(), 'http://example.org/');
 handle_http_request(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
 ```
 
-Each member is actually a singleton instance of the enumeration class itself
-(that is, an instance of *HTTPRequestMethod* in the above example). This means
-that strict comparison (===) can be used to determine which member has been
-passed to a function:
+For each member of the enumeration, a single instance of the enumeration class
+is instantiated (that is, an instance of *HTTPRequestMethod* in the above
+example). This means that strict comparison (===) can be used to determine
+which member has been passed to a function:
 
 ```php
 <?php
