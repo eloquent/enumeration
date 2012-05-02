@@ -144,14 +144,15 @@ final class Planet extends Multiton
   {
     parent::_initialize();
 
-    new static('MERCURY', 3.303e+23, 2.4397e6);
-    new static('VENUS',   4.869e+24, 6.0518e6);
-    new static('EARTH',   5.976e+24, 6.37814e6);
-    new static('MARS',    6.421e+23, 3.3972e6);
-    new static('JUPITER', 1.9e+27,   7.1492e7);
-    new static('SATURN',  5.688e+26, 6.0268e7);
-    new static('URANUS',  8.686e+25, 2.5559e7);
-    new static('NEPTUNE', 1.024e+26, 2.4746e7);
+    new static('MERCURY', 3.302e23,  2.4397e6);
+    new static('VENUS',   4.869e24,  6.0518e6);
+    new static('EARTH',   5.9742e24, 6.37814e6);
+    new static('MARS',    6.4191e23, 3.3972e6);
+    new static('JUPITER', 1.8987e27, 7.1492e7);
+    new static('SATURN',  5.6851e26, 6.0268e7);
+    new static('URANUS',  8.6849e25, 2.5559e7);
+    new static('NEPTUNE', 1.0244e26, 2.4764e7);
+    // new static('PLUTO',   1.31e22,   1.180e6);
   }
 
   /**
@@ -199,14 +200,14 @@ foreach (Planet::_instances() as $planet)
 If you run the above script you will get something like the following output:
 
 ```
-Your weight on MERCURY is 66.107583
-Your weight on VENUS is 158.374842
+Your weight on MERCURY is 66.107480
+Your weight on VENUS is 158.422560
 Your weight on EARTH is 175.000000
-Your weight on MARS is 66.279007
-Your weight on JUPITER is 442.847567
-Your weight on SATURN is 186.552719
-Your weight on URANUS is 158.397260
-Your weight on NEPTUNE is 199.207413
+Your weight on MARS is 66.279359
+Your weight on JUPITER is 442.677903
+Your weight on SATURN is 186.513785
+Your weight on URANUS is 158.424919
+Your weight on NEPTUNE is 199.055584
 ```
 
 ## Code quality

@@ -42,14 +42,15 @@ final class Planet extends Multiton
   {
     parent::_initialize();
 
-    new static('MERCURY', 3.303e+23, 2.4397e6);
-    new static('VENUS',   4.869e+24, 6.0518e6);
-    new static('EARTH',   5.976e+24, 6.37814e6);
-    new static('MARS',    6.421e+23, 3.3972e6);
-    new static('JUPITER', 1.9e+27,   7.1492e7);
-    new static('SATURN',  5.688e+26, 6.0268e7);
-    new static('URANUS',  8.686e+25, 2.5559e7);
-    new static('NEPTUNE', 1.024e+26, 2.4746e7);
+    new static('MERCURY', 3.302e23,  2.4397e6);
+    new static('VENUS',   4.869e24,  6.0518e6);
+    new static('EARTH',   5.9742e24, 6.37814e6);
+    new static('MARS',    6.4191e23, 3.3972e6);
+    new static('JUPITER', 1.8987e27, 7.1492e7);
+    new static('SATURN',  5.6851e26, 6.0268e7);
+    new static('URANUS',  8.6849e25, 2.5559e7);
+    new static('NEPTUNE', 1.0244e26, 2.4764e7);
+    // new static('PLUTO',   1.31e22,   1.180e6);
   }
 
   /**

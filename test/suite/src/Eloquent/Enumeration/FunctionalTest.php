@@ -125,7 +125,7 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
       . 'Your weight on SATURN is 187' . PHP_EOL
       . 'Your weight on URANUS is 158' . PHP_EOL
       . 'Your weight on NEPTUNE is 199' . PHP_EOL
-  ;
+    ;
 
     $this->assertSame($expected, $actual);
   }
