@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,14 +16,14 @@ class ValidMultiton extends TestMultiton
   /**
    * @return string
    */
-  public function _value()
+  public function value()
   {
-    return $this->_value;
+    return $this->value;
   }
 
-  protected static function _initialize()
+  protected static function initializeMultiton()
   {
-    parent::_initialize();
+    parent::initializeMultiton();
 
     new static('BAZ', 'zab');
   }
@@ -36,16 +36,16 @@ class ValidMultiton extends TestMultiton
   {
     parent::__construct($key);
 
-    $this->_value = $value;
+    $this->value = $value;
   }
 
   /**
    * @var array
    */
-  protected static $_calls = array();
+  protected static $calls = array();
 
   /**
    * @var string
    */
-  protected $_value;
+  protected $value;
 }

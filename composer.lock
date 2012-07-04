@@ -1,10 +1,25 @@
 {
-    "hash": "d753f53b86bf64dbe95fa399f66e4b95",
+    "hash": "a25b296d1f390566e06b7a52ebff644d",
     "packages": [
 
     ],
-    "packages-dev": null,
+    "packages-dev": [
+        {
+            "package": "eloquent/pops",
+            "version": "1.0.0"
+        },
+        {
+            "package": "phake/phake",
+            "version": "dev-master",
+            "source-reference": "4d822246b401f4dc609500d47e42dac8df645f4f",
+            "commit-date": "1337008011"
+        }
+    ],
     "aliases": [
 
-    ]
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phake/phake": 20
+    }
 }

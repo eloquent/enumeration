@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,7 +27,7 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
       'CONNECT' => HTTPRequestMethod::CONNECT(),
     );
 
-    $this->assertSame($expected, HTTPRequestMethod::_instances());
+    $this->assertSame($expected, HTTPRequestMethod::multitonInstances());
   }
 
   /**
@@ -38,18 +38,18 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
    */
   public function testHTTPRequestMethodAcceptAll()
   {
-    $passed_methods = array();
-    $handle_http_request = function(HTTPRequestMethod $method, $url, $body) use(&$passed_methods) {
-      $passed_methods[] = $method;
+    $passedMethods = array();
+    $handleHttpRequest = function(HTTPRequestMethod $method, $url, $body) use(&$passedMethods) {
+      $passedMethods[] = $method;
     };
-    $handle_http_request(HTTPRequestMethod::OPTIONS(), 'http://example.org/', NULL);
-    $handle_http_request(HTTPRequestMethod::GET(), 'http://example.org/', NULL);
-    $handle_http_request(HTTPRequestMethod::HEAD(), 'http://example.org/', NULL);
-    $handle_http_request(HTTPRequestMethod::POST(), 'http://example.org/', 'foo');
-    $handle_http_request(HTTPRequestMethod::PUT(), 'http://example.org/', 'foo');
-    $handle_http_request(HTTPRequestMethod::DELETE(), 'http://example.org/', NULL);
-    $handle_http_request(HTTPRequestMethod::TRACE(), 'http://example.org/', NULL);
-    $handle_http_request(HTTPRequestMethod::CONNECT(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::OPTIONS(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::GET(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::HEAD(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::POST(), 'http://example.org/', 'foo');
+    $handleHttpRequest(HTTPRequestMethod::PUT(), 'http://example.org/', 'foo');
+    $handleHttpRequest(HTTPRequestMethod::DELETE(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::TRACE(), 'http://example.org/', NULL);
+    $handleHttpRequest(HTTPRequestMethod::CONNECT(), 'http://example.org/', NULL);
     $expected = array(
       HTTPRequestMethod::OPTIONS(),
       HTTPRequestMethod::GET(),
@@ -61,7 +61,7 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
       HTTPRequestMethod::CONNECT(),
     );
 
-    $this->assertSame($expected, $passed_methods);
+    $this->assertSame($expected, $passedMethods);
   }
 
   /**
@@ -98,7 +98,7 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
       'NEPTUNE' => Planet::NEPTUNE(),
     );
 
-    $this->assertSame($expected, Planet::_instances());
+    $this->assertSame($expected, Planet::multitonInstances());
   }
 
   /**
@@ -110,7 +110,7 @@ class FunctionalTest extends \Eloquent\Enumeration\Test\TestCase
     $earthWeight = 175;
     $mass = $earthWeight / Planet::EARTH()->surfaceGravity();
 
-    foreach (Planet::_instances() as $planet)
+    foreach (Planet::multitonInstances() as $planet)
     {
       // modified slightly to avoid floating point precision issues causing failing test
       echo sprintf('Your weight on %s is %0.0f' . PHP_EOL, $planet, $planet->surfaceWeight($mass));

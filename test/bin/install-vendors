@@ -4,7 +4,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,6 +20,6 @@ file_put_contents($composerPath, file_get_contents('http://getcomposer.org/compo
 // install vendors
 $oldWorkingPath = getcwd();
 chdir(LQNT_ROOT_DIR);
-passthru('php '.escapeshellarg($composerPath).' install', $code);
+passthru('php '.escapeshellarg($composerPath).' install --dev', $code);
 chdir($oldWorkingPath);
 exit($code);
