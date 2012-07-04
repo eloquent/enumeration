@@ -55,7 +55,7 @@ request method:
 ```php
 <?php
 
-function handle_http_request(HTTPRequestMethod $method, $url, $body = NULL)
+function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 {
   // handle request...
 }
@@ -68,8 +68,8 @@ Members are accessed by static method calls, like so:
 ```php
 <?php
 
-handle_http_request(HTTPRequestMethod::GET(), 'http://example.org/');
-handle_http_request(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
+handleHttpRequest(HTTPRequestMethod::GET(), 'http://example.org/');
+handleHttpRequest(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
 ```
 
 For each member of the enumeration, a single instance of the enumeration class
@@ -80,7 +80,7 @@ which member has been passed to a function:
 ```php
 <?php
 
-function handle_http_request(HTTPRequestMethod $method, $url, $body = NULL)
+function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 {
   if ($method === HTTPRequestMethod::POST())
   {
@@ -140,9 +140,9 @@ final class Planet extends Multiton
     return $otherMass * $this->surfaceGravity();
   }
 
-  protected static function _initialize()
+  protected static function initializeMultiton()
   {
-    parent::_initialize();
+    parent::initializeMultiton();
 
     new static('MERCURY', 3.302e23,  2.4397e6);
     new static('VENUS',   4.869e24,  6.0518e6);
@@ -191,7 +191,7 @@ require 'Planet.php';
 $earthWeight = 175;
 $mass = $earthWeight / Planet::EARTH()->surfaceGravity();
 
-foreach (Planet::_instances() as $planet)
+foreach (Planet::multitonInstances() as $planet)
 {
   echo sprintf('Your weight on %s is %f' . PHP_EOL, $planet, $planet->surfaceWeight($mass));
 }

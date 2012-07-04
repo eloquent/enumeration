@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,48 +23,48 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
   {
     parent::setUp();
 
-    ValidMultiton::_resetCalls();
+    ValidMultiton::resetCalls();
 
     $reflector = new \ReflectionClass(__NAMESPACE__.'\Multiton');
-    $instancesProperty = $reflector->getProperty('_instances');
+    $instancesProperty = $reflector->getProperty('instances');
     $instancesProperty->setAccessible(true);
     $instancesProperty->setValue(null, array());
   }
 
-  public function testInstances()
+  public function testMultitonInstances()
   {
     $this->assertSame(array(
       'FOO' => ValidMultiton::FOO(),
       'BAR' => ValidMultiton::BAR(),
       'BAZ' => ValidMultiton::BAZ(),
-    ), ValidMultiton::_instances());
+    ), ValidMultiton::multitonInstances());
   }
 
-  public function testGet()
+  public function testInstanceByKey()
   {
-    $this->assertSame(array(), ValidMultiton::_calls());
+    $this->assertSame(array(), ValidMultiton::calls());
 
-    $foo = ValidMultiton::_get('FOO');
-    $bar = ValidMultiton::_get('BAR');
+    $foo = ValidMultiton::instanceByKey('FOO');
+    $bar = ValidMultiton::instanceByKey('BAR');
 
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $foo);
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $bar);
     $this->assertNotEquals($foo, $bar);
-    $this->assertSame($foo, ValidMultiton::_get('FOO'));
-    $this->assertSame($bar, ValidMultiton::_get('BAR'));
+    $this->assertSame($foo, ValidMultiton::instanceByKey('FOO'));
+    $this->assertSame($bar, ValidMultiton::instanceByKey('BAR'));
 
     $this->assertSame(array(
       array(
-        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::_initialize',
+        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMultiton',
         array(),
       ),
-    ), ValidMultiton::_calls());
+    ), ValidMultiton::calls());
   }
 
-  public function testGetFailureUndefined()
+  public function testInstanceByKeyFailureUndefined()
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-    ValidMultiton::_get('DOOM');
+    ValidMultiton::instanceByKey('DOOM');
   }
 
   public function testCallStatic()
@@ -80,10 +80,10 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
 
     $this->assertSame(array(
       array(
-        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::_initialize',
+        'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMultiton',
         array(),
       ),
-    ), ValidMultiton::_calls());
+    ), ValidMultiton::calls());
   }
 
   public function testCallStaticFailureUndefined()
@@ -97,10 +97,10 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
     $foo = ValidMultiton::FOO();
     $bar = ValidMultiton::BAR();
 
-    $this->assertSame('FOO', $foo->_key());
-    $this->assertSame('BAR', $bar->_key());
-    $this->assertSame('oof', $foo->_value());
-    $this->assertSame('rab', $bar->_value());
+    $this->assertSame('FOO', $foo->key());
+    $this->assertSame('BAR', $bar->key());
+    $this->assertSame('oof', $foo->value());
+    $this->assertSame('rab', $bar->value());
   }
 
   public function testInheritanceProtection()
@@ -114,7 +114,7 @@ class MultitonTest extends \Eloquent\Enumeration\Test\TestCase
     $foo = ValidMultiton::FOO();
     $bar = ValidMultiton::BAR();
 
-    $this->assertSame($foo->_key(), (string)$foo);
-    $this->assertSame($bar->_key(), (string)$bar);
+    $this->assertSame($foo->key(), (string)$foo);
+    $this->assertSame($bar->key(), (string)$bar);
   }
 }

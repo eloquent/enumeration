@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,16 +21,16 @@ abstract class Multiton
    *
    * @return array<string,Multiton> All member instancess in this multiton.
    */
-  public static final function _instances()
+  public static final function multitonInstances()
   {
     $class = get_called_class();
-    if (!array_key_exists($class, self::$_instances))
+    if (!array_key_exists($class, self::$instances))
     {
-      self::$_instances[$class] = array();
-      static::_initialize();
+      self::$instances[$class] = array();
+      static::initializeMultiton();
     }
 
-    return self::$_instances[$class];
+    return self::$instances[$class];
   }
 
   /**
@@ -41,9 +41,9 @@ abstract class Multiton
    * @return Multiton The member instance associated with the given string key.
    * @throws UndefinedInstanceException If no associated instance is found.
    */
-  public static final function _get($key)
+  public static final function instanceByKey($key)
   {
-    $instances = static::_instances();
+    $instances = static::multitonInstances();
     if (array_key_exists($key, $instances))
     {
       return $instances[$key];
@@ -63,7 +63,7 @@ abstract class Multiton
    */
   public static final function __callStatic($key, array $arguments)
   {
-    return static::_get($key);
+    return static::instanceByKey($key);
   }
 
   /**
@@ -71,9 +71,9 @@ abstract class Multiton
    *
    * @return string The associated string key of this member instance.
    */
-  public final function _key()
+  public final function key()
   {
-    return $this->_key;
+    return $this->key;
   }
 
   /**
@@ -85,7 +85,7 @@ abstract class Multiton
    */
   public function __toString()
   {
-    return $this->_key();
+    return $this->key();
   }
 
   /**
@@ -96,7 +96,7 @@ abstract class Multiton
    * accessed. It is called via late static binding, and hence can be
    * overridden in child classes.
    */
-  protected static function _initialize() {}
+  protected static function initializeMultiton() {}
 
   /**
    * Construct and register a new multiton member instance.
@@ -112,9 +112,9 @@ abstract class Multiton
    */
   protected function __construct($key)
   {
-    $this->_key = $key;
+    $this->key = $key;
 
-    self::_register($this);
+    self::registerMultiton($this);
   }
 
   /**
@@ -127,7 +127,7 @@ abstract class Multiton
    * @param Multiton $instance The instance to register.
    * @throws ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
    */
-  private static function _register(self $instance)
+  private static function registerMultiton(self $instance)
   {
     $reflector = new \ReflectionObject($instance);
     $parentClass = $reflector->getParentClass();
@@ -139,7 +139,7 @@ abstract class Multiton
       );
     }
 
-    self::$_instances[get_called_class()][$instance->_key()] = $instance;
+    self::$instances[get_called_class()][$instance->key()] = $instance;
   }
 
   /**
@@ -149,12 +149,12 @@ abstract class Multiton
    *
    * @var array<string,array<string,Multiton>>
    */
-  private static $_instances = array();
+  private static $instances = array();
 
   /**
    * String key associated with this member instance.
    *
    * @var string
    */
-  private $_key;
+  private $key;
 }

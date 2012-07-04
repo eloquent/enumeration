@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,11 +24,11 @@ abstract class Enumeration extends Multiton
    * @return Enumeration The first member instance with the supplied value.
    * @throws UndefinedInstanceException If no associated instance is found.
    */
-  public static final function _byValue($value)
+  public static final function instanceByValue($value)
   {
-    foreach (static::_instances() as $instance)
+    foreach (static::multitonInstances() as $instance)
     {
-      if ($instance->_value() === $value)
+      if ($instance->value() === $value)
       {
         return $instance;
       }
@@ -42,9 +42,9 @@ abstract class Enumeration extends Multiton
    *
    * @return scalar The value of this member instance.
    */
-  public final function _value()
+  public final function value()
   {
-    return $this->_value;
+    return $this->value;
   }
 
   /**
@@ -54,7 +54,7 @@ abstract class Enumeration extends Multiton
    * Each constant becomes a member instance with a string key equal to the
    * constant's name, and a value equal to that of the constant's value.
    */
-  protected static final function _initialize()
+  protected static final function initializeMultiton()
   {
     $reflector = new \ReflectionClass(get_called_class());
     foreach ($reflector->getConstants() as $key => $value)
@@ -75,7 +75,7 @@ abstract class Enumeration extends Multiton
   {
     parent::__construct($key);
 
-    $this->_value = $value;
+    $this->value = $value;
   }
 
   /**
@@ -83,5 +83,5 @@ abstract class Enumeration extends Multiton
    *
    * @var scalar
    */
-  private $_value;
+  private $value;
 }

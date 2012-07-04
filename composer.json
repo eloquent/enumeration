@@ -1,23 +1,27 @@
 {
-    "name": "eloquent/enumeration",
-    "type": "library",
-    "description": "An enumeration implementation for PHP.",
-    "keywords": ["enum","enumeration","set","class"],
-    "homepage": "https://github.com/eloquent/enumeration",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Erin Millard",
-            "email": "ezzatron@gmail.com",
-            "homepage": "http://ezzatron.com/"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0"
-    },
-    "autoload": {
-        "psr-0": {
-            "Eloquent": "src"
-        }
+  "name": "eloquent/enumeration",
+  "type": "library",
+  "description": "An enumeration implementation for PHP.",
+  "keywords": ["enum","enumeration","set","class"],
+  "homepage": "https://github.com/eloquent/enumeration",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Erin Millard",
+      "email": "ezzatron@gmail.com",
+      "homepage": "http://ezzatron.com/"
     }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "eloquent/pops": "1.*",
+    "phake/phake": "*@dev"
+  },
+  "autoload": {
+    "psr-0": {
+      "Eloquent": "src"
+    }
+  }
 }

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,7 +24,7 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
     parent::setUp();
 
     $reflector = new \ReflectionClass(__NAMESPACE__.'\Multiton');
-    $instancesProperty = $reflector->getProperty('_instances');
+    $instancesProperty = $reflector->getProperty('instances');
     $instancesProperty->setAccessible(true);
     $instancesProperty->setValue(null, array());
   }
@@ -35,37 +35,37 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
       'BAZ' => ValidEnumeration::BAZ(),
       'FOO' => ValidEnumeration::FOO(),
       'BAR' => ValidEnumeration::BAR(),
-    ), ValidEnumeration::_instances());
+    ), ValidEnumeration::multitonInstances());
   }
 
-  public function testByValue()
+  public function testInstanceByValue()
   {
-    $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::_byValue(ValidEnumeration::FOO));
-    $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::_byValue(ValidEnumeration::BAR));
+    $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::instanceByValue(ValidEnumeration::FOO));
+    $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::instanceByValue(ValidEnumeration::BAR));
   }
 
-  public function testByValueFailureUndefined()
+  public function testInstanceByValueFailureUndefined()
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-    ValidEnumeration::_byValue('mood');
+    ValidEnumeration::instanceByValue('mood');
   }
 
-  public function testGet()
+  public function testInstanceByKey()
   {
-    $foo = ValidEnumeration::_get('FOO');
-    $bar = ValidEnumeration::_get('BAR');
+    $foo = ValidEnumeration::instanceByKey('FOO');
+    $bar = ValidEnumeration::instanceByKey('BAR');
 
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidEnumeration', $foo);
     $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidEnumeration', $bar);
     $this->assertNotEquals($foo, $bar);
-    $this->assertSame($foo, ValidEnumeration::_get('FOO'));
-    $this->assertSame($bar, ValidEnumeration::_get('BAR'));
+    $this->assertSame($foo, ValidEnumeration::instanceByKey('FOO'));
+    $this->assertSame($bar, ValidEnumeration::instanceByKey('BAR'));
   }
 
-  public function testGetFailureUndefined()
+  public function testInstanceByKeyFailureUndefined()
   {
     $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-    ValidEnumeration::_get('DOOM');
+    ValidEnumeration::instanceByKey('DOOM');
   }
 
   public function testCallStatic()
@@ -91,10 +91,10 @@ class EnumerationTest extends \Eloquent\Enumeration\Test\TestCase
     $foo = ValidEnumeration::FOO();
     $bar = ValidEnumeration::BAR();
 
-    $this->assertSame('FOO', $foo->_key());
-    $this->assertSame('BAR', $bar->_key());
-    $this->assertSame('oof', $foo->_value());
-    $this->assertSame('rab', $bar->_value());
+    $this->assertSame('FOO', $foo->key());
+    $this->assertSame('BAR', $bar->key());
+    $this->assertSame('oof', $foo->value());
+    $this->assertSame('rab', $bar->value());
   }
 
   public function testInheritanceProtection()

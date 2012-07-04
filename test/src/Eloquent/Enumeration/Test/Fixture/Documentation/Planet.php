@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -38,9 +38,9 @@ final class Planet extends Multiton
     return $otherMass * $this->surfaceGravity();
   }
 
-  protected static function _initialize()
+  protected static function initializeMultiton()
   {
-    parent::_initialize();
+    parent::initializeMultiton();
 
     new static('MERCURY', 3.302e23,  2.4397e6);
     new static('VENUS',   4.869e24,  6.0518e6);

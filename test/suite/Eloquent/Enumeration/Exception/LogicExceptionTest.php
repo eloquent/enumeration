@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2011 Erin Millard
+ * Copyright © 2012 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,10 +11,11 @@
 
 namespace Eloquent\Enumeration\Exception;
 
-class ExtendsConcreteExceptionTest extends \Eloquent\Enumeration\Test\TestCase
+use Phake;
+
+class LogicExceptionTest extends \Eloquent\Enumeration\Test\TestCase
 {
   /**
-   * @covers Eloquent\Enumeration\Exception\ExtendsConcreteException
    * @covers Eloquent\Enumeration\Exception\LogicException
    * @covers Eloquent\Enumeration\Exception\Exception
    * @group exceptions
@@ -22,11 +23,12 @@ class ExtendsConcreteExceptionTest extends \Eloquent\Enumeration\Test\TestCase
    */
   public function testException()
   {
-    $class = 'foo';
-    $parentClass = 'bar';
-    $exception = new ExtendsConcreteException($class, $parentClass);
-    $expectedMessage = "Class 'foo' cannot extend concrete class 'bar'.";
+    $message = 'foo';
+    $previous = new \Exception;
+    $exception = Phake::partialMock(__NAMESPACE__.'\LogicException', $message, $previous);
 
-    $this->assertSame($expectedMessage, $exception->getMessage());
+    $this->assertSame($message, $exception->getMessage());
+    $this->assertSame(0, $exception->getCode());
+    $this->assertSame($previous, $exception->getPrevious());
   }
 }
