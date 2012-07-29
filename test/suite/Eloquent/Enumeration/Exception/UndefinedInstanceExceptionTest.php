@@ -11,23 +11,23 @@
 
 namespace Eloquent\Enumeration\Exception;
 
-class UndefinedInstanceExceptionTest extends \Eloquent\Enumeration\Test\TestCase
+class UndefinedInstanceExceptionTest extends \PHPUnit_Framework_TestCase
 {
-  /**
-   * @covers Eloquent\Enumeration\Exception\UndefinedInstanceException
-   * @covers Eloquent\Enumeration\Exception\LogicException
-   * @covers Eloquent\Enumeration\Exception\Exception
-   * @group exceptions
-   * @group core
-   */
-  public function testException()
-  {
-    $class = 'foo';
-    $property = 'bar';
-    $value = 'baz';
-    $exception = new UndefinedInstanceException($class, $property, $value);
-    $expectedMessage = "No instance with bar equal to 'baz' defined in class 'foo'.";
+    /**
+     * @covers Eloquent\Enumeration\Exception\UndefinedInstanceException
+     * @covers Eloquent\Enumeration\Exception\LogicException
+     * @covers Eloquent\Enumeration\Exception\Exception
+     * @group exceptions
+     * @group core
+     */
+    public function testException()
+    {
+        $class = 'foo';
+        $property = 'bar';
+        $value = 'baz';
+        $exception = new UndefinedInstanceException($class, $property, $value);
+        $expectedMessage = "No instance with bar equal to 'baz' defined in class 'foo'.";
 
-    $this->assertSame($expectedMessage, $exception->getMessage());
-  }
+        $this->assertSame($expectedMessage, $exception->getMessage());
+    }
 }

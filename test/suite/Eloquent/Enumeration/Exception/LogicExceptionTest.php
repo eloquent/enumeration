@@ -13,22 +13,22 @@ namespace Eloquent\Enumeration\Exception;
 
 use Phake;
 
-class LogicExceptionTest extends \Eloquent\Enumeration\Test\TestCase
+class LogicExceptionTest extends \PHPUnit_Framework_TestCase
 {
-  /**
-   * @covers Eloquent\Enumeration\Exception\LogicException
-   * @covers Eloquent\Enumeration\Exception\Exception
-   * @group exceptions
-   * @group core
-   */
-  public function testException()
-  {
-    $message = 'foo';
-    $previous = new \Exception;
-    $exception = Phake::partialMock(__NAMESPACE__.'\LogicException', $message, $previous);
+    /**
+     * @covers Eloquent\Enumeration\Exception\LogicException
+     * @covers Eloquent\Enumeration\Exception\Exception
+     * @group exceptions
+     * @group core
+     */
+    public function testException()
+    {
+        $message = 'foo';
+        $previous = new \Exception;
+        $exception = Phake::partialMock(__NAMESPACE__.'\LogicException', $message, $previous);
 
-    $this->assertSame($message, $exception->getMessage());
-    $this->assertSame(0, $exception->getCode());
-    $this->assertSame($previous, $exception->getPrevious());
-  }
+        $this->assertSame($message, $exception->getMessage());
+        $this->assertSame(0, $exception->getCode());
+        $this->assertSame($previous, $exception->getPrevious());
+    }
 }

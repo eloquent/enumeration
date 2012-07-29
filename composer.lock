@@ -1,5 +1,5 @@
 {
-    "hash": "a25b296d1f390566e06b7a52ebff644d",
+    "hash": "5645ae7fcebe175602063cf92ef036c0",
     "packages": [
 
     ],
@@ -10,16 +10,14 @@
         },
         {
             "package": "phake/phake",
-            "version": "dev-master",
-            "source-reference": "4d822246b401f4dc609500d47e42dac8df645f4f",
-            "commit-date": "1337008011"
+            "version": "1.0.2"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phake/phake": 20
-    }
+    "stability-flags": [
+
+    ]
 }

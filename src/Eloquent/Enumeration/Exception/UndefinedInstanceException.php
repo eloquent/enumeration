@@ -16,26 +16,26 @@ namespace Eloquent\Enumeration\Exception;
  */
 final class UndefinedInstanceException extends LogicException
 {
-  /**
-   * Construct a new UndefinedInstanceException instance.
-   *
-   * @param string $class The class from which the member was requested.
-   * @param string $property The name of the property used to search for the member.
-   * @param string $value The value of the property used to search for the member.
-   * @param \Exception $previous The previous exception, if any.
-   */
-  public function __construct($class, $property, $value, \Exception $previous = null)
-  {
-    $message =
-      "No instance with "
-      .$property
-      ." equal to "
-      .var_export($value, true)
-      ." defined in class '"
-      .$class
-      ."'."
-    ;
+    /**
+     * Construct a new UndefinedInstanceException instance.
+     *
+     * @param string $class The class from which the member was requested.
+     * @param string $property The name of the property used to search for the member.
+     * @param string $value The value of the property used to search for the member.
+     * @param \Exception $previous The previous exception, if any.
+     */
+    public function __construct($class, $property, $value, \Exception $previous = null)
+    {
+        $message =
+            "No instance with ".
+            $property.
+            " equal to ".
+            var_export($value, true).
+            " defined in class '".
+            $class.
+            "'."
+        ;
 
-    parent::__construct($message, $previous);
-  }
+      parent::__construct($message, $previous);
+    }
 }

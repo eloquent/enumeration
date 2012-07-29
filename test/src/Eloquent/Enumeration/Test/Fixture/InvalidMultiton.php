@@ -13,15 +13,15 @@ namespace Eloquent\Enumeration\Test\Fixture;
 
 class InvalidMultiton extends ValidMultiton
 {
-  protected static function initializeMultiton()
-  {
-    parent::initializeMultiton();
+    protected static function initializeMultiton()
+    {
+        parent::initializeMultiton();
 
-    new static('QUX', 'xuq');
-  }
+        new static('QUX', 'xuq');
+    }
 
-  /**
-   * @var array
-   */
-  protected static $calls = array();
+    /**
+     * @var array
+     */
+    protected static $calls = array();
 }

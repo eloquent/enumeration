@@ -1,6 +1,8 @@
 language: php
-script: test/bin/ci-run
+before_script:
+    - composer install --dev
+script: phpunit
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
+    - 5.3.3
+    - 5.3
+    - 5.4

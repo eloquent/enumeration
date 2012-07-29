@@ -15,26 +15,26 @@ use Eloquent\Enumeration\Multiton;
 
 abstract class TestMultiton extends Multiton
 {
-  public static function resetCalls()
-  {
-    static::$calls = array();
-  }
+    public static function resetCalls()
+    {
+        static::$calls = array();
+    }
 
-  /**
-   * @return array
-   */
-  public static function calls()
-  {
-    return static::$calls;
-  }
+    /**
+     * @return array
+     */
+    public static function calls()
+    {
+        return static::$calls;
+    }
 
-  protected static function initializeMultiton()
-  {
-    parent::initializeMultiton();
+    protected static function initializeMultiton()
+    {
+        parent::initializeMultiton();
 
-    static::$calls[] = array(get_called_class().'::'.__FUNCTION__, func_get_args());
+        static::$calls[] = array(get_called_class().'::'.__FUNCTION__, func_get_args());
 
-    new static('FOO', 'oof');
-    new static('BAR', 'rab');
-  }
+        new static('FOO', 'oof');
+        new static('BAR', 'rab');
+    }
 }

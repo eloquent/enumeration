@@ -15,6 +15,6 @@ use Eloquent\Enumeration\Enumeration;
 
 abstract class TestEnumeration extends Enumeration
 {
-  const FOO = 'oof';
-  const BAR = 'rab';
+    const FOO = 'oof';
+    const BAR = 'rab';
 }

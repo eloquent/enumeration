@@ -16,14 +16,14 @@ namespace Eloquent\Enumeration\Exception;
  */
 abstract class LogicException extends \LogicException implements Exception
 {
-  /**
-   * Construct a new LogicError instance.
-   *
-   * @param string $message The exception message.
-   * @param \Exception $previous The previous exception, if any.
-   */
-  public function __construct($message, \Exception $previous = null)
-  {
-    parent::__construct((string)$message, 0, $previous);
-  }
+    /**
+     * Construct a new LogicError instance.
+     *
+     * @param string $message The exception message.
+     * @param \Exception $previous The previous exception, if any.
+     */
+    public function __construct($message, \Exception $previous = null)
+    {
+        parent::__construct((string)$message, 0, $previous);
+    }
 }
