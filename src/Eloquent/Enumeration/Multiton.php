@@ -51,6 +51,41 @@ abstract class Multiton
     }
 
     /**
+     * Returns a single member instance by comparison with the result of an accessor method.
+     *
+     * @param string $property The name of the property (accessor method) to match.
+     * @param mixed $value The value to match.
+     *
+     * @return Multiton The first member instance for which $instance->{$property}() === $value.
+     * @throws UndefinedInstanceException If no associated instance is found.
+     */
+    public static final function instanceBy($property, $value) {
+        foreach (static::multitonInstances() as $instance) {
+            if ($instance->{$property}() === $value) {
+                return $instance;
+            }
+        }
+        throw new Exception\UndefinedInstanceException(get_called_class(), $property, $value);
+    }
+
+    /**
+     * Returns a single member instance by predicate callback.
+     *
+     * @param callback $predicate The predicate applies to the multiton instance to find a match.
+     *
+     * @return Multiton The first member instance for which $predicate($instance) evaluates to boolean true.
+     * @throws UndefinedInstanceException If no associated instance is found.
+     */
+    public static final function instanceByPredicate($predicate) {
+        foreach (static::multitonInstances() as $instance) {
+            if ($predicate($instance)) {
+                return $instance;
+            }
+        }
+        throw new Exception\UndefinedInstanceException(get_called_class(), '<callback>', '<callback>');
+    }
+
+    /**
      * Maps static method calls to member instances.
      *
      * @param string $key The string key associated with the member instance.
