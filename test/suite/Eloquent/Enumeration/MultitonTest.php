@@ -67,6 +67,72 @@ class MultitonTest extends \PHPUnit_Framework_TestCase
         ValidMultiton::instanceByKey('DOOM');
     }
 
+    public function testInstanceBy()
+    {
+        $this->assertSame(array(), ValidMultiton::calls());
+
+        $foo = ValidMultiton::instanceBy('key', 'FOO');
+        $bar = ValidMultiton::instanceBy('key', 'BAR');
+
+        $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $foo);
+        $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $bar);
+        $this->assertNotEquals($foo, $bar);
+        $this->assertSame($foo, ValidMultiton::instanceByKey('FOO'));
+        $this->assertSame($bar, ValidMultiton::instanceByKey('BAR'));
+
+        $this->assertSame(array(
+            array(
+                'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMultiton',
+                array(),
+            ),
+        ), ValidMultiton::calls());
+    }
+
+    public function testInstanceByFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
+        ValidMultiton::instanceBy('key', 'DOOM');
+    }
+
+    public function testInstanceByPredicate()
+    {
+        $this->assertSame(array(), ValidMultiton::calls());
+
+        $foo = ValidMultiton::instanceByPredicate(
+            function(ValidMultiton $instance) {
+                return $instance->key() === 'FOO';
+            }
+        );
+        $bar = ValidMultiton::instanceByPredicate(
+            function(ValidMultiton $instance) {
+                return $instance->key() === 'BAR';
+            }
+        );
+
+        $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $foo);
+        $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidMultiton', $bar);
+        $this->assertNotEquals($foo, $bar);
+        $this->assertSame($foo, ValidMultiton::instanceByKey('FOO'));
+        $this->assertSame($bar, ValidMultiton::instanceByKey('BAR'));
+
+        $this->assertSame(array(
+            array(
+                'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMultiton',
+                array(),
+            ),
+        ), ValidMultiton::calls());
+    }
+
+    public function testInstanceByPredicateFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
+        ValidMultiton::instanceByPredicate(
+            function(ValidMultiton $instance) {
+                return false;
+            }
+        );
+    }
+
     public function testCallStatic()
     {
         $foo = ValidMultiton::FOO();
