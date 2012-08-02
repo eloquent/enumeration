@@ -1,6 +1,5 @@
 {
     "name": "eloquent/enumeration",
-    "type": "library",
     "description": "An enumeration implementation for PHP.",
     "keywords": ["enum","enumeration","set","class"],
     "homepage": "https://github.com/eloquent/enumeration",
