@@ -14,7 +14,9 @@ Enumeration requires PHP 5.3 or later.
 ### Bare installation
 
 * Clone from GitHub: `git clone git://github.com/eloquent/enumeration.git`
-* Use a [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) compatible autoloader (namespace 'Eloquent' in the 'src' directory)
+* Use a [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
+  compatible autoloader (namespace 'Eloquent\Enumeration' in the 'src'
+  directory)
 
 ## What is an Enumeration?
 

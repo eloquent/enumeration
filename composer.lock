@@ -1,16 +1,12 @@
 {
-    "hash": "5645ae7fcebe175602063cf92ef036c0",
+    "hash": "b10ae4aa87d20ee007f2e6c7654f3824",
     "packages": [
 
     ],
     "packages-dev": [
         {
-            "package": "eloquent/pops",
-            "version": "1.0.0"
-        },
-        {
             "package": "phake/phake",
-            "version": "1.0.2"
+            "version": "v1.0.3"
         }
     ],
     "aliases": [

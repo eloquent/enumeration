@@ -16,31 +16,11 @@
         "php": ">=5.3.0"
     },
     "require-dev": {
-        "eloquent/pops": "1.*",
         "phake/phake": "1.*"
     },
     "autoload": {
         "psr-0": {
-            "Eloquent": "src"
+            "Eloquent\\Enumeration": "src"
         }
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "phake/phake",
-                "version": "1.0.2",
-                "dist": {
-                    "url": "https://github.com/mlively/Phake/zipball/v1.0.2",
-                    "type": "zip"
-                },
-                "autoload": {
-                    "classmap": ["src"]
-                },
-                "include-path": [
-                    "src"
-                ]
-            }
-        }
-    ]
+    }
 }
