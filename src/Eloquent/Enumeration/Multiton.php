@@ -38,7 +38,7 @@ abstract class Multiton
      * @param string $key The string key associated with the member instance.
      *
      * @return Multiton The member instance associated with the given string key.
-     * @throws UndefinedInstanceException If no associated instance is found.
+     * @throws Exception\UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceByKey($key)
     {
@@ -47,7 +47,7 @@ abstract class Multiton
             return $instances[$key];
         }
 
-        throw new Exception\UndefinedInstanceException(get_called_class(), 'key', $key);
+        throw static::createUndefinedInstanceException(get_called_class(), 'key', $key);
     }
 
     /**
@@ -57,7 +57,7 @@ abstract class Multiton
      * @param mixed $value The value to match.
      *
      * @return Multiton The first member instance for which $instance->{$property}() === $value.
-     * @throws UndefinedInstanceException If no associated instance is found.
+     * @throws Exception\UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceBy($property, $value) {
         foreach (static::multitonInstances() as $instance) {
@@ -65,7 +65,8 @@ abstract class Multiton
                 return $instance;
             }
         }
-        throw new Exception\UndefinedInstanceException(get_called_class(), $property, $value);
+
+        throw static::createUndefinedInstanceException(get_called_class(), $property, $value);
     }
 
     /**
@@ -74,7 +75,7 @@ abstract class Multiton
      * @param callback $predicate The predicate applies to the multiton instance to find a match.
      *
      * @return Multiton The first member instance for which $predicate($instance) evaluates to boolean true.
-     * @throws UndefinedInstanceException If no associated instance is found.
+     * @throws Exception\UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceByPredicate($predicate) {
         foreach (static::multitonInstances() as $instance) {
@@ -82,7 +83,8 @@ abstract class Multiton
                 return $instance;
             }
         }
-        throw new Exception\UndefinedInstanceException(get_called_class(), '<callback>', '<callback>');
+
+        throw static::createUndefinedInstanceException(get_called_class(), '<callback>', '<callback>');
     }
 
     /**
@@ -92,7 +94,7 @@ abstract class Multiton
      * @param array $arguments Ignored.
      *
      * @return Multiton The member instance associated with the given string key.
-     * @throws UndefinedInstanceException If no associated instance is found.
+     * @throws Exception\UndefinedInstanceException If no associated instance is found.
      */
     public static final function __callStatic($key, array $arguments)
     {
@@ -132,6 +134,26 @@ abstract class Multiton
     protected static function initializeMultiton() {}
 
     /**
+     * Override this method in child classes to implement custom undefined
+     * instance exceptions for a multiton class.
+     *
+     * @param string $className
+     * @param string $property
+     * @param mixed $value
+     * @param Exception|null $previous
+     *
+     * @return Exception\UndefinedInstanceExceptionInterface
+     */
+    protected static function createUndefinedInstanceException(
+        $className,
+        $property,
+        $value,
+        Exception $previous = null
+    ) {
+        return new Exception\UndefinedInstanceException($className, $property, $value, $previous);
+    }
+
+    /**
      * Construct and register a new multiton member instance.
      *
      * If you override the constructor in a child class, you MUST call the parent
@@ -141,7 +163,7 @@ abstract class Multiton
      *
      * @param string $key The string key to associate with this member instance.
      *
-     * @throws ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
+     * @throws Exception\ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
      */
     protected function __construct($key)
     {
@@ -158,7 +180,7 @@ abstract class Multiton
      * also handle registration of the instance.
      *
      * @param Multiton $instance The instance to register.
-     * @throws ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
+     * @throws Exception\ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
      */
     private static function registerMultiton(self $instance)
     {

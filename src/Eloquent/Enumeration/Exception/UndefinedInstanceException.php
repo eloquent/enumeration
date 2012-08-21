@@ -11,31 +11,65 @@
 
 namespace Eloquent\Enumeration\Exception;
 
+use Exception;
+use LogicException;
+
 /**
  * The requested member instance was not found.
  */
-final class UndefinedInstanceException extends LogicException
+final class UndefinedInstanceException extends LogicException implements UndefinedInstanceExceptionInterface
 {
     /**
      * Construct a new UndefinedInstanceException instance.
      *
-     * @param string $class The class from which the member was requested.
+     * @param string $className The class from which the member was requested.
      * @param string $property The name of the property used to search for the member.
-     * @param string $value The value of the property used to search for the member.
-     * @param \Exception $previous The previous exception, if any.
+     * @param mixed $value The value of the property used to search for the member.
+     * @param Exception $previous The previous exception, if any.
      */
-    public function __construct($class, $property, $value, \Exception $previous = null)
+    public function __construct($className, $property, $value, Exception $previous = null)
     {
-        $message =
-            "No instance with ".
-            $property.
-            " equal to ".
-            var_export($value, true).
-            " defined in class '".
-            $class.
-            "'."
-        ;
+        $this->className = $className;
+        $this->property = $property;
+        $this->value = $value;
 
-      parent::__construct($message, $previous);
+        parent::__construct(
+            sprintf(
+                "No instance with %s equal to %s defined in class '%s'.",
+                $this->property(),
+                var_export($this->value(), true),
+                $this->className()
+            ),
+            0,
+            $previous
+        );
     }
+
+    /**
+     * @return string
+     */
+    public function className()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @return string
+     */
+    public function property()
+    {
+        return $this->property;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function value()
+    {
+        return $this->value;
+    }
+
+    private $className;
+    private $property;
+    private $value;
 }

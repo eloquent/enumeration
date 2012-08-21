@@ -13,11 +13,10 @@ namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Test\Fixture\InvalidMultiton;
 use Eloquent\Enumeration\Test\Fixture\ValidMultiton;
+use PHPUnit_Framework_TestCase;
+use ReflectionClass;
 
-/**
- * @covers Eloquent\Enumeration\Multiton
- */
-class MultitonTest extends \PHPUnit_Framework_TestCase
+class MultitonTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -25,7 +24,7 @@ class MultitonTest extends \PHPUnit_Framework_TestCase
 
         ValidMultiton::resetCalls();
 
-        $reflector = new \ReflectionClass(__NAMESPACE__.'\Multiton');
+        $reflector = new ReflectionClass(__NAMESPACE__.'\Multiton');
         $instancesProperty = $reflector->getProperty('instances');
         $instancesProperty->setAccessible(true);
         $instancesProperty->setValue(null, array());

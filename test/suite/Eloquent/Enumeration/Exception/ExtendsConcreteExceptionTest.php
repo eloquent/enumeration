@@ -11,22 +11,23 @@
 
 namespace Eloquent\Enumeration\Exception;
 
-class ExtendsConcreteExceptionTest extends \PHPUnit_Framework_TestCase
+use Exception;
+use PHPUnit_Framework_TestCase;
+
+class ExtendsConcreteExceptionTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Eloquent\Enumeration\Exception\ExtendsConcreteException
-     * @covers Eloquent\Enumeration\Exception\LogicException
-     * @covers Eloquent\Enumeration\Exception\Exception
-     * @group exceptions
-     * @group core
-     */
     public function testException()
     {
-        $class = 'foo';
+        $className = 'foo';
         $parentClass = 'bar';
-        $exception = new ExtendsConcreteException($class, $parentClass);
+        $previous = new Exception;
+        $exception = new ExtendsConcreteException($className, $parentClass, $previous);
         $expectedMessage = "Class 'foo' cannot extend concrete class 'bar'.";
 
         $this->assertSame($expectedMessage, $exception->getMessage());
+        $this->assertSame($className, $exception->className());
+        $this->assertSame($parentClass, $exception->parentClass());
+        $this->assertSame(0, $exception->getCode());
+        $this->assertSame($previous, $exception->getPrevious());
     }
 }

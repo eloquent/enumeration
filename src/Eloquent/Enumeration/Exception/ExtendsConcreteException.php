@@ -11,6 +11,9 @@
 
 namespace Eloquent\Enumeration\Exception;
 
+use Exception;
+use LogicException;
+
 /**
  * The supplied member instance extends an already concrete base class.
  *
@@ -22,12 +25,42 @@ final class ExtendsConcreteException extends LogicException
     /**
      * Construct a new ExtendsConcreteException instance.
      *
-     * @param string $class The class of the supplied instance.
+     * @param string $className The class of the supplied instance.
      * @param string $parentClass The concrete parent class.
-     * @param \Exception $previous The previous exception, if any.
+     * @param Exception $previous The previous exception, if any.
      */
-    public function __construct($class, $parentClass, \Exception $previous = null)
+    public function __construct($className, $parentClass, Exception $previous = null)
     {
-        parent::__construct("Class '".$class."' cannot extend concrete class '".$parentClass."'.", $previous);
+        $this->className = $className;
+        $this->parentClass = $parentClass;
+
+        parent::__construct(
+            sprintf(
+                "Class '%s' cannot extend concrete class '%s'.",
+                $this->className(),
+                $this->parentClass()
+            ),
+            0,
+            $previous
+        );
     }
+
+    /**
+     * @return string
+     */
+    public function className()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @return string
+     */
+    public function parentClass()
+    {
+        return $this->parentClass;
+    }
+
+    private $className;
+    private $parentClass;
 }

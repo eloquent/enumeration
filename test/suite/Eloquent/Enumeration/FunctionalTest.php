@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-class FunctionalTest extends \PHPUnit_Framework_TestCase
+class FunctionalTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test basic setup of HTTPRequestMethod class.

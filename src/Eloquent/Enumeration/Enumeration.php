@@ -11,6 +11,8 @@
 
 namespace Eloquent\Enumeration;
 
+use Exception;
+
 /**
  * Base class for C++ style enumerations.
  */
@@ -22,7 +24,7 @@ abstract class Enumeration extends Multiton
      * @param scalar $value The value associated with the member instance.
      *
      * @return Enumeration The first member instance with the supplied value.
-     * @throws UndefinedInstanceException If no associated instance is found.
+     * @throws Exception\UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceByValue($value)
     {
@@ -32,7 +34,7 @@ abstract class Enumeration extends Multiton
             }
         }
 
-        throw new Exception\UndefinedInstanceException(get_called_class(), 'value', $value);
+        throw static::createUndefinedInstanceException(get_called_class(), 'value', $value);
     }
 
     /**
@@ -66,7 +68,7 @@ abstract class Enumeration extends Multiton
      * @param string $key The string key to associate with this member instance.
      * @param scalar $value The value of this member instance.
      *
-     * @throws ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
+     * @throws Exception\ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
      */
     protected function __construct($key, $value)
     {

@@ -13,17 +13,16 @@ namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Test\Fixture\InvalidEnumeration;
 use Eloquent\Enumeration\Test\Fixture\ValidEnumeration;
+use PHPUnit_Framework_TestCase;
+use ReflectionClass;
 
-/**
- * @covers Eloquent\Enumeration\Enumeration
- */
-class EnumerationTest extends \PHPUnit_Framework_TestCase
+class EnumerationTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
         parent::setUp();
 
-        $reflector = new \ReflectionClass(__NAMESPACE__.'\Multiton');
+        $reflector = new ReflectionClass(__NAMESPACE__.'\Multiton');
         $instancesProperty = $reflector->getProperty('instances');
         $instancesProperty->setAccessible(true);
         $instancesProperty->setValue(null, array());
