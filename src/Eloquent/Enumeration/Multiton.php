@@ -11,6 +11,10 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Exception\ExtendsConcreteException;
+use Eloquent\Enumeration\Exception\UndefinedInstanceException;
+use Exception;
+
 /**
  * Base class for Java style enumerations.
  */
@@ -38,7 +42,7 @@ abstract class Multiton
      * @param string $key The string key associated with the member instance.
      *
      * @return Multiton The member instance associated with the given string key.
-     * @throws Exception\UndefinedInstanceException If no associated instance is found.
+     * @throws UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceByKey($key)
     {
@@ -57,7 +61,7 @@ abstract class Multiton
      * @param mixed $value The value to match.
      *
      * @return Multiton The first member instance for which $instance->{$property}() === $value.
-     * @throws Exception\UndefinedInstanceException If no associated instance is found.
+     * @throws UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceBy($property, $value) {
         foreach (static::multitonInstances() as $instance) {
@@ -75,7 +79,7 @@ abstract class Multiton
      * @param callback $predicate The predicate applies to the multiton instance to find a match.
      *
      * @return Multiton The first member instance for which $predicate($instance) evaluates to boolean true.
-     * @throws Exception\UndefinedInstanceException If no associated instance is found.
+     * @throws UndefinedInstanceException If no associated instance is found.
      */
     public static final function instanceByPredicate($predicate) {
         foreach (static::multitonInstances() as $instance) {
@@ -94,7 +98,7 @@ abstract class Multiton
      * @param array $arguments Ignored.
      *
      * @return Multiton The member instance associated with the given string key.
-     * @throws Exception\UndefinedInstanceException If no associated instance is found.
+     * @throws UndefinedInstanceException If no associated instance is found.
      */
     public static final function __callStatic($key, array $arguments)
     {
@@ -142,7 +146,7 @@ abstract class Multiton
      * @param mixed $value
      * @param Exception|null $previous
      *
-     * @return Exception\UndefinedInstanceExceptionInterface
+     * @return UndefinedInstanceExceptionInterface
      */
     protected static function createUndefinedInstanceException(
         $className,
@@ -150,7 +154,7 @@ abstract class Multiton
         $value,
         Exception $previous = null
     ) {
-        return new Exception\UndefinedInstanceException($className, $property, $value, $previous);
+        return new UndefinedInstanceException($className, $property, $value, $previous);
     }
 
     /**
@@ -163,7 +167,7 @@ abstract class Multiton
      *
      * @param string $key The string key to associate with this member instance.
      *
-     * @throws Exception\ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
+     * @throws ExtendsConcreteException If the constructed instance has an invalid inheritance hierarchy.
      */
     protected function __construct($key)
     {
@@ -180,14 +184,14 @@ abstract class Multiton
      * also handle registration of the instance.
      *
      * @param Multiton $instance The instance to register.
-     * @throws Exception\ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
+     * @throws ExtendsConcreteException If the supplied instance has an invalid inheritance hierarchy.
      */
     private static function registerMultiton(self $instance)
     {
         $reflector = new \ReflectionObject($instance);
         $parentClass = $reflector->getParentClass();
         if (!$parentClass->isAbstract()) {
-            throw new Exception\ExtendsConcreteException(
+            throw new ExtendsConcreteException(
                 get_class($instance)
                 , $parentClass->getName()
             );

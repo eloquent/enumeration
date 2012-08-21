@@ -11,8 +11,6 @@
 
 namespace Eloquent\Enumeration;
 
-use Exception;
-
 /**
  * Base class for C++ style enumerations.
  */
