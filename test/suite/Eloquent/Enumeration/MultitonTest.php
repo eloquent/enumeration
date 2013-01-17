@@ -174,6 +174,17 @@ class MultitonTest extends PHPUnit_Framework_TestCase
         InvalidMultiton::BAZ();
     }
 
+    public function testAnyOf() {
+        $this->assertTrue(ValidMultiton::BAR()->anyOf(ValidMultiton::FOO(), ValidMultiton::BAR()));
+        $this->assertFalse(ValidMultiton::BAZ()->anyOf(ValidMultiton::FOO(), ValidMultiton::BAR()));
+    }
+
+    public function testAnyOfArray() {
+        $array = array(ValidMultiton::FOO(), ValidMultiton::BAR());
+        $this->assertTrue(ValidMultiton::BAR()->anyOfArray($array));
+        $this->assertFalse(ValidMultiton::BAZ()->anyOfArray($array));
+    }
+
     public function testToString()
     {
         $foo = ValidMultiton::FOO();
