@@ -116,6 +116,32 @@ abstract class Multiton
     }
 
     /**
+     * Check if this multiton instance is in the specified list of values.
+     *
+     * @param Multiton $a     The first multiton instance to check.
+     * @param Multiton $b     The second multiton instance to check.
+     * @param Multiton $c,... Additional multiton instances to check.
+     *
+     * @return boolean True if this multiton instance value is in the specified list of values.
+     */
+    public final function anyOf(Multiton $a, Multiton $b)
+    {
+        return $this->anyOfArray(func_get_args());
+    }
+
+    /**
+     * Check if this multiton instance is in the specified list of values.
+     *
+     * @param array<Multiton> $values An array of multion values to search.
+     *
+     * @return boolean True if this multiton instance value is in the specified list of values.
+     */
+    public final function anyOfArray(array $values)
+    {
+        return in_array($this, $values, true);
+    }
+
+    /**
      * Returns a string representation of this member instance.
      *
      * Unless overridden, this is simply the string key.
