@@ -1,2 +1,4 @@
-test/report
-vendor
+# archer start
+/artifacts/
+/vendor/
+# archer end

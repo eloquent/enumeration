@@ -2,21 +2,13 @@
 
 *An enumeration implementation for PHP.*
 
+[![Build Status]](http://travis-ci.org/eloquent/enumeration)
+[![Test Coverage]](http://eloquent-software.com/enumeration/artifacts/tests/coverage/)
+
 ## Installation
 
-Enumeration requires PHP 5.3 or later.
-
-### With [Composer](http://getcomposer.org/)
-
-* Add 'eloquent/enumeration' to the project's composer.json dependencies
-* Run `php composer.phar install`
-
-### Bare installation
-
-* Clone from GitHub: `git clone git://github.com/eloquent/enumeration.git`
-* Use a [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
-  compatible autoloader (namespace 'Eloquent\Enumeration' in the 'src'
-  directory)
+Available as [Composer](http://getcomposer.org/) package
+[eloquent/enumeration](https://packagist.org/packages/eloquent/enumeration).
 
 ## What is an Enumeration?
 
@@ -34,8 +26,6 @@ Enumeration can be used like [C++ enumerated types](http://www.learncpp.com/cpp-
 Here is an example, representing a set of HTTP request methods:
 
 ```php
-<?php
-
 use Eloquent\Enumeration\Enumeration;
 
 final class HTTPRequestMethod extends Enumeration
@@ -55,8 +45,6 @@ This class can now be used in a type hint to easily accept any valid HTTP
 request method:
 
 ```php
-<?php
-
 function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 {
   // handle request...
@@ -68,8 +56,6 @@ function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 Members are accessed by static method calls, like so:
 
 ```php
-<?php
-
 handleHttpRequest(HTTPRequestMethod::GET(), 'http://example.org/');
 handleHttpRequest(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
 ```
@@ -80,8 +66,6 @@ example). This means that strict comparison (===) can be used to determine
 which member has been passed to a function:
 
 ```php
-<?php
-
 function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 {
   if ($method === HTTPRequestMethod::POST())
@@ -111,8 +95,6 @@ following multiton describes all of the planets in our solar system, including
 their masses and radii:
 
 ```php
-<?php
-
 use Eloquent\Enumeration\Multiton;
 
 final class Planet extends Multiton
@@ -186,8 +168,6 @@ The above class can be used to take a known weight on earth (in any unit) and
 calculate the weight on all of the planets (in the same unit):
 
 ```php
-<?php
-
 require 'Planet.php';
 
 $earthWeight = 175;
@@ -212,14 +192,6 @@ Your weight on URANUS is 158.424919
 Your weight on NEPTUNE is 199.055584
 ```
 
-## Code quality
-
-Enumeration strives to attain a high level of quality. A full test suite is
-available, and code coverage is closely monitored. All of the above code
-examples are also tested.
-
-### Latest revision test suite results
-[![Build Status](https://secure.travis-ci.org/eloquent/enumeration.png)](http://travis-ci.org/eloquent/enumeration)
-
-### Latest revision test suite coverage
-<http://ci.ezzatron.com/report/enumeration/coverage/>
+<!-- references -->
+[Build Status]: https://raw.github.com/eloquent/enumeration/gh-pages/artifacts/images/icecave/regular/build-status.png
+[Test Coverage]: https://raw.github.com/eloquent/enumeration/gh-pages/artifacts/images/icecave/regular/coverage.png
