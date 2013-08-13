@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1376390979">
+  <project timestamp="1376390979">
+    <package name="Eloquent\Enumeration">
+      <file name="/home/travis/build/eloquent/enumeration/src/Eloquent/Enumeration/Enumeration.php">
+        <class name="Enumeration" namespace="Eloquent\Enumeration">
+          <metrics methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="20" coveredelements="20"/>
+        </class>
+        <line num="30" type="method" name="memberByValue" crap="1" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="45" type="method" name="memberByValueWithDefault" crap="1" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="63" type="method" name="value" crap="1" count="4"/>
+        <line num="65" type="stmt" count="4"/>
+        <line num="75" type="method" name="initializeMembers" crap="2" count="12"/>
+        <line num="77" type="stmt" count="12"/>
+        <line num="79" type="stmt" count="12"/>
+        <line num="80" type="stmt" count="12"/>
+        <line num="81" type="stmt" count="11"/>
+        <line num="82" type="stmt" count="11"/>
+        <line num="92" type="method" name="__construct" crap="1" count="12"/>
+        <line num="94" type="stmt" count="12"/>
+        <line num="96" type="stmt" count="11"/>
+        <line num="97" type="stmt" count="11"/>
+        <line num="106" type="stmt" count="0"/>
+        <metrics loc="105" ncloc="50" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="20" coveredelements="20"/>
+      </file>
+      <file name="/home/travis/build/eloquent/enumeration/src/Eloquent/Enumeration/Multiton.php">
+        <class name="Multiton" namespace="Eloquent\Enumeration">
+          <metrics methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="84" coveredstatements="84" elements="101" coveredelements="101"/>
+        </class>
+        <line num="27" type="method" name="members" crap="2" count="22"/>
+        <line num="29" type="stmt" count="22"/>
+        <line num="30" type="stmt" count="22"/>
+        <line num="31" type="stmt" count="19"/>
+        <line num="32" type="stmt" count="19"/>
+        <line num="33" type="stmt" count="18"/>
+        <line num="35" type="stmt" count="21"/>
+        <line num="47" type="method" name="memberByKey" crap="1" count="20"/>
+        <line num="49" type="stmt" count="20"/>
+        <line num="62" type="method" name="memberByKeyWithDefault" crap="1" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="1"/>
+        <line num="86" type="method" name="memberBy" crap="2" count="21"/>
+        <line num="91" type="stmt" count="21"/>
+        <line num="92" type="stmt" count="21"/>
+        <line num="93" type="stmt" count="21"/>
+        <line num="94" type="stmt" count="21"/>
+        <line num="96" type="stmt" count="21"/>
+        <line num="97" type="stmt" count="20"/>
+        <line num="98" type="stmt" count="3"/>
+        <line num="99" type="stmt" count="3"/>
+        <line num="100" type="stmt" count="3"/>
+        <line num="102" type="stmt" count="3"/>
+        <line num="105" type="stmt" count="17"/>
+        <line num="119" type="method" name="memberByWithDefault" crap="6" count="21"/>
+        <line num="125" type="stmt" count="21"/>
+        <line num="126" type="stmt" count="21"/>
+        <line num="127" type="stmt" count="21"/>
+        <line num="128" type="stmt" count="21"/>
+        <line num="129" type="stmt" count="4"/>
+        <line num="130" type="stmt" count="4"/>
+        <line num="132" type="stmt" count="21"/>
+        <line num="134" type="stmt" count="20"/>
+        <line num="135" type="stmt" count="20"/>
+        <line num="136" type="stmt" count="20"/>
+        <line num="138" type="stmt" count="20"/>
+        <line num="139" type="stmt" count="20"/>
+        <line num="140" type="stmt" count="4"/>
+        <line num="141" type="stmt" count="4"/>
+        <line num="143" type="stmt" count="20"/>
+        <line num="144" type="stmt" count="21"/>
+        <line num="146" type="stmt" count="21"/>
+        <line num="157" type="method" name="memberByPredicate" crap="2" count="2"/>
+        <line num="159" type="stmt" count="2"/>
+        <line num="160" type="stmt" count="2"/>
+        <line num="161" type="stmt" count="1"/>
+        <line num="162" type="stmt" count="1"/>
+        <line num="163" type="stmt" count="1"/>
+        <line num="165" type="stmt" count="1"/>
+        <line num="168" type="stmt" count="1"/>
+        <line num="180" type="method" name="memberByPredicateWithDefault" crap="3" count="22"/>
+        <line num="184" type="stmt" count="22"/>
+        <line num="185" type="stmt" count="21"/>
+        <line num="186" type="stmt" count="17"/>
+        <line num="188" type="stmt" count="21"/>
+        <line num="190" type="stmt" count="7"/>
+        <line num="202" type="method" name="__callStatic" crap="1" count="16"/>
+        <line num="204" type="stmt" count="16"/>
+        <line num="212" type="method" name="key" crap="1" count="21"/>
+        <line num="214" type="stmt" count="21"/>
+        <line num="226" type="method" name="anyOf" crap="1" count="1"/>
+        <line num="228" type="stmt" count="1"/>
+        <line num="238" type="method" name="anyOfArray" crap="1" count="2"/>
+        <line num="240" type="stmt" count="2"/>
+        <line num="250" type="method" name="__toString" crap="1" count="2"/>
+        <line num="252" type="stmt" count="2"/>
+        <line num="263" type="method" name="initializeMembers" crap="1" count="18"/>
+        <line num="276" type="method" name="createUndefinedMemberException" crap="1" count="4"/>
+        <line num="282" type="stmt" count="4"/>
+        <line num="283" type="stmt" count="4"/>
+        <line num="284" type="stmt" count="4"/>
+        <line num="285" type="stmt" count="4"/>
+        <line num="287" type="stmt" count="4"/>
+        <line num="302" type="method" name="__construct" crap="1" count="19"/>
+        <line num="304" type="stmt" count="19"/>
+        <line num="306" type="stmt" count="19"/>
+        <line num="307" type="stmt" count="18"/>
+        <line num="319" type="method" name="registerMember" crap="2" count="19"/>
+        <line num="321" type="stmt" count="19"/>
+        <line num="322" type="stmt" count="19"/>
+        <line num="323" type="stmt" count="19"/>
+        <line num="324" type="stmt" count="1"/>
+        <line num="325" type="stmt" count="1"/>
+        <line num="326" type="stmt" count="1"/>
+        <line num="327" type="stmt" count="1"/>
+        <line num="330" type="stmt" count="18"/>
+        <line num="331" type="stmt" count="18"/>
+        <line num="349" type="stmt" count="0"/>
+        <metrics loc="348" ncloc="184" classes="1" methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="75" coveredstatements="75" elements="92" coveredelements="92"/>
+      </file>
+    </package>
+    <package name="Eloquent\Enumeration\Exception">
+      <file name="/home/travis/build/eloquent/enumeration/src/Eloquent/Enumeration/Exception/ExtendsConcreteException.php">
+        <class name="ExtendsConcreteException" namespace="Eloquent\Enumeration\Exception">
+          <metrics methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="16" coveredelements="16"/>
+        </class>
+        <line num="32" type="method" name="__construct" crap="1" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="56" type="method" name="className" crap="1" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="66" type="method" name="parentClass" crap="1" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="0"/>
+        <metrics loc="73" ncloc="42" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="16" coveredelements="16"/>
+      </file>
+      <file name="/home/travis/build/eloquent/enumeration/src/Eloquent/Enumeration/Exception/UndefinedMemberException.php">
+        <class name="UndefinedMemberException" namespace="Eloquent\Enumeration\Exception">
+          <metrics methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="20" coveredelements="20"/>
+        </class>
+        <line num="31" type="method" name="__construct" crap="1" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="54" type="method" name="className" crap="1" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="64" type="method" name="property" crap="1" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="74" type="method" name="value" crap="1" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="0"/>
+        <metrics loc="82" ncloc="48" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="20" coveredelements="20"/>
+      </file>
+    </package>
+    <file name="/home/travis/build/eloquent/enumeration/src/Eloquent/Enumeration/Exception/UndefinedMemberExceptionInterface.php">
+      <line num="41" type="stmt" count="0"/>
+      <metrics loc="40" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <metrics files="5" loc="648" ncloc="337" classes="4" methods="29" coveredmethods="29" conditionals="0" coveredconditionals="0" statements="119" coveredstatements="119" elements="148" coveredelements="148"/>
+  </project>
+</coverage>
