@@ -11,7 +11,7 @@
 
 use Eloquent\Enumeration\Enumeration;
 
-final class HTTPRequestMethod extends Enumeration
+final class HttpRequestMethod extends Enumeration
 {
     const OPTIONS = 'OPTIONS';
     const GET = 'GET';

@@ -38,9 +38,9 @@ final class Planet extends Multiton
         return $otherMass * $this->surfaceGravity();
     }
 
-    protected static function initializeMultiton()
+    protected static function initializeMembers()
     {
-        parent::initializeMultiton();
+        parent::initializeMembers();
 
         new static('MERCURY', 3.302e23,  2.4397e6);
         new static('VENUS',   4.869e24,  6.0518e6);
@@ -55,8 +55,8 @@ final class Planet extends Multiton
 
     /**
      * @param string $key
-     * @param float $mass
-     * @param float $radius
+     * @param float  $mass
+     * @param float  $radius
      */
     protected function __construct($key, $mass, $radius)
     {

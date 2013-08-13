@@ -21,9 +21,9 @@ class ValidMultiton extends TestMultiton
         return $this->value;
     }
 
-    protected static function initializeMultiton()
+    protected static function initializeMembers()
     {
-        parent::initializeMultiton();
+        parent::initializeMembers();
 
         new static('BAZ', 'zab');
     }

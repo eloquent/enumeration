@@ -12,53 +12,53 @@
 class FunctionalTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test basic setup of HTTPRequestMethod class.
+     * Test basic setup of HttpRequestMethod class.
      */
-    public function testHTTPRequestMethodSetup()
+    public function testHttpRequestMethodSetup()
     {
         $expected = array(
-            'OPTIONS' => HTTPRequestMethod::OPTIONS(),
-            'GET' => HTTPRequestMethod::GET(),
-            'HEAD' => HTTPRequestMethod::HEAD(),
-            'POST' => HTTPRequestMethod::POST(),
-            'PUT' => HTTPRequestMethod::PUT(),
-            'DELETE' => HTTPRequestMethod::DELETE(),
-            'TRACE' => HTTPRequestMethod::TRACE(),
-            'CONNECT' => HTTPRequestMethod::CONNECT(),
+            'OPTIONS' => HttpRequestMethod::OPTIONS(),
+            'GET' => HttpRequestMethod::GET(),
+            'HEAD' => HttpRequestMethod::HEAD(),
+            'POST' => HttpRequestMethod::POST(),
+            'PUT' => HttpRequestMethod::PUT(),
+            'DELETE' => HttpRequestMethod::DELETE(),
+            'TRACE' => HttpRequestMethod::TRACE(),
+            'CONNECT' => HttpRequestMethod::CONNECT(),
         );
 
-        $this->assertSame($expected, HTTPRequestMethod::multitonInstances());
+        $this->assertSame($expected, HttpRequestMethod::members());
     }
 
     /**
      * Test the following statement:
      *
-     * "[The HTTPRequestMethod class] can now be used in a type hint to easily
+     * "[The HttpRequestMethod class] can now be used in a type hint to easily
      *  accept any valid HTTP request method."
      */
-    public function testHTTPRequestMethodAcceptAll()
+    public function testHttpRequestMethodAcceptAll()
     {
         $passedMethods = array();
-        $handleHttpRequest = function(HTTPRequestMethod $method, $url, $body) use(&$passedMethods) {
+        $handleHttpRequest = function(HttpRequestMethod $method, $url, $body) use (&$passedMethods) {
             $passedMethods[] = $method;
         };
-        $handleHttpRequest(HTTPRequestMethod::OPTIONS(), 'http://example.org/', NULL);
-        $handleHttpRequest(HTTPRequestMethod::GET(), 'http://example.org/', NULL);
-        $handleHttpRequest(HTTPRequestMethod::HEAD(), 'http://example.org/', NULL);
-        $handleHttpRequest(HTTPRequestMethod::POST(), 'http://example.org/', 'foo');
-        $handleHttpRequest(HTTPRequestMethod::PUT(), 'http://example.org/', 'foo');
-        $handleHttpRequest(HTTPRequestMethod::DELETE(), 'http://example.org/', NULL);
-        $handleHttpRequest(HTTPRequestMethod::TRACE(), 'http://example.org/', NULL);
-        $handleHttpRequest(HTTPRequestMethod::CONNECT(), 'http://example.org/', NULL);
+        $handleHttpRequest(HttpRequestMethod::OPTIONS(), 'http://example.org/', null);
+        $handleHttpRequest(HttpRequestMethod::GET(), 'http://example.org/', null);
+        $handleHttpRequest(HttpRequestMethod::HEAD(), 'http://example.org/', null);
+        $handleHttpRequest(HttpRequestMethod::POST(), 'http://example.org/', 'foo');
+        $handleHttpRequest(HttpRequestMethod::PUT(), 'http://example.org/', 'foo');
+        $handleHttpRequest(HttpRequestMethod::DELETE(), 'http://example.org/', null);
+        $handleHttpRequest(HttpRequestMethod::TRACE(), 'http://example.org/', null);
+        $handleHttpRequest(HttpRequestMethod::CONNECT(), 'http://example.org/', null);
         $expected = array(
-            HTTPRequestMethod::OPTIONS(),
-            HTTPRequestMethod::GET(),
-            HTTPRequestMethod::HEAD(),
-            HTTPRequestMethod::POST(),
-            HTTPRequestMethod::PUT(),
-            HTTPRequestMethod::DELETE(),
-            HTTPRequestMethod::TRACE(),
-            HTTPRequestMethod::CONNECT(),
+            HttpRequestMethod::OPTIONS(),
+            HttpRequestMethod::GET(),
+            HttpRequestMethod::HEAD(),
+            HttpRequestMethod::POST(),
+            HttpRequestMethod::PUT(),
+            HttpRequestMethod::DELETE(),
+            HttpRequestMethod::TRACE(),
+            HttpRequestMethod::CONNECT(),
         );
 
         $this->assertSame($expected, $passedMethods);
@@ -71,14 +71,15 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
      *  strict comparison (===) can be used to determine which member has been
      *  passed to a function"
      */
-    public function testHTTPRequestMethodStrictComparison() {
-        $get = HTTPRequestMethod::GET();
-        $post = HTTPRequestMethod::POST();
+    public function testHttpRequestMethodStrictComparison()
+    {
+        $get = HttpRequestMethod::GET();
+        $post = HttpRequestMethod::POST();
 
-        $this->assertTrue($get === HTTPRequestMethod::GET());
-        $this->assertTrue($post === HTTPRequestMethod::POST());
-        $this->assertFalse($get === HTTPRequestMethod::POST());
-        $this->assertFalse($post === HTTPRequestMethod::GET());
+        $this->assertTrue($get === HttpRequestMethod::GET());
+        $this->assertTrue($post === HttpRequestMethod::POST());
+        $this->assertFalse($get === HttpRequestMethod::POST());
+        $this->assertFalse($post === HttpRequestMethod::GET());
         $this->assertFalse($get === $post);
     }
 
@@ -98,7 +99,7 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
             'NEPTUNE' => Planet::NEPTUNE(),
         );
 
-        $this->assertSame($expected, Planet::multitonInstances());
+        $this->assertSame($expected, Planet::members());
     }
 
     /**
@@ -110,9 +111,13 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
         $earthWeight = 175;
         $mass = $earthWeight / Planet::EARTH()->surfaceGravity();
 
-        foreach (Planet::multitonInstances() as $planet) {
+        foreach (Planet::members() as $planet) {
             // modified slightly to avoid floating point precision issues causing failing test
-            echo sprintf('Your weight on %s is %0.0f' . PHP_EOL, $planet, $planet->surfaceWeight($mass));
+            echo sprintf(
+                'Your weight on %s is %0.0f' . PHP_EOL,
+                $planet,
+                $planet->surfaceWeight($mass)
+            );
         }
         $actual = ob_get_clean();
         $expected =

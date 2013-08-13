@@ -23,9 +23,9 @@ class EnumerationTest extends PHPUnit_Framework_TestCase
         parent::setUp();
 
         $reflector = new ReflectionClass(__NAMESPACE__.'\Multiton');
-        $instancesProperty = $reflector->getProperty('instances');
-        $instancesProperty->setAccessible(true);
-        $instancesProperty->setValue(null, array());
+        $membersProperty = $reflector->getProperty('members');
+        $membersProperty->setAccessible(true);
+        $membersProperty->setValue(null, array());
     }
 
     public function testInitialization()
@@ -34,37 +34,72 @@ class EnumerationTest extends PHPUnit_Framework_TestCase
             'BAZ' => ValidEnumeration::BAZ(),
             'FOO' => ValidEnumeration::FOO(),
             'BAR' => ValidEnumeration::BAR(),
-        ), ValidEnumeration::multitonInstances());
+        ), ValidEnumeration::members());
     }
 
-    public function testInstanceByValue()
+    public function testMemberByValue()
     {
-        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::instanceByValue(ValidEnumeration::FOO));
-        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::instanceByValue(ValidEnumeration::BAR));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberByValue(ValidEnumeration::FOO));
+        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::memberByValue(ValidEnumeration::BAR));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberByValue('Oof', false));
     }
 
-    public function testInstanceByValueFailureUndefined()
+    public function testMemberByValueFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-        ValidEnumeration::instanceByValue('mood');
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidEnumeration::memberByValue('mood');
     }
 
-    public function testInstanceByKey()
+    public function testMemberByValueWithDefault()
     {
-        $foo = ValidEnumeration::instanceByKey('FOO');
-        $bar = ValidEnumeration::instanceByKey('BAR');
+        $this->assertSame(
+            ValidEnumeration::FOO(),
+            ValidEnumeration::memberByValueWithDefault(ValidEnumeration::FOO)
+        );
+        $this->assertSame(
+            ValidEnumeration::BAR(),
+            ValidEnumeration::memberByValueWithDefault(ValidEnumeration::BAR)
+        );
+        $this->assertSame(
+            ValidEnumeration::FOO(),
+            ValidEnumeration::memberByValueWithDefault('Oof', null, false)
+        );
+        $this->assertSame(
+            ValidEnumeration::FOO(),
+            ValidEnumeration::memberByValueWithDefault('qux', ValidEnumeration::FOO())
+        );
+        $this->assertNull(ValidEnumeration::memberByValueWithDefault('qux'));
+    }
+
+    public function testMemberByKey()
+    {
+        $foo = ValidEnumeration::memberByKey('FOO');
+        $bar = ValidEnumeration::memberByKey('BAR');
 
         $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidEnumeration', $foo);
         $this->assertInstanceOf('Eloquent\Enumeration\Test\Fixture\ValidEnumeration', $bar);
         $this->assertNotEquals($foo, $bar);
-        $this->assertSame($foo, ValidEnumeration::instanceByKey('FOO'));
-        $this->assertSame($bar, ValidEnumeration::instanceByKey('BAR'));
+        $this->assertSame($foo, ValidEnumeration::memberByKey('FOO'));
+        $this->assertSame($bar, ValidEnumeration::memberByKey('BAR'));
+        $this->assertSame($foo, ValidEnumeration::memberByKey('Foo', false));
     }
 
-    public function testInstanceByKeyFailureUndefined()
+    public function testMemberByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
-        ValidEnumeration::instanceByKey('DOOM');
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidEnumeration::memberByKey('DOOM');
+    }
+
+    public function testMemberByKeyWithDefault()
+    {
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberByKeyWithDefault('FOO'));
+        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::memberByKeyWithDefault('BAR'));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberByKeyWithDefault('Foo', null, false));
+        $this->assertSame(
+            ValidEnumeration::FOO(),
+            ValidEnumeration::memberByKeyWithDefault('qux', ValidEnumeration::FOO())
+        );
+        $this->assertNull(ValidEnumeration::memberByKeyWithDefault('qux'));
     }
 
     public function testCallStatic()
@@ -81,7 +116,7 @@ class EnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testCallStaticUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedInstanceException');
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::DOOM();
     }
 

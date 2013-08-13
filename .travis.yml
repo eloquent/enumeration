@@ -8,22 +8,14 @@
 #
 language: php
 
-php:
-  - 5.3
-  - 5.4
-  - 5.5
+php: ["5.3", "5.4", "5.5"]
 
 env:
   global:
     - ARCHER_PUBLISH_VERSION=5.4
-    - secure: "EwbZ91halMei5RU7i08hL57AJqiUzc5UFCjwHwp8oHYxFzz7v/3Vccin7RjT0E+7aPF8MT4rV8Xap4WSFPSgjBrrzaqU06fNPXkUkFv3X4lLkCkjiy635S8+D1sMDtaHY/Ai9p+JZbNf5yROXkzFFOdMBO2ER6Hlvq/3d5QfwxI="
+    - secure: "RshLtPfJvPQyIxEsUXlBc/DEfv2uEBvr2gf4Ml6qIbnCjeGUknyhGpjm/oLn4gL0lonTC3gLhT3PVkZG8yTCjFrThnLPucty9LFT4hLfqH2JTSrqYWc57sS3EuaAbjYUo/UtKV9QQTBm3TQYuWGKamzTnNtNM6lITrL19zfcAbM="
 
 install:
   - ./.travis.install
 script:
   - ./vendor/bin/archer travis:build
-
-matrix:
-  # PHP 5.5 is still in alpha, so ignore build failures.
-  allow_failures:
-    - php: 5.5

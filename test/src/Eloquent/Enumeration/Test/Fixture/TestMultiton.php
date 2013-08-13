@@ -28,11 +28,14 @@ abstract class TestMultiton extends Multiton
         return static::$calls;
     }
 
-    protected static function initializeMultiton()
+    protected static function initializeMembers()
     {
-        parent::initializeMultiton();
+        parent::initializeMembers();
 
-        static::$calls[] = array(get_called_class().'::'.__FUNCTION__, func_get_args());
+        static::$calls[] = array(
+            get_called_class() . '::' . __FUNCTION__,
+            func_get_args()
+        );
 
         new static('FOO', 'oof');
         new static('BAR', 'rab');

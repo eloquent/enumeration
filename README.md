@@ -2,13 +2,13 @@
 
 *An enumeration implementation for PHP.*
 
-[![Build Status]](http://travis-ci.org/eloquent/enumeration)
-[![Test Coverage]](http://eloquent-software.com/enumeration/artifacts/tests/coverage/)
+[![Build Status]][Latest build]
+[![Test Coverage]][Test coverage report]
 
-## Installation
+## Installation and documentation
 
-Available as [Composer](http://getcomposer.org/) package
-[eloquent/enumeration](https://packagist.org/packages/eloquent/enumeration).
+* Available as [Composer] package [eloquent/enumeration].
+* [API documentation] available.
 
 ## What is an Enumeration?
 
@@ -22,22 +22,22 @@ is considered invalid.
 
 ## A basic example
 
-Enumeration can be used like [C++ enumerated types](http://www.learncpp.com/cpp-tutorial/45-enumerated-types/).
-Here is an example, representing a set of HTTP request methods:
+Enumeration can be used like [C++ enumerated types]. Here is an example,
+representing a set of HTTP request methods:
 
 ```php
 use Eloquent\Enumeration\Enumeration;
 
-final class HTTPRequestMethod extends Enumeration
+final class HttpRequestMethod extends Enumeration
 {
-  const OPTIONS = 'OPTIONS';
-  const GET = 'GET';
-  const HEAD = 'HEAD';
-  const POST = 'POST';
-  const PUT = 'PUT';
-  const DELETE = 'DELETE';
-  const TRACE = 'TRACE';
-  const CONNECT = 'CONNECT';
+    const OPTIONS = 'OPTIONS';
+    const GET = 'GET';
+    const HEAD = 'HEAD';
+    const POST = 'POST';
+    const PUT = 'PUT';
+    const DELETE = 'DELETE';
+    const TRACE = 'TRACE';
+    const CONNECT = 'CONNECT';
 }
 ```
 
@@ -45,9 +45,9 @@ This class can now be used in a type hint to easily accept any valid HTTP
 request method:
 
 ```php
-function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
+function handleHttpRequest(HttpRequestMethod $method, $url, $body = null)
 {
-  // handle request...
+    // handle request...
 }
 ```
 
@@ -56,39 +56,35 @@ function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
 Members are accessed by static method calls, like so:
 
 ```php
-handleHttpRequest(HTTPRequestMethod::GET(), 'http://example.org/');
-handleHttpRequest(HTTPRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
+handleHttpRequest(HttpRequestMethod::GET(), 'http://example.org/');
+handleHttpRequest(HttpRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz=qux');
 ```
 
 For each member of the enumeration, a single instance of the enumeration class
-is instantiated (that is, an instance of *HTTPRequestMethod* in the above
+is instantiated (that is, an instance of *HttpRequestMethod* in the above
 example). This means that strict comparison (===) can be used to determine
 which member has been passed to a function:
 
 ```php
-function handleHttpRequest(HTTPRequestMethod $method, $url, $body = NULL)
+function handleHttpRequest(HttpRequestMethod $method, $url, $body = null)
 {
-  if ($method === HTTPRequestMethod::POST())
-  {
-    // handle POST requests...
-  }
-  else
-  {
-    // handle other requests...
-  }
+    if ($method === HttpRequestMethod::POST()) {
+        // handle POST requests...
+    } else {
+        // handle other requests...
+    }
 }
 ```
 
 ## Java-style enumerations
 
-[Java's enum types](http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html)
-have slightly more functionality than C++ enumerated types. They can have
-additional properties and/or methods, and are really just a specialised kind of
-class where there are a fixed set of instances.
+[Java's enum types] have slightly more functionality than C++ enumerated types.
+They can have additional properties and/or methods, and are really just a
+specialised kind of class where there are a fixed set of instances.
 
-This is sometimes called the [Multiton](http://en.wikipedia.org/wiki/Multiton_pattern)
-pattern, and in fact, all enumerations in this implementation are Multitons.
-The *Enumeration* class simply defines its members based upon class constants.
+This is sometimes called the [Multiton] pattern, and in fact, all enumerations
+in this implementation are Multitons. The *Enumeration* class simply defines its
+members based upon class constants.
 
 Here is an example borrowed from the Java documentation for its enum types. The
 following multiton describes all of the planets in our solar system, including
@@ -99,68 +95,68 @@ use Eloquent\Enumeration\Multiton;
 
 final class Planet extends Multiton
 {
-  /**
-   * Universal gravitational constant
-   *
-   * @var float
-   */
-  const G = 6.67300E-11;
+    /**
+     * Universal gravitational constant
+     *
+     * @var float
+     */
+    const G = 6.67300E-11;
 
-  /**
-   * @return float
-   */
-  public function surfaceGravity()
-  {
-    return self::G * $this->mass / ($this->radius * $this->radius);
-  }
+    /**
+     * @return float
+     */
+    public function surfaceGravity()
+    {
+        return self::G * $this->mass / ($this->radius * $this->radius);
+    }
 
-  /**
-   * @param float $otherMass
-   *
-   * @return float
-   */
-  public function surfaceWeight($otherMass)
-  {
-    return $otherMass * $this->surfaceGravity();
-  }
+    /**
+     * @param float $otherMass
+     *
+     * @return float
+     */
+    public function surfaceWeight($otherMass)
+    {
+        return $otherMass * $this->surfaceGravity();
+    }
 
-  protected static function initializeMultiton()
-  {
-    parent::initializeMultiton();
+    protected static function initializeMembers()
+    {
+        parent::initializeMembers();
 
-    new static('MERCURY', 3.302e23,  2.4397e6);
-    new static('VENUS',   4.869e24,  6.0518e6);
-    new static('EARTH',   5.9742e24, 6.37814e6);
-    new static('MARS',    6.4191e23, 3.3972e6);
-    new static('JUPITER', 1.8987e27, 7.1492e7);
-    new static('SATURN',  5.6851e26, 6.0268e7);
-    new static('URANUS',  8.6849e25, 2.5559e7);
-    new static('NEPTUNE', 1.0244e26, 2.4764e7);
-    // new static('PLUTO',   1.31e22,   1.180e6);
-  }
+        new static('MERCURY', 3.302e23,  2.4397e6);
+        new static('VENUS',   4.869e24,  6.0518e6);
+        new static('EARTH',   5.9742e24, 6.37814e6);
+        new static('MARS',    6.4191e23, 3.3972e6);
+        new static('JUPITER', 1.8987e27, 7.1492e7);
+        new static('SATURN',  5.6851e26, 6.0268e7);
+        new static('URANUS',  8.6849e25, 2.5559e7);
+        new static('NEPTUNE', 1.0244e26, 2.4764e7);
+        // new static('PLUTO',   1.31e22,   1.180e6);
+    }
 
-  /**
-   * @param string $key
-   * @param float $mass
-   * @param float $radius
-   */
-  protected function __construct($key, $mass, $radius)
-  {
-    parent::__construct($key);
+    /**
+     * @param string $key
+     * @param float  $mass
+     * @param float  $radius
+     */
+    protected function __construct($key, $mass, $radius)
+    {
+        parent::__construct($key);
 
-    $this->mass = $mass;
-    $this->radius = $radius;
-  }
+        $this->mass = $mass;
+        $this->radius = $radius;
+    }
 
-  /**
-   * @var float
-   */
-  private $mass;
+    /**
+     * @var float
+     */
+    private $mass;
 
-  /**
-   * @var float
-   */
-  private $radius;
+    /**
+     * @var float
+     */
+    private $radius;
 }
 ```
 
@@ -168,14 +164,15 @@ The above class can be used to take a known weight on earth (in any unit) and
 calculate the weight on all of the planets (in the same unit):
 
 ```php
-require 'Planet.php';
-
 $earthWeight = 175;
 $mass = $earthWeight / Planet::EARTH()->surfaceGravity();
 
-foreach (Planet::multitonInstances() as $planet)
-{
-  echo sprintf('Your weight on %s is %f' . PHP_EOL, $planet, $planet->surfaceWeight($mass));
+foreach (Planet::members() as $planet) {
+    echo sprintf(
+        'Your weight on %s is %f' . PHP_EOL,
+        $planet,
+        $planet->surfaceWeight($mass)
+    );
 }
 ```
 
@@ -192,6 +189,17 @@ Your weight on URANUS is 158.424919
 Your weight on NEPTUNE is 199.055584
 ```
 
-<!-- references -->
-[Build Status]: https://raw.github.com/eloquent/enumeration/gh-pages/artifacts/images/icecave/regular/build-status.png
-[Test Coverage]: https://raw.github.com/eloquent/enumeration/gh-pages/artifacts/images/icecave/regular/coverage.png
+<!-- References -->
+
+[API documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
+[C++ enumerated types]: http://www.learncpp.com/cpp-tutorial/45-enumerated-types/
+[Composer]: http://getcomposer.org/
+[eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
+[enumeration]: https://github.com/eloquent/enumeration
+[Java's enum types]: http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+[Multiton]: http://en.wikipedia.org/wiki/Multiton_pattern
+
+[Build Status]: https://api.travis-ci.org/eloquent/enumeration.png?branch=master
+[Latest build]: https://travis-ci.org/eloquent/enumeration
+[Test coverage report]: https://coveralls.io/r/eloquent/enumeration
+[Test Coverage]: https://coveralls.io/repos/eloquent/enumeration/badge.png?branch=master
