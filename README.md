@@ -4,6 +4,7 @@
 
 [![Build Status]][Latest build]
 [![Test Coverage]][Test coverage report]
+[![Uses Semantic Versioning]][SemVer]
 
 ## Installation and documentation
 
@@ -201,5 +202,7 @@ Your weight on NEPTUNE is 199.055584
 
 [Build Status]: https://api.travis-ci.org/eloquent/enumeration.png?branch=master
 [Latest build]: https://travis-ci.org/eloquent/enumeration
+[SemVer]: http://semver.org/
 [Test coverage report]: https://coveralls.io/r/eloquent/enumeration
 [Test Coverage]: https://coveralls.io/repos/eloquent/enumeration/badge.png?branch=master
+[Uses Semantic Versioning]: http://b.repl.ca/v1/semver-yes-brightgreen.png
