@@ -12,22 +12,29 @@
 namespace Eloquent\Enumeration\Exception;
 
 /**
- * Interface used to mark all exceptions thrown when an undefined instance is requested.
+ * The interface implemented by exceptions that are thrown when an undefined
+ * member is requested.
  */
-interface UndefinedInstanceExceptionInterface
+interface UndefinedMemberExceptionInterface
 {
     /**
-     * @return string
+     * Get the class name.
+     *
+     * @return string The class name.
      */
     public function className();
 
     /**
-     * @return string
+     * Get the property name.
+     *
+     * @return string The property name.
      */
     public function property();
 
     /**
-     * @return mixed
+     * Get the value of the property used to search for the member.
+     *
+     * @return mixed The value.
      */
     public function value();
 }

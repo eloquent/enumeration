@@ -15,7 +15,7 @@ use Exception;
 use LogicException;
 
 /**
- * The supplied member instance extends an already concrete base class.
+ * The supplied member extends an already concrete base class.
  *
  * This exception exists to prevent otherwise valid inheritance structures
  * that are not valid in the context of enumerations.
@@ -23,14 +23,17 @@ use LogicException;
 final class ExtendsConcreteException extends LogicException
 {
     /**
-     * Construct a new ExtendsConcreteException instance.
+     * Construct a new extends concrete exception.
      *
-     * @param string $className The class of the supplied instance.
-     * @param string $parentClass The concrete parent class.
-     * @param Exception $previous The previous exception, if any.
+     * @param string    $className   The class of the supplied member.
+     * @param string    $parentClass The concrete parent class name.
+     * @param Exception $previous    The cause, if available.
      */
-    public function __construct($className, $parentClass, Exception $previous = null)
-    {
+    public function __construct(
+        $className,
+        $parentClass,
+        Exception $previous = null
+    ) {
         $this->className = $className;
         $this->parentClass = $parentClass;
 
@@ -46,7 +49,9 @@ final class ExtendsConcreteException extends LogicException
     }
 
     /**
-     * @return string
+     * Get the class name of the supplied member.
+     *
+     * @return string The class name.
      */
     public function className()
     {
@@ -54,7 +59,9 @@ final class ExtendsConcreteException extends LogicException
     }
 
     /**
-     * @return string
+     * Get the parent class name.
+     *
+     * @return string The parent class name.
      */
     public function parentClass()
     {

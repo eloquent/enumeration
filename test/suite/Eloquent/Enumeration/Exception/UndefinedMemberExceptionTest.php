@@ -14,7 +14,7 @@ namespace Eloquent\Enumeration\Exception;
 use Exception;
 use PHPUnit_Framework_TestCase;
 
-class UndefinedInstanceExceptionTest extends PHPUnit_Framework_TestCase
+class UndefinedMemberExceptionTest extends PHPUnit_Framework_TestCase
 {
     public function testException()
     {
@@ -22,8 +22,8 @@ class UndefinedInstanceExceptionTest extends PHPUnit_Framework_TestCase
         $property = 'bar';
         $value = 'baz';
         $previous = new Exception;
-        $exception = new UndefinedInstanceException($className, $property, $value, $previous);
-        $expectedMessage = "No instance with bar equal to 'baz' defined in class 'foo'.";
+        $exception = new UndefinedMemberException($className, $property, $value, $previous);
+        $expectedMessage = "No member with bar equal to 'baz' defined in class 'foo'.";
 
         $this->assertSame($expectedMessage, $exception->getMessage());
         $this->assertSame($className, $exception->className());
