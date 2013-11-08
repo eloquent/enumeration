@@ -13,9 +13,16 @@ namespace Eloquent\Enumeration\Test\Fixture;
 
 class ValidMultiton extends TestMultiton
 {
-    /**
-     * @return string
-     */
+    public static function resetCalls()
+    {
+        static::$calls = array();
+    }
+
+    public static function calls()
+    {
+        return static::$calls;
+    }
+
     public function value()
     {
         return $this->value;
@@ -28,10 +35,6 @@ class ValidMultiton extends TestMultiton
         new static('BAZ', 'zab');
     }
 
-    /**
-     * @param string $key
-     * @param string $value
-     */
     protected function __construct($key, $value)
     {
         parent::__construct($key);
@@ -39,13 +42,6 @@ class ValidMultiton extends TestMultiton
         $this->value = $value;
     }
 
-    /**
-     * @var array
-     */
     protected static $calls = array();
-
-    /**
-     * @var string
-     */
     protected $value;
 }

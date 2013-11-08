@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-use Eloquent\Enumeration\Enumeration;
+use Eloquent\Enumeration\AbstractEnumeration;
 
-final class HttpRequestMethod extends Enumeration
+final class HttpRequestMethod extends AbstractEnumeration
 {
     const OPTIONS = 'OPTIONS';
     const GET = 'GET';

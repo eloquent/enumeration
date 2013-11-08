@@ -9,12 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Eloquent\Enumeration\Test\Fixture;
+namespace Eloquent\Enumeration;
 
-use Eloquent\Enumeration\AbstractEnumeration;
-
-abstract class TestEnumeration extends AbstractEnumeration
+/**
+ * The interface implemented by C++ style enumeration instances.
+ */
+interface EnumerationInterface extends ValueMultitonInterface
 {
-    const FOO = 'oof';
-    const BAR = 'rab';
 }

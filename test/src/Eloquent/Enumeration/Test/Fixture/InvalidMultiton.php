@@ -19,9 +19,4 @@ class InvalidMultiton extends ValidMultiton
 
         new static('QUX', 'xuq');
     }
-
-    /**
-     * @var array
-     */
-    protected static $calls = array();
 }

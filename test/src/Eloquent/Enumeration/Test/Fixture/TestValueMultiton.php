@@ -11,9 +11,9 @@
 
 namespace Eloquent\Enumeration\Test\Fixture;
 
-use Eloquent\Enumeration\AbstractMultiton;
+use Eloquent\Enumeration\AbstractValueMultiton;
 
-abstract class TestMultiton extends AbstractMultiton
+abstract class TestValueMultiton extends AbstractValueMultiton
 {
     protected static function initializeMembers()
     {

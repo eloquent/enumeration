@@ -27,9 +27,9 @@ Enumeration can be used like [C++ enumerated types]. Here is an example,
 representing a set of HTTP request methods:
 
 ```php
-use Eloquent\Enumeration\Enumeration;
+use Eloquent\Enumeration\AbstractEnumeration;
 
-final class HttpRequestMethod extends Enumeration
+final class HttpRequestMethod extends AbstractEnumeration
 {
     const OPTIONS = 'OPTIONS';
     const GET = 'GET';
@@ -62,7 +62,7 @@ handleHttpRequest(HttpRequestMethod::POST(), 'http://example.org/', 'foo=bar&baz
 ```
 
 For each member of the enumeration, a single instance of the enumeration class
-is instantiated (that is, an instance of *HttpRequestMethod* in the above
+is instantiated (that is, an instance of `HttpRequestMethod` in the above
 example). This means that strict comparison (===) can be used to determine
 which member has been passed to a function:
 
@@ -92,9 +92,9 @@ following multiton describes all of the planets in our solar system, including
 their masses and radii:
 
 ```php
-use Eloquent\Enumeration\Multiton;
+use Eloquent\Enumeration\AbstractMultiton;
 
-final class Planet extends Multiton
+final class Planet extends AbstractMultiton
 {
     /**
      * Universal gravitational constant
@@ -123,8 +123,6 @@ final class Planet extends Multiton
 
     protected static function initializeMembers()
     {
-        parent::initializeMembers();
-
         new static('MERCURY', 3.302e23,  2.4397e6);
         new static('VENUS',   4.869e24,  6.0518e6);
         new static('EARTH',   5.9742e24, 6.37814e6);
@@ -149,14 +147,7 @@ final class Planet extends Multiton
         $this->radius = $radius;
     }
 
-    /**
-     * @var float
-     */
     private $mass;
-
-    /**
-     * @var float
-     */
     private $radius;
 }
 ```
@@ -177,7 +168,8 @@ foreach (Planet::members() as $planet) {
 }
 ```
 
-If you run the above script you will get something like the following output:
+If the above script is executed, it will produce something like the following
+output:
 
 ```
 Your weight on MERCURY is 66.107480
@@ -188,6 +180,83 @@ Your weight on JUPITER is 442.677903
 Your weight on SATURN is 186.513785
 Your weight on URANUS is 158.424919
 Your weight on NEPTUNE is 199.055584
+```
+
+## Enumerations and class inheritance
+
+When an enumeration is defined, the intent is usually to define a set of valid
+values that should not change, at least within the lifetime of a program's
+execution.
+
+Since PHP has no in-built support for enumerations, this library implements them
+as regular PHP classes. Classes, however, allow for much more extensibility than
+is desirable in a true enumeration.
+
+For example, a naive enumeration implementation might allow a developer to
+extend the `HttpRequestMethod` class from the examples above (assuming the
+`final` keyword is removed):
+
+```php
+class CustomHttpMethod extends HttpRequestMethod
+{
+    const PATCH = 'PATCH';
+}
+```
+
+The problem with this scenario is that all the code written to expect only the
+HTTP methods defined in `HttpRequestMethod` is now compromised. Anybody can
+extend `HttpRequestMethod` to add custom values, essentially voiding the reason
+for defining `HttpRequestMethod` in the first place.
+
+This library provides built-in protection from these kinds of circumstances.
+Attempting to define an enumeration that extends another enumeration will result
+in an exception being thrown, unless the 'base' enumeration is abstract.
+
+### Abstract enumerations
+
+Assuming that there really is a need to extend `HttpRequestMethod`, the way to
+go about it is to define an abstract base class, then extend this class to
+create the desired concrete enumerations:
+
+```php
+use Eloquent\Enumeration\AbstractEnumeration;
+
+abstract class AbstractHttpRequestMethod extends AbstractEnumeration
+{
+    const OPTIONS = 'OPTIONS';
+    const GET = 'GET';
+    const HEAD = 'HEAD';
+    const POST = 'POST';
+    const PUT = 'PUT';
+    const DELETE = 'DELETE';
+    const TRACE = 'TRACE';
+    const CONNECT = 'CONNECT';
+}
+
+final class HttpRequestMethod extends AbstractHttpRequestMethod {}
+
+final class CustomHttpMethod extends AbstractHttpRequestMethod
+{
+    const PATCH = 'PATCH';
+}
+```
+
+In this way, when a developer uses a type hint for `HttpRequestMethod`, there is
+no chance they will ever receive the 'PATCH' method:
+
+```php
+function handleHttpRequest(HttpRequestMethod $method, $url, $body = null)
+{
+    // only handles normal requests...
+}
+
+function handleCustomHttpRequest(
+    CustomHttpRequestMethod $method,
+    $url,
+    $body = null
+) {
+    // handles normal requests, and custom requests...
+}
 ```
 
 <!-- References -->

@@ -12,7 +12,6 @@
 namespace Eloquent\Enumeration\Exception;
 
 use Exception;
-use LogicException;
 
 /**
  * The supplied member extends an already concrete base class.
@@ -20,19 +19,19 @@ use LogicException;
  * This exception exists to prevent otherwise valid inheritance structures
  * that are not valid in the context of enumerations.
  */
-final class ExtendsConcreteException extends LogicException
+final class ExtendsConcreteException extends Exception
 {
     /**
      * Construct a new extends concrete exception.
      *
-     * @param string    $className   The class of the supplied member.
-     * @param string    $parentClass The concrete parent class name.
-     * @param Exception $previous    The cause, if available.
+     * @param string         $className   The class of the supplied member.
+     * @param string         $parentClass The concrete parent class name.
+     * @param Exception|null $cause       The cause, if available.
      */
     public function __construct(
         $className,
         $parentClass,
-        Exception $previous = null
+        Exception $cause = null
     ) {
         $this->className = $className;
         $this->parentClass = $parentClass;
@@ -44,7 +43,7 @@ final class ExtendsConcreteException extends LogicException
                 $this->parentClass()
             ),
             0,
-            $previous
+            $cause
         );
     }
 
