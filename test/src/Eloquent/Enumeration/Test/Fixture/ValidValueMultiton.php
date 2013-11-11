@@ -11,20 +11,24 @@
 
 namespace Eloquent\Enumeration\Test\Fixture;
 
-use Eloquent\Enumeration\AbstractMultiton;
-
-abstract class TestMultiton extends AbstractMultiton
+class ValidValueMultiton extends TestValueMultiton
 {
+    public static function resetCalls()
+    {
+        static::$calls = array();
+    }
+
+    public static function calls()
+    {
+        return static::$calls;
+    }
+
     protected static function initializeMembers()
     {
         parent::initializeMembers();
 
-        static::$calls[] = array(
-            get_called_class() . '::' . __FUNCTION__,
-            func_get_args()
-        );
-
-        new static('FOO', 'oof');
-        new static('BAR', 'rab');
+        new static('BAZ', 'zab');
     }
+
+    protected static $calls = array();
 }

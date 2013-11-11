@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-use Eloquent\Enumeration\Multiton;
+use Eloquent\Enumeration\AbstractMultiton;
 
-final class Planet extends Multiton
+final class Planet extends AbstractMultiton
 {
     /**
      * Universal gravitational constant
@@ -40,8 +40,6 @@ final class Planet extends Multiton
 
     protected static function initializeMembers()
     {
-        parent::initializeMembers();
-
         new static('MERCURY', 3.302e23,  2.4397e6);
         new static('VENUS',   4.869e24,  6.0518e6);
         new static('EARTH',   5.9742e24, 6.37814e6);

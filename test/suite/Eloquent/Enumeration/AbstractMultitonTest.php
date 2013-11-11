@@ -16,7 +16,7 @@ use Eloquent\Enumeration\Test\Fixture\ValidMultiton;
 use PHPUnit_Framework_TestCase;
 use ReflectionClass;
 
-class MultitonTest extends PHPUnit_Framework_TestCase
+class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -24,19 +24,24 @@ class MultitonTest extends PHPUnit_Framework_TestCase
 
         ValidMultiton::resetCalls();
 
-        $reflector = new ReflectionClass(__NAMESPACE__.'\Multiton');
+        $reflector = new ReflectionClass(__NAMESPACE__.'\AbstractMultiton');
         $membersProperty = $reflector->getProperty('members');
         $membersProperty->setAccessible(true);
         $membersProperty->setValue(null, array());
     }
 
+    // Multiton tests ==========================================================
+
     public function testMembers()
     {
-        $this->assertSame(array(
-            'FOO' => ValidMultiton::FOO(),
-            'BAR' => ValidMultiton::BAR(),
-            'BAZ' => ValidMultiton::BAZ(),
-        ), ValidMultiton::members());
+        $this->assertSame(
+            array(
+                'FOO' => ValidMultiton::FOO(),
+                'BAR' => ValidMultiton::BAR(),
+                'BAZ' => ValidMultiton::BAZ(),
+            ),
+            ValidMultiton::members()
+        );
     }
 
     public function testMemberByKey()
@@ -113,6 +118,24 @@ class MultitonTest extends PHPUnit_Framework_TestCase
         $this->assertNull(ValidMultiton::memberByWithDefault('key', 'qux'));
     }
 
+    public function testMembersBy()
+    {
+        $this->assertSame(array(), ValidMultiton::calls());
+
+        $foo = ValidMultiton::membersBy('value', 'oof');
+        $bar = ValidMultiton::membersBy('value', 'RAB', false);
+
+        $this->assertSame(array('FOO' => ValidMultiton::FOO()), $foo);
+        $this->assertSame(array('BAR' => ValidMultiton::BAR()), $bar);
+
+        $this->assertSame(array(
+            array(
+                'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMembers',
+                array(),
+            ),
+        ), ValidMultiton::calls());
+    }
+
     public function testMemberByPredicate()
     {
         $this->assertSame(array(), ValidMultiton::calls());
@@ -180,6 +203,32 @@ class MultitonTest extends PHPUnit_Framework_TestCase
         $this->assertSame(ValidMultiton::BAR(), $bar);
         $this->assertSame(ValidMultiton::FOO(), $defaultFoo);
         $this->assertNull($defaultNull);
+    }
+
+    public function testMembersByPredicate()
+    {
+        $this->assertSame(array(), ValidMultiton::calls());
+
+        $notBaz = ValidMultiton::membersByPredicate(
+            function (ValidMultiton $member) {
+                return $member->key() !== 'BAZ';
+            }
+        );
+
+        $this->assertSame(
+            array(
+                'FOO' => ValidMultiton::FOO(),
+                'BAR' => ValidMultiton::BAR(),
+            ),
+            $notBaz
+        );
+
+        $this->assertSame(array(
+            array(
+                'Eloquent\Enumeration\Test\Fixture\ValidMultiton::initializeMembers',
+                array(),
+            ),
+        ), ValidMultiton::calls());
     }
 
     public function testCallStatic()

@@ -11,12 +11,11 @@
 
 namespace Eloquent\Enumeration;
 
-use ReflectionClass;
-
 /**
- * Abstract base class for C++ style enumerations.
+ * Abstract base class for Java-style enumerations with a value.
  */
-abstract class Enumeration extends Multiton
+abstract class AbstractValueMultiton extends AbstractMultiton implements
+    ValueMultitonInterface
 {
     /**
      * Returns a single member by value.
@@ -24,7 +23,7 @@ abstract class Enumeration extends Multiton
      * @param scalar       $value           The value associated with the member.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return Enumeration                        The first member with the supplied value.
+     * @return ValueMultitonInterface             The first member with the supplied value.
      * @throws Exception\UndefinedMemberException If no associated member is found.
      */
     final public static function memberByValue($value, $isCaseSensitive = null)
@@ -33,18 +32,31 @@ abstract class Enumeration extends Multiton
     }
 
     /**
+     * Returns a set of members matching the supplied value.
+     *
+     * @param scalar       $value           The value associated with the members.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return array<string,ValueMultitonInterface> All members with the supplied value.
+     */
+    final public static function membersByValue($value, $isCaseSensitive = null)
+    {
+        return static::membersBy('value', $value, $isCaseSensitive);
+    }
+
+    /**
      * Returns a single member by value. Additionally returns a default if no
      * associated member is found.
      *
-     * @param scalar        $value           The value associated with the member.
-     * @param Multiton|null $default         The default value to return.
-     * @param boolean|null  $isCaseSensitive True if the search should be case sensitive.
+     * @param scalar                      $value           The value associated with the member.
+     * @param ValueMultitonInterface|null $default         The default value to return.
+     * @param boolean|null                $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return Enumeration The first member with the supplied value, or the default value.
+     * @return ValueMultitonInterface The first member with the supplied value, or the default value.
      */
     final public static function memberByValueWithDefault(
         $value,
-        Multiton $default = null,
+        ValueMultitonInterface $default = null,
         $isCaseSensitive = null
     ) {
         return static::memberByWithDefault(
@@ -66,23 +78,7 @@ abstract class Enumeration extends Multiton
     }
 
     /**
-     * Initializes the members of this enumeration based upon its class
-     * constants.
-     *
-     * Each constant becomes a member with a string key equal to the constant's
-     * name, and a value equal to that of the constant's value.
-     */
-    final protected static function initializeMembers()
-    {
-        $reflector = new ReflectionClass(get_called_class());
-
-        foreach ($reflector->getConstants() as $key => $value) {
-            new static($key, $value);
-        }
-    }
-
-    /**
-     * Construct and register a new enumeration member.
+     * Construct and register a new value multiton member.
      *
      * @param string $key   The string key to associate with this member.
      * @param scalar $value The value of this member.
@@ -96,10 +92,5 @@ abstract class Enumeration extends Multiton
         $this->value = $value;
     }
 
-    /**
-     * The value of this member.
-     *
-     * @var scalar
-     */
     private $value;
 }

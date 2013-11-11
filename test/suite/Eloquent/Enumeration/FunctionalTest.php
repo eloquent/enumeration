@@ -39,7 +39,7 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
     public function testHttpRequestMethodAcceptAll()
     {
         $passedMethods = array();
-        $handleHttpRequest = function(HttpRequestMethod $method, $url, $body) use (&$passedMethods) {
+        $handleHttpRequest = function (HttpRequestMethod $method, $url, $body) use (&$passedMethods) {
             $passedMethods[] = $method;
         };
         $handleHttpRequest(HttpRequestMethod::OPTIONS(), 'http://example.org/', null);
