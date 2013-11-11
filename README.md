@@ -2,9 +2,9 @@
 
 *An enumeration implementation for PHP.*
 
-[![Build Status]][Latest build]
-[![Test Coverage]][Test coverage report]
-[![Uses Semantic Versioning]][SemVer]
+[![Build status]][Latest build]
+[![Test coverage]][Test coverage report]
+[![Uses semantic versioning]][SemVer]
 
 ## Installation and documentation
 
@@ -269,9 +269,9 @@ function handleCustomHttpRequest(
 [Java's enum types]: http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
 [Multiton]: http://en.wikipedia.org/wiki/Multiton_pattern
 
-[Build Status]: https://api.travis-ci.org/eloquent/enumeration.png?branch=master
+[Build status]: https://api.travis-ci.org/eloquent/enumeration.png?branch=master
 [Latest build]: https://travis-ci.org/eloquent/enumeration
 [SemVer]: http://semver.org/
 [Test coverage report]: https://coveralls.io/r/eloquent/enumeration
-[Test Coverage]: https://coveralls.io/repos/eloquent/enumeration/badge.png?branch=master
-[Uses Semantic Versioning]: http://b.repl.ca/v1/semver-yes-brightgreen.png
+[Test coverage]: https://coveralls.io/repos/eloquent/enumeration/badge.png?branch=master
+[Uses semantic versioning]: http://b.repl.ca/v1/semver-yes-brightgreen.png
