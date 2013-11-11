@@ -22,7 +22,7 @@
     <h1><a href="../../../Eloquent/Enumeration/Exception.html">Eloquent\Enumeration\Exception</a>\ExtendsConcreteException</h1>
     </div>
         <div class="content">
-                <p>class    <strong>ExtendsConcreteException</strong>        extends <a href="http://php.net/LogicException"><abbr title="LogicException">LogicException</abbr></a></p>
+                <p>class    <strong>ExtendsConcreteException</strong>        extends <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a></p>
 
             <div class="description">
             <p>The supplied member extends an already concrete base class.</p>
@@ -40,7 +40,7 @@ that are not valid in the context of enumerations.</p>
                     
                 </td>
                 <td class="last">
-                    <a href="#method___construct">__construct</a>(string $className, string $parentClass, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $previous = null)
+                    <a href="#method___construct">__construct</a>(string $className, string $parentClass, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)
                     <p>Construct a new extends concrete exception.</p>
                 </td>
                 <td></td>
@@ -71,9 +71,9 @@ that are not valid in the context of enumerations.</p>
         <h2>Details</h2>
 
                         <h3 id="method___construct">
-        <div class="location">at line 32</div>
+        <div class="location">at line 31</div>
         <code>            public            
-    <strong>__construct</strong>(string $className, string $parentClass, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $previous = null)</code>
+    <strong>__construct</strong>(string $className, string $parentClass, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)</code>
     </h3>
     <div class="details">
         <p>Construct a new extends concrete exception.</p>
@@ -95,7 +95,7 @@ that are not valid in the context of enumerations.</p>
             </tr>
                     <tr>
                 <td><a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a></td>
-                <td>$previous</td>
+                <td>$cause</td>
                 <td>The cause, if available.</td>
             </tr>
             </table>
@@ -107,7 +107,7 @@ that are not valid in the context of enumerations.</p>
     </div>
 
                 <h3 id="method_className">
-        <div class="location">at line 56</div>
+        <div class="location">at line 55</div>
         <code>            public            string
     <strong>className</strong>()</code>
     </h3>
@@ -132,7 +132,7 @@ that are not valid in the context of enumerations.</p>
     </div>
 
                 <h3 id="method_parentClass">
-        <div class="location">at line 66</div>
+        <div class="location">at line 65</div>
         <code>            public            string
     <strong>parentClass</strong>()</code>
     </h3>

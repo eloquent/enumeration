@@ -1,3 +1,0 @@
-src_dir: src
-coverage_clover: artifacts/tests/coverage/coverage.xml
-json_path: artifacts/tests/coverage/coveralls.json

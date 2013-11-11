@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>Eloquent\Enumeration\MultitonInterface | Enumeration API</title>
+                    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../../classes.html">Classes</a></li>
+                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                        <li><a href="../../interfaces.html">Interfaces</a></li>
+            <li><a href="../../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title">Enumeration API</div>
+
+            <div class="type">Interface</div>
+    <h1><a href="../../Eloquent/Enumeration.html">Eloquent\Enumeration</a>\MultitonInterface</h1>
+    </div>
+        <div class="content">
+                <p>interface    <strong>MultitonInterface</strong></p>
+
+            <div class="description">
+            <p>The interface implemented by Java-style enumeration instances.</p>
+            <p>
+</p>
+        </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method_key">key</a>()
+                    <p>Returns the string key of this member.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    boolean
+                </td>
+                <td class="last">
+                    <a href="#method_anyOf">anyOf</a>(<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $a, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $b)
+                    <p>Check if this member is in the specified list of members.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    boolean
+                </td>
+                <td class="last">
+                    <a href="#method_anyOfArray">anyOfArray</a>(array $values)
+                    <p>Check if this member is in the specified list of members.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method___toString">__toString</a>()
+                    <p>Returns a string representation of this member.</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method_key">
+        <div class="location">at line 24</div>
+        <code>            public            string
+    <strong>key</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Returns the string key of this member.</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>The associated string key of this member.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_anyOf">
+        <div class="location">at line 35</div>
+        <code>            public            boolean
+    <strong>anyOf</strong>(<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $a, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $b)</code>
+    </h3>
+    <div class="details">
+        <p>Check if this member is in the specified list of members.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a></td>
+                <td>$a</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a></td>
+                <td>$b</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>boolean</td>
+            <td>True if this member is in the specified list of members.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_anyOfArray">
+        <div class="location">at line 44</div>
+        <code>            public            boolean
+    <strong>anyOfArray</strong>(array $values)</code>
+    </h3>
+    <div class="details">
+        <p>Check if this member is in the specified list of members.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>array</td>
+                <td>$values</td>
+                <td>An array of members to search.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>boolean</td>
+            <td>True if this member is in the specified list of members.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method___toString">
+        <div class="location">at line 53</div>
+        <code>            public            string
+    <strong>__toString</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Returns a string representation of this member.</p>
+        <p>Unless overridden, this is simply the string key.</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>

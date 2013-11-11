@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="robots" content="index, follow, all" />
-        <title>Eloquent\Enumeration\Exception\UndefinedMemberException | Enumeration API</title>
+        <title>Eloquent\Enumeration\Exception\AbstractUndefinedMemberException | Enumeration API</title>
                     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
                             </head>
         <body id="class">
@@ -19,13 +19,14 @@
         <div id="title">Enumeration API</div>
 
             <div class="type">Class</div>
-    <h1><a href="../../../Eloquent/Enumeration/Exception.html">Eloquent\Enumeration\Exception</a>\UndefinedMemberException</h1>
+    <h1><a href="../../../Eloquent/Enumeration/Exception.html">Eloquent\Enumeration\Exception</a>\AbstractUndefinedMemberException</h1>
     </div>
         <div class="content">
-                <p>class    <strong>UndefinedMemberException</strong>        extends <a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a></p>
+                <p>abstract class    <strong>AbstractUndefinedMemberException</strong>        extends <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a>        implements
+        <a href="../../../Eloquent/Enumeration/Exception/UndefinedMemberExceptionInterface.html"><abbr title="Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface">UndefinedMemberExceptionInterface</abbr></a></p>
 
             <div class="description">
-            <p>The requested member was not found.</p>
+            <p>An abstract base class for implementing undefined member exceptions.</p>
             <p>
 </p>
         </div>
@@ -40,7 +41,7 @@
                     
                 </td>
                 <td class="last">
-                    <a href="#method___construct">__construct</a>(string $className, string $property, mixed $value, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)
+                    <a href="#method___construct">__construct</a>(string $message, string $className, string $property, mixed $value, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)
                     <p>Construct a new undefined member exception.</p>
                 </td>
                 <td></td>
@@ -53,7 +54,7 @@
                     <a href="#method_className">className</a>()
                     <p>Get the class name.</p>
                 </td>
-                <td><small>from&nbsp;<a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_className"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a></small></td>
+                <td></td>
             </tr>
                     <tr>
                 <td class="type">
@@ -63,7 +64,7 @@
                     <a href="#method_property">property</a>()
                     <p>Get the property name.</p>
                 </td>
-                <td><small>from&nbsp;<a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_property"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a></small></td>
+                <td></td>
             </tr>
                     <tr>
                 <td class="type">
@@ -73,7 +74,7 @@
                     <a href="#method_value">value</a>()
                     <p>Get the value of the property used to search for the member.</p>
                 </td>
-                <td><small>from&nbsp;<a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_value"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a></small></td>
+                <td></td>
             </tr>
             </table>
 
@@ -81,9 +82,9 @@
         <h2>Details</h2>
 
                         <h3 id="method___construct">
-        <div class="location">at line 29</div>
+        <div class="location">at line 31</div>
         <code>            public            
-    <strong>__construct</strong>(string $className, string $property, mixed $value, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)</code>
+    <strong>__construct</strong>(string $message, string $className, string $property, mixed $value, <a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a> $cause = null)</code>
     </h3>
     <div class="details">
         <p>Construct a new undefined member exception.</p>
@@ -93,6 +94,11 @@
                             <h4>Parameters</h4>
 
                     <table>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td>The exception message.</td>
+            </tr>
                     <tr>
                 <td>string</td>
                 <td>$className</td>
@@ -122,7 +128,7 @@
     </div>
 
                 <h3 id="method_className">
-        <div class="location">in <a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_className"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a> at line 50</div>
+        <div class="location">at line 50</div>
         <code>            public            string
     <strong>className</strong>()</code>
     </h3>
@@ -147,7 +153,7 @@
     </div>
 
                 <h3 id="method_property">
-        <div class="location">in <a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_property"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a> at line 60</div>
+        <div class="location">at line 60</div>
         <code>            public            string
     <strong>property</strong>()</code>
     </h3>
@@ -172,7 +178,7 @@
     </div>
 
                 <h3 id="method_value">
-        <div class="location">in <a href="../../../Eloquent/Enumeration/Exception/AbstractUndefinedMemberException.html#method_value"><abbr title="Eloquent\Enumeration\Exception\AbstractUndefinedMemberException">AbstractUndefinedMemberException</abbr></a> at line 70</div>
+        <div class="location">at line 70</div>
         <code>            public            mixed
     <strong>value</strong>()</code>
     </h3>
