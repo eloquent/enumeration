@@ -18,8 +18,8 @@
         "icecave/archer": "~1"
     },
     "autoload": {
-        "psr-0": {
-            "Eloquent\\Enumeration": "src"
+        "psr-4": {
+            "Eloquent\\Enumeration\\": "src"
         }
     }
 }
