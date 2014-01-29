@@ -23,7 +23,7 @@ is considered invalid.
 
 ## A basic example
 
-Enumeration can be used like [C++ enumerated types]. Here is an example,
+*Enumeration* can be used like [C++ enumerated types]. Here is an example,
 representing a set of HTTP request methods:
 
 ```php
@@ -84,8 +84,8 @@ They can have additional properties and/or methods, and are really just a
 specialised kind of class where there are a fixed set of instances.
 
 This is sometimes called the [Multiton] pattern, and in fact, all enumerations
-in this implementation are Multitons. The *Enumeration* class simply defines its
-members based upon class constants.
+in this implementation are Multitons. The `AbstractEnumeration` class simply
+defines its members based upon class constants.
 
 Here is an example borrowed from the Java documentation for its enum types. The
 following multiton describes all of the planets in our solar system, including
