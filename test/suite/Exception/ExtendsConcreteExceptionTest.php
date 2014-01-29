@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2013 Erin Millard
+ * Copyright © 2014 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,25 +14,19 @@ namespace Eloquent\Enumeration\Exception;
 use Exception;
 use PHPUnit_Framework_TestCase;
 
-/**
- * @covers \Eloquent\Enumeration\Exception\UndefinedMemberException
- * @covers \Eloquent\Enumeration\Exception\AbstractUndefinedMemberException
- */
-class UndefinedMemberExceptionTest extends PHPUnit_Framework_TestCase
+class ExtendsConcreteExceptionTest extends PHPUnit_Framework_TestCase
 {
     public function testException()
     {
         $className = 'foo';
-        $property = 'bar';
-        $value = 'baz';
+        $parentClass = 'bar';
         $previous = new Exception;
-        $exception = new UndefinedMemberException($className, $property, $value, $previous);
-        $expectedMessage = "No member with bar equal to 'baz' defined in class 'foo'.";
+        $exception = new ExtendsConcreteException($className, $parentClass, $previous);
+        $expectedMessage = "Class 'foo' cannot extend concrete class 'bar'.";
 
         $this->assertSame($expectedMessage, $exception->getMessage());
         $this->assertSame($className, $exception->className());
-        $this->assertSame($property, $exception->property());
-        $this->assertSame($value, $exception->value());
+        $this->assertSame($parentClass, $exception->parentClass());
         $this->assertSame(0, $exception->getCode());
         $this->assertSame($previous, $exception->getPrevious());
     }

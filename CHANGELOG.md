@@ -1,5 +1,9 @@
 # Enumeration changelog
 
+## 5.0.1 (2014-01-29)
+
+- **[MAINTENANCE]** General repository maintenance
+
 ## 5.0.0 (2013-11-11)
 
 - **[BC BREAK]** Renamed classes:

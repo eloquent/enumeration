@@ -2,9 +2,9 @@
 
 *An enumeration implementation for PHP.*
 
-[![Build Status]][Latest build]
-[![Test Coverage]][Test coverage report]
-[![Uses Semantic Versioning]][SemVer]
+[![The most recent stable version is 5.0.1][version-image]][Semantic versioning]
+[![Current build status image][build-image]][Current build status]
+[![Current coverage status image][coverage-image]][Current coverage status]
 
 ## Installation and documentation
 
@@ -23,7 +23,7 @@ is considered invalid.
 
 ## A basic example
 
-Enumeration can be used like [C++ enumerated types]. Here is an example,
+*Enumeration* can be used like [C++ enumerated types]. Here is an example,
 representing a set of HTTP request methods:
 
 ```php
@@ -84,8 +84,8 @@ They can have additional properties and/or methods, and are really just a
 specialised kind of class where there are a fixed set of instances.
 
 This is sometimes called the [Multiton] pattern, and in fact, all enumerations
-in this implementation are Multitons. The *Enumeration* class simply defines its
-members based upon class constants.
+in this implementation are Multitons. The `AbstractEnumeration` class simply
+defines its members based upon class constants.
 
 Here is an example borrowed from the Java documentation for its enum types. The
 following multiton describes all of the planets in our solar system, including
@@ -261,17 +261,17 @@ function handleCustomHttpRequest(
 
 <!-- References -->
 
-[API documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
 [C++ enumerated types]: http://www.learncpp.com/cpp-tutorial/45-enumerated-types/
-[Composer]: http://getcomposer.org/
-[eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
 [enumeration]: https://github.com/eloquent/enumeration
 [Java's enum types]: http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
 [Multiton]: http://en.wikipedia.org/wiki/Multiton_pattern
 
-[Build Status]: https://api.travis-ci.org/eloquent/enumeration.png?branch=master
-[Latest build]: https://travis-ci.org/eloquent/enumeration
-[SemVer]: http://semver.org/
-[Test coverage report]: https://coveralls.io/r/eloquent/enumeration
-[Test Coverage]: https://coveralls.io/repos/eloquent/enumeration/badge.png?branch=master
-[Uses Semantic Versioning]: http://b.repl.ca/v1/semver-yes-brightgreen.png
+[API documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
+[Composer]: http://getcomposer.org/
+[build-image]: http://img.shields.io/travis/eloquent/enumeration/develop.svg "Current build status for the develop branch"
+[Current build status]: https://travis-ci.org/eloquent/enumeration
+[coverage-image]: http://img.shields.io/coveralls/eloquent/enumeration/develop.svg "Current test coverage for the develop branch"
+[Current coverage status]: https://coveralls.io/r/eloquent/enumeration
+[eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
+[Semantic versioning]: http://semver.org/
+[version-image]: http://img.shields.io/:semver-5.0.1-brightgreen.svg "This project uses semantic versioning"
