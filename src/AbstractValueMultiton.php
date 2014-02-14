@@ -32,19 +32,6 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     }
 
     /**
-     * Returns a set of members matching the supplied value.
-     *
-     * @param scalar       $value           The value associated with the members.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
-     *
-     * @return array<string,ValueMultitonInterface> All members with the supplied value.
-     */
-    final public static function membersByValue($value, $isCaseSensitive = null)
-    {
-        return static::membersBy('value', $value, $isCaseSensitive);
-    }
-
-    /**
      * Returns a single member by value. Additionally returns a default if no
      * associated member is found.
      *
@@ -65,6 +52,35 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
             $default,
             $isCaseSensitive
         );
+    }
+
+    /**
+     * Returns a single member by value.
+     *
+     * @param scalar|null  $value           The value associated with the member, or null.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return ValueMultitonInterface|null        The first member with the supplied value, or null if the supplied value is null.
+     * @throws Exception\UndefinedMemberException If no associated member is found.
+     */
+    final public static function memberOrNullByValue(
+        $value,
+        $isCaseSensitive = null
+    ) {
+        return static::memberOrNullBy('value', $value, $isCaseSensitive);
+    }
+
+    /**
+     * Returns a set of members matching the supplied value.
+     *
+     * @param scalar       $value           The value associated with the members.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return array<string,ValueMultitonInterface> All members with the supplied value.
+     */
+    final public static function membersByValue($value, $isCaseSensitive = null)
+    {
+        return static::membersBy('value', $value, $isCaseSensitive);
     }
 
     /**

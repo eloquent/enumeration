@@ -32,15 +32,6 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     // Multiton tests ==========================================================
 
-    public function testMembers()
-    {
-        $this->assertSame(array(
-            'FOO' => ValidValueMultiton::FOO(),
-            'BAR' => ValidValueMultiton::BAR(),
-            'BAZ' => ValidValueMultiton::BAZ(),
-        ), ValidValueMultiton::members());
-    }
-
     public function testMemberByKey()
     {
         $this->assertSame(array(), ValidValueMultiton::calls());
@@ -115,22 +106,18 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
         $this->assertNull(ValidValueMultiton::memberByWithDefault('key', 'qux'));
     }
 
-    public function testMembersBy()
+    public function testMemberOrNullBy()
     {
-        $this->assertSame(array(), ValidValueMultiton::calls());
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullBy('key', 'FOO'));
+        $this->assertSame(ValidValueMultiton::BAR(), ValidValueMultiton::memberOrNullBy('key', 'BAR'));
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullBy('key', 'Foo', false));
+        $this->assertNull(ValidValueMultiton::memberOrNullBy('key', null));
+    }
 
-        $foo = ValidValueMultiton::membersBy('value', 'oof');
-        $bar = ValidValueMultiton::membersBy('value', 'RAB', false);
-
-        $this->assertSame(array('FOO' => ValidValueMultiton::FOO()), $foo);
-        $this->assertSame(array('BAR' => ValidValueMultiton::BAR()), $bar);
-
-        $this->assertSame(array(
-            array(
-                'Eloquent\Enumeration\Test\Fixture\ValidValueMultiton::initializeMembers',
-                array(),
-            ),
-        ), ValidValueMultiton::calls());
+    public function testMemberOrNullByFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidValueMultiton::memberOrNullBy('key', 'DOOM');
     }
 
     public function testMemberByPredicate()
@@ -200,6 +187,33 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
         $this->assertSame(ValidValueMultiton::BAR(), $bar);
         $this->assertSame(ValidValueMultiton::FOO(), $defaultFoo);
         $this->assertNull($defaultNull);
+    }
+
+    public function testMembers()
+    {
+        $this->assertSame(array(
+            'FOO' => ValidValueMultiton::FOO(),
+            'BAR' => ValidValueMultiton::BAR(),
+            'BAZ' => ValidValueMultiton::BAZ(),
+        ), ValidValueMultiton::members());
+    }
+
+    public function testMembersBy()
+    {
+        $this->assertSame(array(), ValidValueMultiton::calls());
+
+        $foo = ValidValueMultiton::membersBy('value', 'oof');
+        $bar = ValidValueMultiton::membersBy('value', 'RAB', false);
+
+        $this->assertSame(array('FOO' => ValidValueMultiton::FOO()), $foo);
+        $this->assertSame(array('BAR' => ValidValueMultiton::BAR()), $bar);
+
+        $this->assertSame(array(
+            array(
+                'Eloquent\Enumeration\Test\Fixture\ValidValueMultiton::initializeMembers',
+                array(),
+            ),
+        ), ValidValueMultiton::calls());
     }
 
     public function testMembersByPredicate()
@@ -309,23 +323,28 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByValueWithDefault()
     {
-        $this->assertSame(
-            ValidValueMultiton::FOO(),
-            ValidValueMultiton::memberByValueWithDefault('oof')
-        );
-        $this->assertSame(
-            ValidValueMultiton::BAR(),
-            ValidValueMultiton::memberByValueWithDefault('rab')
-        );
-        $this->assertSame(
-            ValidValueMultiton::FOO(),
-            ValidValueMultiton::memberByValueWithDefault('Oof', null, false)
-        );
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberByValueWithDefault('oof'));
+        $this->assertSame(ValidValueMultiton::BAR(), ValidValueMultiton::memberByValueWithDefault('rab'));
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberByValueWithDefault('Oof', null, false));
         $this->assertSame(
             ValidValueMultiton::FOO(),
             ValidValueMultiton::memberByValueWithDefault('qux', ValidValueMultiton::FOO())
         );
         $this->assertNull(ValidValueMultiton::memberByValueWithDefault('qux'));
+    }
+
+    public function testMemberOrNullByValue()
+    {
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullByValue('oof'));
+        $this->assertSame(ValidValueMultiton::BAR(), ValidValueMultiton::memberOrNullByValue('rab'));
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullByValue('Oof', false));
+        $this->assertNull(ValidValueMultiton::memberOrNullByValue(null));
+    }
+
+    public function testMemberOrNullByValueFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidValueMultiton::memberOrNullByValue('mood');
     }
 
     public function testMembersByValue()

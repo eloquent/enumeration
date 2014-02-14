@@ -30,15 +30,6 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     // Multiton tests ==========================================================
 
-    public function testMembers()
-    {
-        $this->assertSame(array(
-            'BAZ' => ValidEnumeration::BAZ(),
-            'FOO' => ValidEnumeration::FOO(),
-            'BAR' => ValidEnumeration::BAR(),
-        ), ValidEnumeration::members());
-    }
-
     public function testMemberByKey()
     {
         $foo = ValidEnumeration::memberByKey('FOO');
@@ -101,13 +92,18 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
         $this->assertNull(ValidEnumeration::memberByWithDefault('key', 'qux'));
     }
 
-    public function testMembersBy()
+    public function testMemberOrNullBy()
     {
-        $foo = ValidEnumeration::membersBy('value', 'oof');
-        $bar = ValidEnumeration::membersBy('value', 'RAB', false);
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullBy('key', 'FOO'));
+        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::memberOrNullBy('key', 'BAR'));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullBy('key', 'Foo', false));
+        $this->assertNull(ValidEnumeration::memberOrNullBy('key', null));
+    }
 
-        $this->assertSame(array('FOO' => ValidEnumeration::FOO()), $foo);
-        $this->assertSame(array('BAR' => ValidEnumeration::BAR()), $bar);
+    public function testMemberOrNullByFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidEnumeration::memberOrNullBy('key', 'DOOM');
     }
 
     public function testMemberByPredicate()
@@ -168,6 +164,24 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
         $this->assertSame(ValidEnumeration::BAR(), $bar);
         $this->assertSame(ValidEnumeration::FOO(), $defaultFoo);
         $this->assertNull($defaultNull);
+    }
+
+    public function testMembers()
+    {
+        $this->assertSame(array(
+            'BAZ' => ValidEnumeration::BAZ(),
+            'FOO' => ValidEnumeration::FOO(),
+            'BAR' => ValidEnumeration::BAR(),
+        ), ValidEnumeration::members());
+    }
+
+    public function testMembersBy()
+    {
+        $foo = ValidEnumeration::membersBy('value', 'oof');
+        $bar = ValidEnumeration::membersBy('value', 'RAB', false);
+
+        $this->assertSame(array('FOO' => ValidEnumeration::FOO()), $foo);
+        $this->assertSame(array('BAR' => ValidEnumeration::BAR()), $bar);
     }
 
     public function testMembersByPredicate()
@@ -278,6 +292,20 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
             ValidEnumeration::memberByValueWithDefault('qux', ValidEnumeration::FOO())
         );
         $this->assertNull(ValidEnumeration::memberByValueWithDefault('qux'));
+    }
+
+    public function testMemberOrNullByValue()
+    {
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullByValue('oof'));
+        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::memberOrNullByValue('rab'));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullByValue('Oof', false));
+        $this->assertNull(ValidEnumeration::memberOrNullByValue(null));
+    }
+
+    public function testMemberOrNullByValueFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidEnumeration::memberOrNullByValue('mood');
     }
 
     public function testMembersByValue()
