@@ -61,6 +61,20 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
         $this->assertNull(ValidEnumeration::memberByKeyWithDefault('qux'));
     }
 
+    public function testMemberOrNullByKey()
+    {
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullByKey('FOO'));
+        $this->assertSame(ValidEnumeration::BAR(), ValidEnumeration::memberOrNullByKey('BAR'));
+        $this->assertSame(ValidEnumeration::FOO(), ValidEnumeration::memberOrNullByKey('Foo', false));
+        $this->assertNull(ValidEnumeration::memberOrNullByKey(null));
+    }
+
+    public function testMemberOrNullByKeyFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidEnumeration::memberOrNullByKey('DOOM');
+    }
+
     public function testMemberBy()
     {
         $foo = ValidEnumeration::memberBy('key', 'FOO');
