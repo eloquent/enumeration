@@ -57,6 +57,23 @@ abstract class AbstractMultiton implements MultitonInterface
     }
 
     /**
+     * Returns a single member by string key. Additionally returns null if the
+     * supplied key is null.
+     *
+     * @param string|null  $key             The string key associated with the member, or null.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return MultitonInterface|null                      The member associated with the given string key, or null if the supplied key is null.
+     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     */
+    final public static function memberOrNullByKey(
+        $key,
+        $isCaseSensitive = null
+    ) {
+        return static::memberOrNullBy('key', $key, $isCaseSensitive);
+    }
+
+    /**
      * Returns a single member by comparison with the result of an accessor
      * method.
      *

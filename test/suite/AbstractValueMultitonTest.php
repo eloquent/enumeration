@@ -69,6 +69,20 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
         $this->assertNull(ValidValueMultiton::memberByKeyWithDefault('qux'));
     }
 
+    public function testMemberOrNullByKey()
+    {
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullByKey('FOO'));
+        $this->assertSame(ValidValueMultiton::BAR(), ValidValueMultiton::memberOrNullByKey('BAR'));
+        $this->assertSame(ValidValueMultiton::FOO(), ValidValueMultiton::memberOrNullByKey('Foo', false));
+        $this->assertNull(ValidValueMultiton::memberOrNullByKey(null));
+    }
+
+    public function testMemberOrNullByKeyFailureUndefined()
+    {
+        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        ValidValueMultiton::memberOrNullByKey('DOOM');
+    }
+
     public function testMemberBy()
     {
         $this->assertSame(array(), ValidValueMultiton::calls());

@@ -55,7 +55,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     }
 
     /**
-     * Returns a single member by value.
+     * Returns a single member by value. Additionally returns null if the
+     * supplied value is null.
      *
      * @param scalar|null  $value           The value associated with the member, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
