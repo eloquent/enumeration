@@ -1,5 +1,9 @@
 # Enumeration changelog
 
+## 5.1.0 (2014-03-13)
+
+- **[NEW]** Implemented `memberOrNullBy()` and variants
+
 ## 5.0.1 (2014-01-29)
 
 - **[MAINTENANCE]** General repository maintenance

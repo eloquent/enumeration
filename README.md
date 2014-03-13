@@ -2,7 +2,7 @@
 
 *An enumeration implementation for PHP.*
 
-[![The most recent stable version is 5.0.1][version-image]][Semantic versioning]
+[![The most recent stable version is 5.1.0][version-image]][Semantic versioning]
 [![Current build status image][build-image]][Current build status]
 [![Current coverage status image][coverage-image]][Current coverage status]
 
@@ -274,4 +274,4 @@ function handleCustomHttpRequest(
 [Current coverage status]: https://coveralls.io/r/eloquent/enumeration
 [eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
 [Semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-5.0.1-brightgreen.svg "This project uses semantic versioning"
+[version-image]: http://img.shields.io/:semver-5.1.0-brightgreen.svg "This project uses semantic versioning"
