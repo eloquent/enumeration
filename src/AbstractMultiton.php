@@ -20,22 +20,6 @@ use ReflectionObject;
 abstract class AbstractMultiton implements MultitonInterface
 {
     /**
-     * Returns an array of all members in this multiton.
-     *
-     * @return array<string,MultitonInterface> All members.
-     */
-    final public static function members()
-    {
-        $class = get_called_class();
-        if (!array_key_exists($class, self::$members)) {
-            self::$members[$class] = array();
-            static::initializeMembers();
-        }
-
-        return self::$members[$class];
-    }
-
-    /**
      * Returns a single member by string key.
      *
      * @param string       $key             The string key associated with the member.
@@ -70,6 +54,23 @@ abstract class AbstractMultiton implements MultitonInterface
             $default,
             $isCaseSensitive
         );
+    }
+
+    /**
+     * Returns a single member by string key. Additionally returns null if the
+     * supplied key is null.
+     *
+     * @param string|null  $key             The string key associated with the member, or null.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return MultitonInterface|null                      The member associated with the given string key, or null if the supplied key is null.
+     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     */
+    final public static function memberOrNullByKey(
+        $key,
+        $isCaseSensitive = null
+    ) {
+        return static::memberOrNullBy('key', $key, $isCaseSensitive);
     }
 
     /**
@@ -147,41 +148,40 @@ abstract class AbstractMultiton implements MultitonInterface
     }
 
     /**
-     * Returns a set of members by comparison with the result of an accessor
-     * method.
+     * Returns a single member by comparison with the result of an accessor
+     * method. Additionally returns null if the supplied value is null.
      *
      * @param string       $property        The name of the property (accessor method) to match.
-     * @param mixed        $value           The value to match.
+     * @param mixed        $value           The value to match, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return array<string,MultitonInterface> All members for which $member->{$property}() === $value.
+     * @return MultitonInterface|null                      The first member for which $member->{$property}() === $value, or null if the supplied value is null.
+     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
      */
-    final public static function membersBy(
+    final public static function memberOrNullBy(
         $property,
         $value,
         $isCaseSensitive = null
     ) {
-        if (null === $isCaseSensitive) {
-            $isCaseSensitive = true;
-        }
-        if (!$isCaseSensitive && is_scalar($value)) {
-            $value = strtoupper(strval($value));
-        }
-
-        return static::membersByPredicate(
-            function (MultitonInterface $member) use (
-                $property,
-                $value,
-                $isCaseSensitive
-            ) {
-                $memberValue = $member->{$property}();
-                if (!$isCaseSensitive && is_scalar($memberValue)) {
-                    $memberValue = strtoupper(strval($memberValue));
-                }
-
-                return $memberValue === $value;
-            }
+        $member = static::memberByWithDefault(
+            $property,
+            $value,
+            null,
+            $isCaseSensitive
         );
+        if (null === $member) {
+            if (null === $value) {
+                return null;
+            }
+
+            throw static::createUndefinedMemberException(
+                get_called_class(),
+                $property,
+                $value
+            );
+        }
+
+        return $member;
     }
 
     /**
@@ -226,6 +226,60 @@ abstract class AbstractMultiton implements MultitonInterface
         }
 
         return $default;
+    }
+
+    /**
+     * Returns an array of all members in this multiton.
+     *
+     * @return array<string,MultitonInterface> All members.
+     */
+    final public static function members()
+    {
+        $class = get_called_class();
+        if (!array_key_exists($class, self::$members)) {
+            self::$members[$class] = array();
+            static::initializeMembers();
+        }
+
+        return self::$members[$class];
+    }
+
+    /**
+     * Returns a set of members by comparison with the result of an accessor
+     * method.
+     *
+     * @param string       $property        The name of the property (accessor method) to match.
+     * @param mixed        $value           The value to match.
+     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     *
+     * @return array<string,MultitonInterface> All members for which $member->{$property}() === $value.
+     */
+    final public static function membersBy(
+        $property,
+        $value,
+        $isCaseSensitive = null
+    ) {
+        if (null === $isCaseSensitive) {
+            $isCaseSensitive = true;
+        }
+        if (!$isCaseSensitive && is_scalar($value)) {
+            $value = strtoupper(strval($value));
+        }
+
+        return static::membersByPredicate(
+            function (MultitonInterface $member) use (
+                $property,
+                $value,
+                $isCaseSensitive
+            ) {
+                $memberValue = $member->{$property}();
+                if (!$isCaseSensitive && is_scalar($memberValue)) {
+                    $memberValue = strtoupper(strval($memberValue));
+                }
+
+                return $memberValue === $value;
+            }
+        );
     }
 
     /**
