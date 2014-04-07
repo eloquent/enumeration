@@ -48,16 +48,6 @@
             </tr>
                     <tr>
                 <td class="type">
-                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
-                </td>
-                <td class="last">
-                    <a href="#method_membersByValue">membersByValue</a>(scalar $value, boolean|null $isCaseSensitive = null)
-                    <p>Returns a set of members matching the supplied value.</p>
-                </td>
-                <td><small>from&nbsp;<a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_membersByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a></small></td>
-            </tr>
-                    <tr>
-                <td class="type">
                     static&nbsp;<a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
                 </td>
                 <td class="last">
@@ -65,6 +55,26 @@
                     <p>Returns a single member by value.</p>
                 </td>
                 <td><small>from&nbsp;<a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_memberByValueWithDefault"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>|null
+                </td>
+                <td class="last">
+                    <a href="#method_memberOrNullByValue">memberOrNullByValue</a>(scalar|null $value, boolean|null $isCaseSensitive = null)
+                    <p>Returns a single member by value.</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_memberOrNullByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_membersByValue">membersByValue</a>(scalar $value, boolean|null $isCaseSensitive = null)
+                    <p>Returns a set of members matching the supplied value.</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_membersByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type">
@@ -130,48 +140,8 @@
                     </div>
     </div>
 
-                <h3 id="method_membersByValue">
-        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_membersByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 42</div>
-        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
-    <strong>membersByValue</strong>(scalar $value, boolean|null $isCaseSensitive = null)</code>
-    </h3>
-    <div class="details">
-        <p>Returns a set of members matching the supplied value.</p>
-        <p>
-</p>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table>
-                    <tr>
-                <td>scalar</td>
-                <td>$value</td>
-                <td>The value associated with the members.</td>
-            </tr>
-                    <tr>
-                <td>boolean|null</td>
-                <td>$isCaseSensitive</td>
-                <td>True if the search should be case sensitive.</td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table>
-        <tr>
-            <td><abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr></td>
-            <td>All members with the supplied value.</td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
                 <h3 id="method_memberByValueWithDefault">
-        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_memberByValueWithDefault"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 57</div>
+        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_memberByValueWithDefault"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 44</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
     <strong>memberByValueWithDefault</strong>(scalar $value, <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)</code>
     </h3>
@@ -215,8 +185,97 @@ associated member is found.</p>
                     </div>
     </div>
 
+                <h3 id="method_memberOrNullByValue">
+        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_memberOrNullByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 67</div>
+        <code>final        static    public            <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>|null
+    <strong>memberOrNullByValue</strong>(scalar|null $value, boolean|null $isCaseSensitive = null)</code>
+    </h3>
+    <div class="details">
+        <p>Returns a single member by value.</p>
+        <p>Additionally returns null if the
+supplied value is null.</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>scalar|null</td>
+                <td>$value</td>
+                <td>The value associated with the member, or null.</td>
+            </tr>
+                    <tr>
+                <td>boolean|null</td>
+                <td>$isCaseSensitive</td>
+                <td>True if the search should be case sensitive.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>|null</td>
+            <td>The first member with the supplied value, or null if the supplied value is null.</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="Exception\UndefinedMemberException">UndefinedMemberException</abbr></td>
+                <td>If no associated member is found.</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_membersByValue">
+        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_membersByValue"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 82</div>
+        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
+    <strong>membersByValue</strong>(scalar $value, boolean|null $isCaseSensitive = null)</code>
+    </h3>
+    <div class="details">
+        <p>Returns a set of members matching the supplied value.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>scalar</td>
+                <td>$value</td>
+                <td>The value associated with the members.</td>
+            </tr>
+                    <tr>
+                <td>boolean|null</td>
+                <td>$isCaseSensitive</td>
+                <td>True if the search should be case sensitive.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr></td>
+            <td>All members with the supplied value.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
                 <h3 id="method_value">
-        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_value"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 75</div>
+        <div class="location">in <a href="../../Eloquent/Enumeration/AbstractValueMultiton.html#method_value"><abbr title="Eloquent\Enumeration\AbstractValueMultiton">AbstractValueMultiton</abbr></a> at line 92</div>
         <code>final            public            scalar
     <strong>value</strong>()</code>
     </h3>

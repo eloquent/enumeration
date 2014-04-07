@@ -38,16 +38,6 @@
             <table>
                     <tr>
                 <td class="type">
-                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
-                </td>
-                <td class="last">
-                    <a href="#method_members">members</a>()
-                    <p>Returns an array of all members in this multiton.</p>
-                </td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type">
                     static&nbsp;<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>
                 </td>
                 <td class="last">
@@ -62,6 +52,16 @@
                 </td>
                 <td class="last">
                     <a href="#method_memberByKeyWithDefault">memberByKeyWithDefault</a>(string $key, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)
+                    <p>Returns a single member by string key.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null
+                </td>
+                <td class="last">
+                    <a href="#method_memberOrNullByKey">memberOrNullByKey</a>(string|null $key, boolean|null $isCaseSensitive = null)
                     <p>Returns a single member by string key.</p>
                 </td>
                 <td></td>
@@ -88,11 +88,11 @@
             </tr>
                     <tr>
                 <td class="type">
-                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
+                    static&nbsp;<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null
                 </td>
                 <td class="last">
-                    <a href="#method_membersBy">membersBy</a>(string $property, mixed $value, boolean|null $isCaseSensitive = null)
-                    <p>Returns a set of members by comparison with the result of an accessor method.</p>
+                    <a href="#method_memberOrNullBy">memberOrNullBy</a>(string $property, mixed $value, boolean|null $isCaseSensitive = null)
+                    <p>Returns a single member by comparison with the result of an accessor method.</p>
                 </td>
                 <td></td>
             </tr>
@@ -113,6 +113,26 @@
                 <td class="last">
                     <a href="#method_memberByPredicateWithDefault">memberByPredicateWithDefault</a>(<abbr title="Eloquent\Enumeration\callable">callable</abbr> $predicate, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $default = null)
                     <p>Returns a single member by predicate callback.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_members">members</a>()
+                    <p>Returns an array of all members in this multiton.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_membersBy">membersBy</a>(string $property, mixed $value, boolean|null $isCaseSensitive = null)
+                    <p>Returns a set of members by comparison with the result of an accessor method.</p>
                 </td>
                 <td></td>
             </tr>
@@ -181,33 +201,8 @@
 
         <h2>Details</h2>
 
-                        <h3 id="method_members">
-        <div class="location">at line 27</div>
-        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
-    <strong>members</strong>()</code>
-    </h3>
-    <div class="details">
-        <p>Returns an array of all members in this multiton.</p>
-        <p>
-</p>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table>
-        <tr>
-            <td><abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr></td>
-            <td>All members.</td>
-        </tr>
-    </table>
-
-            
-            
-                    </div>
-    </div>
-
-                <h3 id="method_memberByKey">
-        <div class="location">at line 47</div>
+                        <h3 id="method_memberByKey">
+        <div class="location">at line 31</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>
     <strong>memberByKey</strong>(string $key, boolean|null $isCaseSensitive = null)</code>
     </h3>
@@ -256,7 +251,7 @@
     </div>
 
                 <h3 id="method_memberByKeyWithDefault">
-        <div class="location">at line 62</div>
+        <div class="location">at line 46</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>
     <strong>memberByKeyWithDefault</strong>(string $key, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)</code>
     </h3>
@@ -300,8 +295,57 @@ no associated member is found.</p>
                     </div>
     </div>
 
+                <h3 id="method_memberOrNullByKey">
+        <div class="location">at line 69</div>
+        <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null
+    <strong>memberOrNullByKey</strong>(string|null $key, boolean|null $isCaseSensitive = null)</code>
+    </h3>
+    <div class="details">
+        <p>Returns a single member by string key.</p>
+        <p>Additionally returns null if the
+supplied key is null.</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string|null</td>
+                <td>$key</td>
+                <td>The string key associated with the member, or null.</td>
+            </tr>
+                    <tr>
+                <td>boolean|null</td>
+                <td>$isCaseSensitive</td>
+                <td>True if the search should be case sensitive.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null</td>
+            <td>The member associated with the given string key, or null if the supplied key is null.</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="Exception\UndefinedMemberExceptionInterface">UndefinedMemberExceptionInterface</abbr></td>
+                <td>If no associated member is found.</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
                 <h3 id="method_memberBy">
-        <div class="location">at line 86</div>
+        <div class="location">at line 87</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>
     <strong>memberBy</strong>(string $property, mixed $value, boolean|null $isCaseSensitive = null)</code>
     </h3>
@@ -355,7 +399,7 @@ no associated member is found.</p>
     </div>
 
                 <h3 id="method_memberByWithDefault">
-        <div class="location">at line 119</div>
+        <div class="location">at line 120</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null
     <strong>memberByWithDefault</strong>(string $property, mixed $value, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)</code>
     </h3>
@@ -403,15 +447,14 @@ no associated member is found.</p>
                     </div>
     </div>
 
-                <h3 id="method_membersBy">
-        <div class="location">at line 159</div>
-        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
-    <strong>membersBy</strong>(string $property, mixed $value, boolean|null $isCaseSensitive = null)</code>
+                <h3 id="method_memberOrNullBy">
+        <div class="location">at line 161</div>
+        <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null
+    <strong>memberOrNullBy</strong>(string $property, mixed $value, boolean|null $isCaseSensitive = null)</code>
     </h3>
     <div class="details">
-        <p>Returns a set of members by comparison with the result of an accessor method.</p>
-        <p>
-</p>
+        <p>Returns a single member by comparison with the result of an accessor method.</p>
+        <p>Additionally returns null if the supplied value is null.</p>
         <div class="tags">
                             <h4>Parameters</h4>
 
@@ -424,7 +467,7 @@ no associated member is found.</p>
                     <tr>
                 <td>mixed</td>
                 <td>$value</td>
-                <td>The value to match.</td>
+                <td>The value to match, or null.</td>
             </tr>
                     <tr>
                 <td>boolean|null</td>
@@ -438,12 +481,21 @@ no associated member is found.</p>
 
                     <table>
         <tr>
-            <td><abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr></td>
-            <td>All members for which $member->{$property}() === $value.</td>
+            <td><a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>|null</td>
+            <td>The first member for which $member->{$property}() === $value, or null if the supplied value is null.</td>
         </tr>
     </table>
 
             
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="Exception\UndefinedMemberExceptionInterface">UndefinedMemberExceptionInterface</abbr></td>
+                <td>If no associated member is found.</td>
+            </tr>
+            </table>
+
             
                     </div>
     </div>
@@ -532,8 +584,78 @@ default if no associated member is found.</p>
                     </div>
     </div>
 
+                <h3 id="method_members">
+        <div class="location">at line 236</div>
+        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
+    <strong>members</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Returns an array of all members in this multiton.</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr></td>
+            <td>All members.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_membersBy">
+        <div class="location">at line 257</div>
+        <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
+    <strong>membersBy</strong>(string $property, mixed $value, boolean|null $isCaseSensitive = null)</code>
+    </h3>
+    <div class="details">
+        <p>Returns a set of members by comparison with the result of an accessor method.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$property</td>
+                <td>The name of the property (accessor method) to match.</td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$value</td>
+                <td>The value to match.</td>
+            </tr>
+                    <tr>
+                <td>boolean|null</td>
+                <td>$isCaseSensitive</td>
+                <td>True if the search should be case sensitive.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr></td>
+            <td>All members for which $member->{$property}() === $value.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
                 <h3 id="method_membersByPredicate">
-        <div class="location">at line 238</div>
+        <div class="location">at line 292</div>
         <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,MultitonInterface&gt;">array&lt;string,MultitonInterface&gt;</abbr>
     <strong>membersByPredicate</strong>(<abbr title="Eloquent\Enumeration\callable">callable</abbr> $predicate)</code>
     </h3>
@@ -568,7 +690,7 @@ default if no associated member is found.</p>
     </div>
 
                 <h3 id="method___callStatic">
-        <div class="location">at line 259</div>
+        <div class="location">at line 313</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a>
     <strong>__callStatic</strong>(string $key, array $arguments)</code>
     </h3>
@@ -617,7 +739,7 @@ default if no associated member is found.</p>
     </div>
 
                 <h3 id="method_key">
-        <div class="location">at line 269</div>
+        <div class="location">at line 323</div>
         <code>final            public            string
     <strong>key</strong>()</code>
     </h3>
@@ -642,7 +764,7 @@ default if no associated member is found.</p>
     </div>
 
                 <h3 id="method_anyOf">
-        <div class="location">at line 283</div>
+        <div class="location">at line 337</div>
         <code>final            public            boolean
     <strong>anyOf</strong>(<a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $a, <a href="../../Eloquent/Enumeration/MultitonInterface.html"><abbr title="Eloquent\Enumeration\MultitonInterface">MultitonInterface</abbr></a> $b)</code>
     </h3>
@@ -684,7 +806,7 @@ default if no associated member is found.</p>
     </div>
 
                 <h3 id="method_anyOfArray">
-        <div class="location">at line 295</div>
+        <div class="location">at line 349</div>
         <code>final            public            boolean
     <strong>anyOfArray</strong>(array $values)</code>
     </h3>
@@ -719,7 +841,7 @@ default if no associated member is found.</p>
     </div>
 
                 <h3 id="method___toString">
-        <div class="location">at line 307</div>
+        <div class="location">at line 361</div>
         <code>            public            string
     <strong>__toString</strong>()</code>
     </h3>
