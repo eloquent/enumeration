@@ -19,7 +19,7 @@ interface ValueMultitonInterface extends MultitonInterface
     /**
      * Returns the value of this member.
      *
-     * @return scalar The value of this member.
+     * @return mixed The value of this member.
      */
     public function value();
 }

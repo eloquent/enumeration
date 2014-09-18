@@ -25,7 +25,7 @@ class UndefinedMemberExceptionTest extends PHPUnit_Framework_TestCase
         $className = 'foo';
         $property = 'bar';
         $value = 'baz';
-        $previous = new Exception;
+        $previous = new Exception();
         $exception = new UndefinedMemberException($className, $property, $value, $previous);
         $expectedMessage = "No member with bar equal to 'baz' defined in class 'foo'.";
 

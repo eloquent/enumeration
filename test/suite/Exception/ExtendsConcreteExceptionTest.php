@@ -20,7 +20,7 @@ class ExtendsConcreteExceptionTest extends PHPUnit_Framework_TestCase
     {
         $className = 'foo';
         $parentClass = 'bar';
-        $previous = new Exception;
+        $previous = new Exception();
         $exception = new ExtendsConcreteException($className, $parentClass, $previous);
         $expectedMessage = "Class 'foo' cannot extend concrete class 'bar'.";
 
