@@ -201,7 +201,7 @@
                     static&nbsp;<a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
                 </td>
                 <td class="last">
-                    <a href="#method_memberByValue">memberByValue</a>(scalar $value, boolean|null $isCaseSensitive = null)
+                    <a href="#method_memberByValue">memberByValue</a>(mixed $value, boolean|null $isCaseSensitive = null)
                     <p>Returns a single member by value.</p>
                 </td>
                 <td></td>
@@ -211,7 +211,7 @@
                     static&nbsp;<a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
                 </td>
                 <td class="last">
-                    <a href="#method_memberByValueWithDefault">memberByValueWithDefault</a>(scalar $value, <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)
+                    <a href="#method_memberByValueWithDefault">memberByValueWithDefault</a>(mixed $value, <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)
                     <p>Returns a single member by value.</p>
                 </td>
                 <td></td>
@@ -221,7 +221,7 @@
                     static&nbsp;<a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>|null
                 </td>
                 <td class="last">
-                    <a href="#method_memberOrNullByValue">memberOrNullByValue</a>(scalar|null $value, boolean|null $isCaseSensitive = null)
+                    <a href="#method_memberOrNullByValue">memberOrNullByValue</a>(mixed|null $value, boolean|null $isCaseSensitive = null)
                     <p>Returns a single member by value.</p>
                 </td>
                 <td></td>
@@ -231,14 +231,14 @@
                     static&nbsp;<abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
                 </td>
                 <td class="last">
-                    <a href="#method_membersByValue">membersByValue</a>(scalar $value, boolean|null $isCaseSensitive = null)
+                    <a href="#method_membersByValue">membersByValue</a>(mixed $value, boolean|null $isCaseSensitive = null)
                     <p>Returns a set of members matching the supplied value.</p>
                 </td>
                 <td></td>
             </tr>
                     <tr>
                 <td class="type">
-                    scalar
+                    mixed
                 </td>
                 <td class="last">
                     <a href="#method_value">value</a>()
@@ -917,7 +917,7 @@ default if no associated member is found.</p>
                 <h3 id="method_memberByValue">
         <div class="location">at line 29</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
-    <strong>memberByValue</strong>(scalar $value, boolean|null $isCaseSensitive = null)</code>
+    <strong>memberByValue</strong>(mixed $value, boolean|null $isCaseSensitive = null)</code>
     </h3>
     <div class="details">
         <p>Returns a single member by value.</p>
@@ -928,7 +928,7 @@ default if no associated member is found.</p>
 
                     <table>
                     <tr>
-                <td>scalar</td>
+                <td>mixed</td>
                 <td>$value</td>
                 <td>The value associated with the member.</td>
             </tr>
@@ -966,7 +966,7 @@ default if no associated member is found.</p>
                 <h3 id="method_memberByValueWithDefault">
         <div class="location">at line 44</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>
-    <strong>memberByValueWithDefault</strong>(scalar $value, <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)</code>
+    <strong>memberByValueWithDefault</strong>(mixed $value, <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a> $default = null, boolean|null $isCaseSensitive = null)</code>
     </h3>
     <div class="details">
         <p>Returns a single member by value.</p>
@@ -977,7 +977,7 @@ associated member is found.</p>
 
                     <table>
                     <tr>
-                <td>scalar</td>
+                <td>mixed</td>
                 <td>$value</td>
                 <td>The value associated with the member.</td>
             </tr>
@@ -1011,7 +1011,7 @@ associated member is found.</p>
                 <h3 id="method_memberOrNullByValue">
         <div class="location">at line 67</div>
         <code>final        static    public            <a href="../../Eloquent/Enumeration/ValueMultitonInterface.html"><abbr title="Eloquent\Enumeration\ValueMultitonInterface">ValueMultitonInterface</abbr></a>|null
-    <strong>memberOrNullByValue</strong>(scalar|null $value, boolean|null $isCaseSensitive = null)</code>
+    <strong>memberOrNullByValue</strong>(mixed|null $value, boolean|null $isCaseSensitive = null)</code>
     </h3>
     <div class="details">
         <p>Returns a single member by value.</p>
@@ -1022,7 +1022,7 @@ supplied value is null.</p>
 
                     <table>
                     <tr>
-                <td>scalar|null</td>
+                <td>mixed|null</td>
                 <td>$value</td>
                 <td>The value associated with the member, or null.</td>
             </tr>
@@ -1060,7 +1060,7 @@ supplied value is null.</p>
                 <h3 id="method_membersByValue">
         <div class="location">at line 82</div>
         <code>final        static    public            <abbr title="Eloquent\Enumeration\array&lt;string,ValueMultitonInterface&gt;">array&lt;string,ValueMultitonInterface&gt;</abbr>
-    <strong>membersByValue</strong>(scalar $value, boolean|null $isCaseSensitive = null)</code>
+    <strong>membersByValue</strong>(mixed $value, boolean|null $isCaseSensitive = null)</code>
     </h3>
     <div class="details">
         <p>Returns a set of members matching the supplied value.</p>
@@ -1071,7 +1071,7 @@ supplied value is null.</p>
 
                     <table>
                     <tr>
-                <td>scalar</td>
+                <td>mixed</td>
                 <td>$value</td>
                 <td>The value associated with the members.</td>
             </tr>
@@ -1099,7 +1099,7 @@ supplied value is null.</p>
 
                 <h3 id="method_value">
         <div class="location">at line 92</div>
-        <code>final            public            scalar
+        <code>final            public            mixed
     <strong>value</strong>()</code>
     </h3>
     <div class="details">
@@ -1112,7 +1112,7 @@ supplied value is null.</p>
 
                     <table>
         <tr>
-            <td>scalar</td>
+            <td>mixed</td>
             <td>The value of this member.</td>
         </tr>
     </table>
