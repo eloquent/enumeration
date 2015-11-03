@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2014 Erin Millard
+ * Copyright © 2015 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,7 +25,7 @@ class UndefinedMemberExceptionTest extends PHPUnit_Framework_TestCase
         $className = 'foo';
         $property = 'bar';
         $value = 'baz';
-        $previous = new Exception;
+        $previous = new Exception();
         $exception = new UndefinedMemberException($className, $property, $value, $previous);
         $expectedMessage = "No member with bar equal to 'baz' defined in class 'foo'.";
 

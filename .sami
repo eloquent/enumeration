@@ -1,0 +1,15 @@
+<?php
+
+use Sami\Parser\Filter\SymfonyFilter;
+use Sami\Sami;
+
+return new Sami(
+    'src',
+    array(
+        'title' => 'Enumeration API',
+        'default_opened_level' => 2,
+        'build_dir' => 'artifacts/documentation/api',
+        'cache_dir' => 'artifacts/documentation/api-cache',
+        'filter' => new SymfonyFilter(),
+    )
+);

@@ -2,14 +2,25 @@
 
 *An enumeration implementation for PHP.*
 
-[![The most recent stable version is 5.1.0][version-image]][Semantic versioning]
-[![Current build status image][build-image]][Current build status]
-[![Current coverage status image][coverage-image]][Current coverage status]
+[![The most recent stable version is 5.1.1][version-image]][semantic versioning]
+[![Current build status image][build-image]][current build status]
+[![Current coverage status image][coverage-image]][current coverage status]
+
+[build-image]: http://img.shields.io/travis/eloquent/enumeration/develop.svg?style=flat-square "Current build status for the develop branch"
+[current build status]: https://travis-ci.org/eloquent/enumeration
+[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/enumeration/develop.svg?style=flat-square "Current test coverage for the develop branch"
+[current coverage status]: https://codecov.io/github/eloquent/enumeration
+[semantic versioning]: http://semver.org/
+[version-image]: http://img.shields.io/:semver-5.1.1-green.svg?style=flat-square "This project uses semantic versioning"
 
 ## Installation and documentation
 
-* Available as [Composer] package [eloquent/enumeration].
-* [API documentation] available.
+- Available as [Composer] package [eloquent/enumeration].
+- [API documentation] available.
+
+[api documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
+[composer]: http://getcomposer.org/
+[eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
 
 ## What is an Enumeration?
 
@@ -51,6 +62,8 @@ function handleHttpRequest(HttpRequestMethod $method, $url, $body = null)
     // handle request...
 }
 ```
+
+[c++ enumerated types]: https://en.wikipedia.org/wiki/Enumerated_type#C.2B.2B
 
 ## Accessing enumeration members
 
@@ -97,7 +110,7 @@ use Eloquent\Enumeration\AbstractMultiton;
 final class Planet extends AbstractMultiton
 {
     /**
-     * Universal gravitational constant
+     * Universal gravitational constant.
      *
      * @var float
      */
@@ -182,6 +195,9 @@ Your weight on URANUS is 158.424919
 Your weight on NEPTUNE is 199.055584
 ```
 
+[java's enum types]: https://en.wikipedia.org/wiki/Enumerated_type#Java
+[multiton]: http://en.wikipedia.org/wiki/Multiton_pattern
+
 ## Enumerations and class inheritance
 
 When an enumeration is defined, the intent is usually to define a set of valid
@@ -258,20 +274,3 @@ function handleCustomHttpRequest(
     // handles normal requests, and custom requests...
 }
 ```
-
-<!-- References -->
-
-[C++ enumerated types]: http://www.learncpp.com/cpp-tutorial/45-enumerated-types/
-[enumeration]: https://github.com/eloquent/enumeration
-[Java's enum types]: http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
-[Multiton]: http://en.wikipedia.org/wiki/Multiton_pattern
-
-[API documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
-[Composer]: http://getcomposer.org/
-[build-image]: http://img.shields.io/travis/eloquent/enumeration/develop.svg "Current build status for the develop branch"
-[Current build status]: https://travis-ci.org/eloquent/enumeration
-[coverage-image]: http://img.shields.io/coveralls/eloquent/enumeration/develop.svg "Current test coverage for the develop branch"
-[Current coverage status]: https://coveralls.io/r/eloquent/enumeration
-[eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
-[Semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-5.1.0-brightgreen.svg "This project uses semantic versioning"

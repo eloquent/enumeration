@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2014 Erin Millard
+ * Copyright © 2015 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,22 +11,29 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Exception\ExtendsConcreteException;
+use Eloquent\Enumeration\Exception\UndefinedMemberException;
+use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
 use Exception as NativeException;
 use ReflectionObject;
 
 /**
  * Abstract base class for Java-style enumerations.
+ *
+ * @api
  */
 abstract class AbstractMultiton implements MultitonInterface
 {
     /**
      * Returns a single member by string key.
      *
+     * @api
+     *
      * @param string       $key             The string key associated with the member.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface                           The member associated with the given string key.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static                            The member associated with the given string key.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberByKey($key, $isCaseSensitive = null)
     {
@@ -37,11 +44,13 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by string key. Additionally returns a default if
      * no associated member is found.
      *
+     * @api
+     *
      * @param string                 $key             The string key associated with the member.
      * @param MultitonInterface|null $default         The default value to return.
      * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface The member associated with the given string key, or the default value.
+     * @return static The member associated with the given string key, or the default value.
      */
     final public static function memberByKeyWithDefault(
         $key,
@@ -60,11 +69,13 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by string key. Additionally returns null if the
      * supplied key is null.
      *
+     * @api
+     *
      * @param string|null  $key             The string key associated with the member, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null                      The member associated with the given string key, or null if the supplied key is null.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static|null                       The member associated with the given string key, or null if the supplied key is null.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberOrNullByKey(
         $key,
@@ -77,12 +88,14 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by comparison with the result of an accessor
      * method.
      *
+     * @api
+     *
      * @param string       $property        The name of the property (accessor method) to match.
      * @param mixed        $value           The value to match.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface                           The first member for which $member->{$property}() === $value.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static                            The first member for which $member->{$property}() === $value.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberBy(
         $property,
@@ -95,6 +108,7 @@ abstract class AbstractMultiton implements MultitonInterface
             null,
             $isCaseSensitive
         );
+
         if (null === $member) {
             throw static::createUndefinedMemberException(
                 get_called_class(),
@@ -110,12 +124,14 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by comparison with the result of an accessor
      * method. Additionally returns a default if no associated member is found.
      *
+     * @api
+     *
      * @param string                 $property        The name of the property (accessor method) to match.
      * @param mixed                  $value           The value to match.
      * @param MultitonInterface|null $default         The default value to return.
      * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null The first member for which $member->{$property}() === $value, or the default value.
+     * @return static|null The first member for which $member->{$property}() === $value, or the default value.
      */
     final public static function memberByWithDefault(
         $property,
@@ -126,6 +142,7 @@ abstract class AbstractMultiton implements MultitonInterface
         if (null === $isCaseSensitive) {
             $isCaseSensitive = true;
         }
+
         if (!$isCaseSensitive && is_scalar($value)) {
             $value = strtoupper(strval($value));
         }
@@ -137,6 +154,7 @@ abstract class AbstractMultiton implements MultitonInterface
                 $isCaseSensitive
             ) {
                 $memberValue = $member->{$property}();
+
                 if (!$isCaseSensitive && is_scalar($memberValue)) {
                     $memberValue = strtoupper(strval($memberValue));
                 }
@@ -151,12 +169,14 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by comparison with the result of an accessor
      * method. Additionally returns null if the supplied value is null.
      *
+     * @api
+     *
      * @param string       $property        The name of the property (accessor method) to match.
      * @param mixed        $value           The value to match, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null                      The first member for which $member->{$property}() === $value, or null if the supplied value is null.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static|null                       The first member for which $member->{$property}() === $value, or null if the supplied value is null.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberOrNullBy(
         $property,
@@ -187,14 +207,17 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Returns a single member by predicate callback.
      *
+     * @api
+     *
      * @param callable $predicate The predicate applies to the member to find a match.
      *
-     * @return MultitonInterface                           The first member for which $predicate($member) evaluates to boolean true.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static                            The first member for which $predicate($member) evaluates to boolean true.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberByPredicate($predicate)
     {
         $member = static::memberByPredicateWithDefault($predicate);
+
         if (null === $member) {
             throw static::createUndefinedMemberException(
                 get_called_class(),
@@ -210,10 +233,12 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a single member by predicate callback. Additionally returns a
      * default if no associated member is found.
      *
+     * @api
+     *
      * @param callable               $predicate The predicate applied to the member to find a match.
      * @param MultitonInterface|null $default   The default value to return.
      *
-     * @return MultitonInterface The first member for which $predicate($member) evaluates to boolean true, or the default value.
+     * @return static The first member for which $predicate($member) evaluates to boolean true, or the default value.
      */
     final public static function memberByPredicateWithDefault(
         $predicate,
@@ -231,11 +256,14 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Returns an array of all members in this multiton.
      *
-     * @return array<string,MultitonInterface> All members.
+     * @api
+     *
+     * @return array<string,static> All members.
      */
     final public static function members()
     {
         $class = get_called_class();
+
         if (!array_key_exists($class, self::$members)) {
             self::$members[$class] = array();
             static::initializeMembers();
@@ -248,11 +276,13 @@ abstract class AbstractMultiton implements MultitonInterface
      * Returns a set of members by comparison with the result of an accessor
      * method.
      *
+     * @api
+     *
      * @param string       $property        The name of the property (accessor method) to match.
      * @param mixed        $value           The value to match.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return array<string,MultitonInterface> All members for which $member->{$property}() === $value.
+     * @return array<string,static> All members for which $member->{$property}() === $value.
      */
     final public static function membersBy(
         $property,
@@ -262,6 +292,7 @@ abstract class AbstractMultiton implements MultitonInterface
         if (null === $isCaseSensitive) {
             $isCaseSensitive = true;
         }
+
         if (!$isCaseSensitive && is_scalar($value)) {
             $value = strtoupper(strval($value));
         }
@@ -273,6 +304,7 @@ abstract class AbstractMultiton implements MultitonInterface
                 $isCaseSensitive
             ) {
                 $memberValue = $member->{$property}();
+
                 if (!$isCaseSensitive && is_scalar($memberValue)) {
                     $memberValue = strtoupper(strval($memberValue));
                 }
@@ -285,13 +317,16 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Returns a set of members by predicate callback.
      *
+     * @api
+     *
      * @param callable $predicate The predicate applied to the members to find matches.
      *
-     * @return array<string,MultitonInterface> All members for which $predicate($member) evaluates to boolean true.
+     * @return array<string,static> All members for which $predicate($member) evaluates to boolean true.
      */
     final public static function membersByPredicate($predicate)
     {
         $members = array();
+
         foreach (static::members() as $key => $member) {
             if ($predicate($member)) {
                 $members[$key] = $member;
@@ -304,11 +339,13 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Maps static method calls to members.
      *
+     * @api
+     *
      * @param string $key       The string key associated with the member.
      * @param array  $arguments Ignored.
      *
-     * @return MultitonInterface                           The member associated with the given string key.
-     * @throws Exception\UndefinedMemberExceptionInterface If no associated member is found.
+     * @return static                            The member associated with the given string key.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function __callStatic($key, array $arguments)
     {
@@ -317,6 +354,8 @@ abstract class AbstractMultiton implements MultitonInterface
 
     /**
      * Returns the string key of this member.
+     *
+     * @api
      *
      * @return string The associated string key of this member.
      */
@@ -327,6 +366,8 @@ abstract class AbstractMultiton implements MultitonInterface
 
     /**
      * Check if this member is in the specified list of members.
+     *
+     * @api
      *
      * @param MultitonInterface $a     The first member to check.
      * @param MultitonInterface $b     The second member to check.
@@ -342,6 +383,8 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Check if this member is in the specified list of members.
      *
+     * @api
+     *
      * @param array<MultitonInterface> $values An array of members to search.
      *
      * @return boolean True if this member is in the specified list of members.
@@ -353,6 +396,8 @@ abstract class AbstractMultiton implements MultitonInterface
 
     /**
      * Returns a string representation of this member.
+     *
+     * @api
      *
      * Unless overridden, this is simply the string key.
      *
@@ -370,12 +415,18 @@ abstract class AbstractMultiton implements MultitonInterface
      * This method is called the first time the members of a multiton are
      * accessed. It is called via late static binding, and hence can be
      * overridden in child classes.
+     *
+     * @api
      */
-    protected static function initializeMembers() {}
+    protected static function initializeMembers()
+    {
+    }
 
     /**
      * Override this method in child classes to implement custom undefined
      * member exceptions for a multiton class.
+     *
+     * @api
      *
      * @param string               $className The name of the class from which the member was requested.
      * @param string               $property  The name of the property used to search for the member.
@@ -390,7 +441,7 @@ abstract class AbstractMultiton implements MultitonInterface
         $value,
         NativeException $previous = null
     ) {
-        return new Exception\UndefinedMemberException(
+        return new UndefinedMemberException(
             $className,
             $property,
             $value,
@@ -401,6 +452,8 @@ abstract class AbstractMultiton implements MultitonInterface
     /**
      * Construct and register a new multiton member.
      *
+     * @api
+     *
      * If you override the constructor in a child class, you MUST call the parent
      * constructor. Calling this constructor is the only way to set the string
      * key for this member, and to ensure that the member is correctly
@@ -408,7 +461,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @param string $key The string key to associate with this member.
      *
-     * @throws Exception\ExtendsConcreteException If the constructed member has an invalid inheritance hierarchy.
+     * @throws ExtendsConcreteException If the constructed member has an invalid inheritance hierarchy.
      */
     protected function __construct($key)
     {
@@ -424,15 +477,16 @@ abstract class AbstractMultiton implements MultitonInterface
      * AbstractMultiton::__construct() is called from any child classes, as this
      * will also handle registration of the member.
      *
-     * @param  MultitonInterface                  $member The member to register.
-     * @throws Exception\ExtendsConcreteException If the supplied member has an invalid inheritance hierarchy.
+     * @param  MultitonInterface        $member The member to register.
+     * @throws ExtendsConcreteException If the supplied member has an invalid inheritance hierarchy.
      */
     private static function registerMember(MultitonInterface $member)
     {
         $reflector = new ReflectionObject($member);
         $parentClass = $reflector->getParentClass();
+
         if (!$parentClass->isAbstract()) {
-            throw new Exception\ExtendsConcreteException(
+            throw new ExtendsConcreteException(
                 get_class($member),
                 $parentClass->getName()
             );
