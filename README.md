@@ -2,7 +2,7 @@
 
 *An enumeration implementation for PHP.*
 
-[![The most recent stable version is 5.1.0][version-image]][semantic versioning]
+[![The most recent stable version is 5.1.1][version-image]][semantic versioning]
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
@@ -11,7 +11,7 @@
 [coverage-image]: https://img.shields.io/codecov/c/github/eloquent/enumeration/develop.svg?style=flat-square "Current test coverage for the develop branch"
 [current coverage status]: https://codecov.io/github/eloquent/enumeration
 [semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-5.1.0-green.svg?style=flat-square "This project uses semantic versioning"
+[version-image]: http://img.shields.io/:semver-5.1.1-green.svg?style=flat-square "This project uses semantic versioning"
 
 ## Installation and documentation
 
