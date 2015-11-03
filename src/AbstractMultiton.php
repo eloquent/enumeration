@@ -32,7 +32,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param string       $key             The string key associated with the member.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface                 The member associated with the given string key.
+     * @return static                            The member associated with the given string key.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberByKey($key, $isCaseSensitive = null)
@@ -50,7 +50,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param MultitonInterface|null $default         The default value to return.
      * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface The member associated with the given string key, or the default value.
+     * @return static The member associated with the given string key, or the default value.
      */
     final public static function memberByKeyWithDefault(
         $key,
@@ -74,7 +74,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param string|null  $key             The string key associated with the member, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null            The member associated with the given string key, or null if the supplied key is null.
+     * @return static|null                       The member associated with the given string key, or null if the supplied key is null.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberOrNullByKey(
@@ -94,7 +94,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param mixed        $value           The value to match.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface                 The first member for which $member->{$property}() === $value.
+     * @return static                            The first member for which $member->{$property}() === $value.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberBy(
@@ -131,7 +131,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param MultitonInterface|null $default         The default value to return.
      * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null The first member for which $member->{$property}() === $value, or the default value.
+     * @return static|null The first member for which $member->{$property}() === $value, or the default value.
      */
     final public static function memberByWithDefault(
         $property,
@@ -175,7 +175,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param mixed        $value           The value to match, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return MultitonInterface|null            The first member for which $member->{$property}() === $value, or null if the supplied value is null.
+     * @return static|null                       The first member for which $member->{$property}() === $value, or null if the supplied value is null.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberOrNullBy(
@@ -211,7 +211,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @param callable $predicate The predicate applies to the member to find a match.
      *
-     * @return MultitonInterface                 The first member for which $predicate($member) evaluates to boolean true.
+     * @return static                            The first member for which $predicate($member) evaluates to boolean true.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberByPredicate($predicate)
@@ -238,7 +238,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param callable               $predicate The predicate applied to the member to find a match.
      * @param MultitonInterface|null $default   The default value to return.
      *
-     * @return MultitonInterface The first member for which $predicate($member) evaluates to boolean true, or the default value.
+     * @return static The first member for which $predicate($member) evaluates to boolean true, or the default value.
      */
     final public static function memberByPredicateWithDefault(
         $predicate,
@@ -258,7 +258,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @return array<string,MultitonInterface> All members.
+     * @return array<string,static> All members.
      */
     final public static function members()
     {
@@ -282,7 +282,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param mixed        $value           The value to match.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return array<string,MultitonInterface> All members for which $member->{$property}() === $value.
+     * @return array<string,static> All members for which $member->{$property}() === $value.
      */
     final public static function membersBy(
         $property,
@@ -321,7 +321,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @param callable $predicate The predicate applied to the members to find matches.
      *
-     * @return array<string,MultitonInterface> All members for which $predicate($member) evaluates to boolean true.
+     * @return array<string,static> All members for which $predicate($member) evaluates to boolean true.
      */
     final public static function membersByPredicate($predicate)
     {
@@ -344,7 +344,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param string $key       The string key associated with the member.
      * @param array  $arguments Ignored.
      *
-     * @return MultitonInterface                 The member associated with the given string key.
+     * @return static                            The member associated with the given string key.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function __callStatic($key, array $arguments)
