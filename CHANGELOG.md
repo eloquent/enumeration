@@ -1,8 +1,13 @@
 # Enumeration changelog
 
-## Next release
+## 5.1.1 (2015-11-04)
 
+- **[IMPROVED]** Use `static` in docblocks for better IDE hints ([#20]) (thanks
+  [@Bilge]).
 - **[MAINTENANCE]** General repository maintenance
+
+[#20]: https://github.com/eloquent/enumeration/pull/20
+[@bilge]: https://github.com/Bilge
 
 ## 5.1.0 (2014-03-13)
 
