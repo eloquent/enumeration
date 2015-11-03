@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2014 Erin Millard
+ * Copyright © 2015 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -31,10 +31,8 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the following statement:
-     *
      * "[The HttpRequestMethod class] can now be used in a type hint to easily
-     *  accept any valid HTTP request method."
+     *  accept any valid HTTP request method".
      */
     public function testHttpRequestMethodAcceptAll()
     {
@@ -65,11 +63,9 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the following statement:
-     *
      * "[The fact that enumeration members are singleton instances] means that
      *  strict comparison (===) can be used to determine which member has been
-     *  passed to a function"
+     *  passed to a function".
      */
     public function testHttpRequestMethodStrictComparison()
     {
@@ -119,6 +115,7 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
                 $planet->surfaceWeight($mass)
             );
         }
+
         $actual = ob_get_clean();
         $expected =
             'Your weight on MERCURY is 66' . PHP_EOL
@@ -128,8 +125,7 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
             . 'Your weight on JUPITER is 443' . PHP_EOL
             . 'Your weight on SATURN is 187' . PHP_EOL
             . 'Your weight on URANUS is 158' . PHP_EOL
-            . 'Your weight on NEPTUNE is 199' . PHP_EOL
-        ;
+            . 'Your weight on NEPTUNE is 199' . PHP_EOL;
 
         $this->assertSame($expected, $actual);
     }

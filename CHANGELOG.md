@@ -1,5 +1,9 @@
 # Enumeration changelog
 
+## Next release
+
+- **[MAINTENANCE]** General repository maintenance
+
 ## 5.1.0 (2014-03-13)
 
 - **[NEW]** Implemented `memberOrNullBy()` and variants
@@ -52,4 +56,4 @@
 - **[NEW]** [Archer] integration
 - **[NEW]** Implemented changelog
 
-[Archer]: (https://github.com/IcecaveStudios/archer)
+[archer]: (https://github.com/IcecaveStudios/archer)

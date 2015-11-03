@@ -15,7 +15,9 @@
         "php": ">=5.3"
     },
     "require-dev": {
-        "icecave/archer": "~1"
+        "icecave/archer": "dev-develop",
+        "phpunit/phpunit": "^4",
+        "sami/sami": "^3"
     },
     "autoload": {
         "psr-4": {

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Enumeration package.
  *
- * Copyright © 2014 Erin Millard
+ * Copyright © 2015 Erin Millard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,13 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Exception\ExtendsConcreteException;
+use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
+
 /**
  * Abstract base class for Java-style enumerations with a value.
+ *
+ * @api
  */
 abstract class AbstractValueMultiton extends AbstractMultiton implements
     ValueMultitonInterface
@@ -20,11 +25,13 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     /**
      * Returns a single member by value.
      *
+     * @api
+     *
      * @param mixed        $value           The value associated with the member.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return ValueMultitonInterface             The first member with the supplied value.
-     * @throws Exception\UndefinedMemberException If no associated member is found.
+     * @return ValueMultitonInterface            The first member with the supplied value.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberByValue($value, $isCaseSensitive = null)
     {
@@ -34,6 +41,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     /**
      * Returns a single member by value. Additionally returns a default if no
      * associated member is found.
+     *
+     * @api
      *
      * @param mixed                       $value           The value associated with the member.
      * @param ValueMultitonInterface|null $default         The default value to return.
@@ -58,11 +67,13 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * Returns a single member by value. Additionally returns null if the
      * supplied value is null.
      *
+     * @api
+     *
      * @param mixed|null   $value           The value associated with the member, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return ValueMultitonInterface|null        The first member with the supplied value, or null if the supplied value is null.
-     * @throws Exception\UndefinedMemberException If no associated member is found.
+     * @return ValueMultitonInterface|null       The first member with the supplied value, or null if the supplied value is null.
+     * @throws UndefinedMemberExceptionInterface If no associated member is found.
      */
     final public static function memberOrNullByValue(
         $value,
@@ -73,6 +84,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
 
     /**
      * Returns a set of members matching the supplied value.
+     *
+     * @api
      *
      * @param mixed        $value           The value associated with the members.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
@@ -87,6 +100,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     /**
      * Returns the value of this member.
      *
+     * @api
+     *
      * @return mixed The value of this member.
      */
     final public function value()
@@ -97,10 +112,12 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
     /**
      * Construct and register a new value multiton member.
      *
+     * @api
+     *
      * @param string $key   The string key to associate with this member.
      * @param mixed  $value The value of this member.
      *
-     * @throws Exception\ExtendsConcreteException If the constructed member has an invalid inheritance hierarchy.
+     * @throws ExtendsConcreteException If the constructed member has an invalid inheritance hierarchy.
      */
     protected function __construct($key, $value)
     {
