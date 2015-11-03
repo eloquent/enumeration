@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1446588902">
-  <project timestamp="1446588902">
+<coverage generated="1446589375">
+  <project timestamp="1446589375">
     <package name="Eloquent\Enumeration">
       <file name="/home/travis/build/eloquent/enumeration/src/AbstractEnumeration.php">
         <class name="AbstractEnumeration" namespace="Eloquent\Enumeration">
