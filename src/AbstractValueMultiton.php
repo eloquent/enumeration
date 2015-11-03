@@ -23,7 +23,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param scalar       $value           The value associated with the member.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return ValueMultitonInterface             The first member with the supplied value.
+     * @return static             The first member with the supplied value.
      * @throws Exception\UndefinedMemberException If no associated member is found.
      */
     final public static function memberByValue($value, $isCaseSensitive = null)
@@ -39,7 +39,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param ValueMultitonInterface|null $default         The default value to return.
      * @param boolean|null                $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return ValueMultitonInterface The first member with the supplied value, or the default value.
+     * @return static The first member with the supplied value, or the default value.
      */
     final public static function memberByValueWithDefault(
         $value,
@@ -61,7 +61,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param scalar|null  $value           The value associated with the member, or null.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return ValueMultitonInterface|null        The first member with the supplied value, or null if the supplied value is null.
+     * @return static|null        The first member with the supplied value, or null if the supplied value is null.
      * @throws Exception\UndefinedMemberException If no associated member is found.
      */
     final public static function memberOrNullByValue(
@@ -77,7 +77,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param scalar       $value           The value associated with the members.
      * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
      *
-     * @return array<string,ValueMultitonInterface> All members with the supplied value.
+     * @return array<string,static> All members with the supplied value.
      */
     final public static function membersByValue($value, $isCaseSensitive = null)
     {
