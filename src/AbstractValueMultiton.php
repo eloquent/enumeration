@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Enumeration package.
- *
- * Copyright © 2015 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Exception\ExtendsConcreteException;
@@ -27,8 +18,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      *
      * @api
      *
-     * @param mixed        $value           The value associated with the member.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param mixed     $value           The value associated with the member.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The first member with the supplied value.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -46,7 +37,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      *
      * @param mixed                       $value           The value associated with the member.
      * @param ValueMultitonInterface|null $default         The default value to return.
-     * @param boolean|null                $isCaseSensitive True if the search should be case sensitive.
+     * @param bool|null                   $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static The first member with the supplied value, or the default value.
      */
@@ -69,8 +60,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      *
      * @api
      *
-     * @param mixed|null   $value           The value associated with the member, or null.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param mixed|null $value           The value associated with the member, or null.
+     * @param bool|null  $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The first member with the supplied value, or null if the supplied value is null.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -87,8 +78,8 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      *
      * @api
      *
-     * @param mixed        $value           The value associated with the members.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param mixed     $value           The value associated with the members.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return array<string,static> All members with the supplied value.
      */

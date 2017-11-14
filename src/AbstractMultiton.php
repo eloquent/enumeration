@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Enumeration package.
- *
- * Copyright © 2015 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Exception\ExtendsConcreteException;
@@ -29,8 +20,8 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @param string       $key             The string key associated with the member.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param string    $key             The string key associated with the member.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The member associated with the given string key.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -48,7 +39,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @param string                 $key             The string key associated with the member.
      * @param MultitonInterface|null $default         The default value to return.
-     * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
+     * @param bool|null              $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static The member associated with the given string key, or the default value.
      */
@@ -71,8 +62,8 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @param string|null  $key             The string key associated with the member, or null.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param string|null $key             The string key associated with the member, or null.
+     * @param bool|null   $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The member associated with the given string key, or null if the supplied key is null.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -90,9 +81,9 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @param string       $property        The name of the property (accessor method) to match.
-     * @param mixed        $value           The value to match.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param string    $property        The name of the property (accessor method) to match.
+     * @param mixed     $value           The value to match.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The first member for which $member->{$property}() === $value.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -129,7 +120,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param string                 $property        The name of the property (accessor method) to match.
      * @param mixed                  $value           The value to match.
      * @param MultitonInterface|null $default         The default value to return.
-     * @param boolean|null           $isCaseSensitive True if the search should be case sensitive.
+     * @param bool|null              $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null The first member for which $member->{$property}() === $value, or the default value.
      */
@@ -171,9 +162,9 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @param string       $property        The name of the property (accessor method) to match.
-     * @param mixed        $value           The value to match, or null.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param string    $property        The name of the property (accessor method) to match.
+     * @param mixed     $value           The value to match, or null.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The first member for which $member->{$property}() === $value, or null if the supplied value is null.
      * @throws UndefinedMemberExceptionInterface If no associated member is found.
@@ -278,9 +269,9 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @api
      *
-     * @param string       $property        The name of the property (accessor method) to match.
-     * @param mixed        $value           The value to match.
-     * @param boolean|null $isCaseSensitive True if the search should be case sensitive.
+     * @param string    $property        The name of the property (accessor method) to match.
+     * @param mixed     $value           The value to match.
+     * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return array<string,static> All members for which $member->{$property}() === $value.
      */
@@ -373,7 +364,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param MultitonInterface $b     The second member to check.
      * @param MultitonInterface $c,... Additional members to check.
      *
-     * @return boolean True if this member is in the specified list of members.
+     * @return bool True if this member is in the specified list of members.
      */
     final public function anyOf(MultitonInterface $a, MultitonInterface $b)
     {
@@ -387,7 +378,7 @@ abstract class AbstractMultiton implements MultitonInterface
      *
      * @param array<MultitonInterface> $values An array of members to search.
      *
-     * @return boolean True if this member is in the specified list of members.
+     * @return bool True if this member is in the specified list of members.
      */
     final public function anyOfArray(array $values)
     {

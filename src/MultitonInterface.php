@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Enumeration package.
- *
- * Copyright © 2015 Erin Millard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Eloquent\Enumeration;
 
 /**
@@ -36,7 +27,7 @@ interface MultitonInterface
      * @param MultitonInterface $b     The second member to check.
      * @param MultitonInterface $c,... Additional members to check.
      *
-     * @return boolean True if this member is in the specified list of members.
+     * @return bool True if this member is in the specified list of members.
      */
     public function anyOf(MultitonInterface $a, MultitonInterface $b);
 
@@ -47,7 +38,7 @@ interface MultitonInterface
      *
      * @param array<MultitonInterface> $values An array of members to search.
      *
-     * @return boolean True if this member is in the specified list of members.
+     * @return bool True if this member is in the specified list of members.
      */
     public function anyOfArray(array $values);
 

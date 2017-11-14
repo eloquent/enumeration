@@ -2,23 +2,21 @@
 
 *An enumeration implementation for PHP.*
 
-[![The most recent stable version is 5.1.1][version-image]][semantic versioning]
+[![Current version image][version-image]][current version]
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
-[build-image]: http://img.shields.io/travis/eloquent/enumeration/develop.svg?style=flat-square "Current build status for the develop branch"
+[build-image]: http://img.shields.io/travis/eloquent/enumeration/master.svg?style=flat-square "Current build status for the master branch"
+[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/enumeration/master.svg?style=flat-square "Current test coverage for the master branch"
 [current build status]: https://travis-ci.org/eloquent/enumeration
-[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/enumeration/develop.svg?style=flat-square "Current test coverage for the develop branch"
 [current coverage status]: https://codecov.io/github/eloquent/enumeration
-[semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-5.1.1-green.svg?style=flat-square "This project uses semantic versioning"
+[current version]: https://packagist.org/packages/eloquent/enumeration
+[version-image]: https://img.shields.io/packagist/v/eloquent/enumeration.svg?style=flat-square "This project uses semantic versioning"
 
 ## Installation and documentation
 
 - Available as [Composer] package [eloquent/enumeration].
-- [API documentation] available.
 
-[api documentation]: http://lqnt.co/enumeration/artifacts/documentation/api/
 [composer]: http://getcomposer.org/
 [eloquent/enumeration]: https://packagist.org/packages/eloquent/enumeration
 

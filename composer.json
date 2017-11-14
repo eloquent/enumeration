@@ -15,13 +15,19 @@
         "php": ">=5.3"
     },
     "require-dev": {
-        "icecave/archer": "dev-develop",
-        "phpunit/phpunit": "^4",
-        "sami/sami": "^3"
+        "phpunit/phpunit": "^4"
     },
     "autoload": {
         "psr-4": {
             "Eloquent\\Enumeration\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "classmap": ["test/src"]
+    },
+    "config": {
+        "platform": {
+            "php": "5.3.99"
         }
     }
 }

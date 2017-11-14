@@ -1,4 +1,4 @@
-# archer start
-/artifacts/
+/coverage/
+/test/bin/php-cs-fixer
 /vendor/
-# archer end
+/.php_cs.cache
