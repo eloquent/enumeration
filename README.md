@@ -13,7 +13,7 @@
 [current version]: https://packagist.org/packages/eloquent/enumeration
 [version-image]: https://img.shields.io/packagist/v/eloquent/enumeration.svg?style=flat-square "This project uses semantic versioning"
 
-## Installation and documentation
+## Installation
 
 - Available as [Composer] package [eloquent/enumeration].
 
