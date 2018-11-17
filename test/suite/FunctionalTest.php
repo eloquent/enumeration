@@ -120,4 +120,18 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, $actual);
     }
+
+    /**
+     * Tests that only public constants are included as enumeration members.
+     *
+     * @requires PHP 7.1
+     */
+    public function testMixedAccessibility()
+    {
+        $members = MixedAccessibilityEnumeration::members();
+
+        self::assertCount(2, $members);
+        self::assertArrayHasKey(MixedAccessibilityEnumeration::IMPLICIT_PUBLIC, $members);
+        self::assertArrayHasKey(MixedAccessibilityEnumeration::EXPLICIT_PUBLIC, $members);
+    }
 }
