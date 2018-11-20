@@ -123,8 +123,6 @@ class FunctionalTest extends PHPUnit_Framework_TestCase
 
     /**
      * Tests that only public constants are included as enumeration members.
-     *
-     * @requires PHP 7.1
      */
     public function testMixedAccessibility()
     {
