@@ -24,5 +24,10 @@
     },
     "autoload-dev": {
         "classmap": ["test/src"]
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.99"
+        }
     }
 }
