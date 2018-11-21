@@ -23,9 +23,9 @@ abstract class AbstractEnumeration extends AbstractValueMultiton implements
     {
         $reflector = new ReflectionClass(get_called_class());
 
-        foreach ($reflector->getConstants() as $key => $value) {
-            if ($reflector->getReflectionConstant($key)->isPublic()) {
-                new static($key, $value);
+        foreach ($reflector->getReflectionConstants() as $constant) {
+            if ($constant->isPublic()) {
+                new static($constant->getName(), $constant->getValue());
             }
         }
     }
