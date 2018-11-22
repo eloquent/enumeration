@@ -1,4 +1,13 @@
-# Enumeration changelog
+# Changelog
+
+## 6.0.0 (2018-11-22)
+
+- **[BC BREAK]** Dropped support for PHP < 7.1.
+- **[IMPROVED]** Support for non-public enumeration constants ([#24], [#26])
+  (thanks [@Bilge]).
+
+[#24]: https://github.com/eloquent/enumeration/issues/24
+[#26]: https://github.com/eloquent/enumeration/pull/26
 
 ## 5.1.1 (2015-11-04)
 
