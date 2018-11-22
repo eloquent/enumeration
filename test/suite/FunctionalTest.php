@@ -1,6 +1,8 @@
 <?php
 
-class FunctionalTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class FunctionalTest extends TestCase
 {
     /**
      * Test basic setup of HttpRequestMethod class.

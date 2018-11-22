@@ -3,9 +3,9 @@
 namespace Eloquent\Enumeration\Exception;
 
 use Exception;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ExtendsConcreteExceptionTest extends PHPUnit_Framework_TestCase
+class ExtendsConcreteExceptionTest extends TestCase
 {
     public function testException()
     {

@@ -4,10 +4,10 @@ namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Test\Fixture\InvalidMultiton;
 use Eloquent\Enumeration\Test\Fixture\ValidMultiton;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class AbstractMultitonTest extends PHPUnit_Framework_TestCase
+class AbstractMultitonTest extends TestCase
 {
     protected function setUp()
     {
@@ -45,7 +45,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::memberByKey('DOOM');
     }
 
@@ -68,7 +68,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::memberOrNullByKey('DOOM');
     }
 
@@ -96,7 +96,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::memberBy('key', 'DOOM');
     }
 
@@ -119,7 +119,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::memberOrNullBy('key', 'DOOM');
     }
 
@@ -154,7 +154,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByPredicateFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::memberByPredicate(
             function (ValidMultiton $member) {
                 return false;
@@ -269,7 +269,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testCallStaticFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidMultiton::DOOM();
     }
 
@@ -286,7 +286,7 @@ class AbstractMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testInheritanceProtection()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
+        $this->expectException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
         InvalidMultiton::BAZ();
     }
 

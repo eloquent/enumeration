@@ -3,13 +3,13 @@
 namespace Eloquent\Enumeration\Exception;
 
 use Exception;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Eloquent\Enumeration\Exception\UndefinedMemberException
  * @covers \Eloquent\Enumeration\Exception\AbstractUndefinedMemberException
  */
-class UndefinedMemberExceptionTest extends PHPUnit_Framework_TestCase
+class UndefinedMemberExceptionTest extends TestCase
 {
     public function testException()
     {

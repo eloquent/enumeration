@@ -4,10 +4,10 @@ namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Test\Fixture\InvalidValueMultiton;
 use Eloquent\Enumeration\Test\Fixture\ValidValueMultiton;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
+class AbstractValueMultitonTest extends TestCase
 {
     protected function setUp()
     {
@@ -45,7 +45,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberByKey('DOOM');
     }
 
@@ -68,7 +68,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberOrNullByKey('DOOM');
     }
 
@@ -96,7 +96,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberBy('key', 'DOOM');
     }
 
@@ -119,7 +119,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberOrNullBy('key', 'DOOM');
     }
 
@@ -154,7 +154,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByPredicateFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberByPredicate(
             function (ValidValueMultiton $member) {
                 return false;
@@ -266,7 +266,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testCallStaticFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::DOOM();
     }
 
@@ -283,7 +283,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testInheritanceProtection()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
+        $this->expectException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
         InvalidValueMultiton::BAZ();
     }
 
@@ -320,7 +320,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByValueFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberByValue('mood');
     }
 
@@ -346,7 +346,7 @@ class AbstractValueMultitonTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByValueFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidValueMultiton::memberOrNullByValue('mood');
     }
 

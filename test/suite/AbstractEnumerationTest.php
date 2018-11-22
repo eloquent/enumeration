@@ -4,10 +4,10 @@ namespace Eloquent\Enumeration;
 
 use Eloquent\Enumeration\Test\Fixture\InvalidEnumeration;
 use Eloquent\Enumeration\Test\Fixture\ValidEnumeration;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
+class AbstractEnumerationTest extends TestCase
 {
     protected function setUp()
     {
@@ -34,7 +34,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberByKey('DOOM');
     }
 
@@ -60,7 +60,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByKeyFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberOrNullByKey('DOOM');
     }
 
@@ -79,7 +79,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberBy('key', 'DOOM');
     }
 
@@ -105,7 +105,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberOrNullBy('key', 'DOOM');
     }
 
@@ -131,7 +131,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByPredicateFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberByPredicate(
             function (ValidEnumeration $member) {
                 return false;
@@ -218,7 +218,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testCallStaticFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::DOOM();
     }
 
@@ -235,7 +235,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testInheritanceProtection()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
+        $this->expectException('Eloquent\Enumeration\Exception\ExtendsConcreteException');
         InValidEnumeration::BAZ();
     }
 
@@ -272,7 +272,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberByValueFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberByValue('mood');
     }
 
@@ -307,7 +307,7 @@ class AbstractEnumerationTest extends PHPUnit_Framework_TestCase
 
     public function testMemberOrNullByValueFailureUndefined()
     {
-        $this->setExpectedException('Eloquent\Enumeration\Exception\UndefinedMemberException');
+        $this->expectException('Eloquent\Enumeration\Exception\UndefinedMemberException');
         ValidEnumeration::memberOrNullByValue('mood');
     }
 
