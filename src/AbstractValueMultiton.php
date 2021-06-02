@@ -2,8 +2,8 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Exception\AbstractUndefinedMemberException;
 use Eloquent\Enumeration\Exception\ExtendsConcreteException;
-use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
 
 /**
  * Abstract base class for Java-style enumerations with a value.
@@ -22,7 +22,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The first member with the supplied value.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberByValue($value, $isCaseSensitive = null)
     {
@@ -64,7 +64,7 @@ abstract class AbstractValueMultiton extends AbstractMultiton implements
      * @param bool|null  $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The first member with the supplied value, or null if the supplied value is null.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberOrNullByValue(
         $value,

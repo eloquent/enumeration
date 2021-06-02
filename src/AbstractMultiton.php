@@ -2,9 +2,9 @@
 
 namespace Eloquent\Enumeration;
 
+use Eloquent\Enumeration\Exception\AbstractUndefinedMemberException;
 use Eloquent\Enumeration\Exception\ExtendsConcreteException;
 use Eloquent\Enumeration\Exception\UndefinedMemberException;
-use Eloquent\Enumeration\Exception\UndefinedMemberExceptionInterface;
 use Exception as NativeException;
 use ReflectionObject;
 
@@ -24,7 +24,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The member associated with the given string key.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberByKey($key, $isCaseSensitive = null)
     {
@@ -66,7 +66,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param bool|null   $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The member associated with the given string key, or null if the supplied key is null.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberOrNullByKey(
         $key,
@@ -86,7 +86,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static                            The first member for which $member->{$property}() === $value.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberBy(
         $property,
@@ -167,7 +167,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param bool|null $isCaseSensitive True if the search should be case sensitive.
      *
      * @return static|null                       The first member for which $member->{$property}() === $value, or null if the supplied value is null.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberOrNullBy(
         $property,
@@ -203,7 +203,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param callable $predicate The predicate applies to the member to find a match.
      *
      * @return static                            The first member for which $predicate($member) evaluates to boolean true.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function memberByPredicate($predicate)
     {
@@ -336,7 +336,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param array  $arguments Ignored.
      *
      * @return static                            The member associated with the given string key.
-     * @throws UndefinedMemberExceptionInterface If no associated member is found.
+     * @throws AbstractUndefinedMemberException If no associated member is found.
      */
     final public static function __callStatic($key, array $arguments)
     {
@@ -424,7 +424,7 @@ abstract class AbstractMultiton implements MultitonInterface
      * @param mixed                $value     The value of the property used to search for the member.
      * @param NativeException|null $cause     The cause, if available.
      *
-     * @return UndefinedMemberExceptionInterface The newly created exception.
+     * @return AbstractUndefinedMemberException The newly created exception.
      */
     protected static function createUndefinedMemberException(
         $className,

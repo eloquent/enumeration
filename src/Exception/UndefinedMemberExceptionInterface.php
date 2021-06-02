@@ -6,6 +6,8 @@ namespace Eloquent\Enumeration\Exception;
  * The interface implemented by exceptions that are thrown when an undefined
  * member is requested.
  *
+ * @deprecated use `AbstractUndefinedMemberException` instead.
+ *
  * @api
  */
 interface UndefinedMemberExceptionInterface
