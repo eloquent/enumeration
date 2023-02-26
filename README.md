@@ -6,7 +6,7 @@
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
-[build-image]: http://img.shields.io/travis/eloquent/enumeration/master.svg?style=flat-square "Current build status for the master branch"
+[build-image]: https://img.shields.io/github/actions/workflow/status/eloquent/enumeration/ci.yml?branch=master&style=flat-square
 [coverage-image]: https://img.shields.io/codecov/c/github/eloquent/enumeration/master.svg?style=flat-square "Current test coverage for the master branch"
 [current build status]: https://travis-ci.org/eloquent/enumeration
 [current coverage status]: https://codecov.io/github/eloquent/enumeration

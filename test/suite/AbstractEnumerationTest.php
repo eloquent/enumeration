@@ -9,7 +9,7 @@ use ReflectionClass;
 
 class AbstractEnumerationTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $reflector = new ReflectionClass(__NAMESPACE__ . '\AbstractMultiton');
         $membersProperty = $reflector->getProperty('members');

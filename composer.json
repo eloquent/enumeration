@@ -12,10 +12,10 @@
         }
     ],
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
@@ -24,10 +24,5 @@
     },
     "autoload-dev": {
         "classmap": ["test/src"]
-    },
-    "config": {
-        "platform": {
-            "php": "7.1.99"
-        }
     }
 }
