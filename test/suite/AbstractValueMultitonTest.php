@@ -9,7 +9,7 @@ use ReflectionClass;
 
 class AbstractValueMultitonTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         ValidValueMultiton::resetCalls();
 
